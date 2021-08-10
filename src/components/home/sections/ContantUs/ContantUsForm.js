@@ -90,7 +90,7 @@ const ContantUsForm = () => {
 
       <button
         type="submit"
-        className="bg-p-brown px-10 py-2 rounded-xl mx-4 transform -translate-y-4 font-bold"
+        className="bg-p-brown px-10 py-2 rounded-xl mx-4 transform -translate-y-4 font-bold hover:bg-p-brown-dark"
       >
         {strings.send}
       </button>

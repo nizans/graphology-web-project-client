@@ -1,10 +1,11 @@
 import React, { useRef } from 'react';
 import Shelf from '../../../assets/icons/Shelf.svg';
 import EmptyBook from '../../../assets/icons/book_side_emprty.svg';
-import BookSide from '../../../assets/icons/book_side.svg';
-import BookFront from '../../../assets/icons/book_front.svg';
+import { ReactComponent as BookSide } from '../../../assets/icons/book_side.svg';
+import { ReactComponent as BookFront } from '../../../assets/icons/book_front.svg';
 import DownArrow from '../../../assets/icons/down_arrow.png';
 import BookSideways from '../../../assets/icons/BookSideways.svg';
+import './bookshelf.css';
 const strings = {
   title: 'גרפולוגיה',
   subTitle: 'תורת כתב-יד',
@@ -14,7 +15,6 @@ const BookShelf = ({ translateY }) => {
   const readMoreTextRef = useRef(null);
   const readMoreImgRef = useRef(null);
   const readMoreAnimation = (e) => {
-    console.log(e.type);
     if (e.type === 'mouseenter') {
       console.log(readMoreTextRef.current.classList);
       readMoreTextRef.current.classList.add('translate-y-4');
@@ -45,11 +45,7 @@ const BookShelf = ({ translateY }) => {
       >
         <div className="flex justify-between items-end">
           <div className="flex items-end">
-            <img
-              src={BookSide}
-              alt="Book img"
-              className="transform transition-all hover:rotate-2"
-            />
+            <BookSide className="transform transition-all hover:rotate-2" />
             <img src={EmptyBook} alt="Empty Book img" />
             <img src={EmptyBook} alt="Empty Book img" />
             <img src={BookSideways} alt="Book Side" />
@@ -73,11 +69,7 @@ const BookShelf = ({ translateY }) => {
             />
           </div>
           <div className="flex items-end">
-            <img
-              src={BookFront}
-              alt="Book front img"
-              className="transform transition-all hover:rotate-2"
-            />
+            <BookFront className="transform transition-all hover:rotate-2" />
             <img src={EmptyBook} alt="Empty Book img" />
           </div>
         </div>
