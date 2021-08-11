@@ -3,7 +3,7 @@ import Header from './components/header/Header';
 import Main from './components/common/Main';
 import useWindowDimensions from './helpers/useWindowDimensions';
 import Footer from './components/footer/Footer';
-
+import { BrowserRouter as Router } from 'react-router-dom';
 function App() {
   const { height: windowHeight } = useWindowDimensions();
   const [sectionHeight, setSectionHeight] = useState();
@@ -13,11 +13,13 @@ function App() {
     setSectionHeight(windowHeight - headerRef.current.clientHeight);
   }, [windowHeight]);
   return (
-    <div dir="rtl" className="bg-background h-full">
-      <Header headerRef={headerRef} />
-      <Main sectionHeight={sectionHeight} windowHeight={windowHeight} />
-      <Footer />
-    </div>
+    <Router>
+      <div dir="rtl" className="bg-background h-full">
+        <Header headerRef={headerRef} />
+        <Main sectionHeight={sectionHeight} windowHeight={windowHeight} />
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

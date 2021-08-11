@@ -78,7 +78,7 @@ const Home = ({ sectionHeight }) => {
           sectionHeight={sectionHeight}
           className={`${i === 0 ? 'current-section' : ''}${
             item.scrollable ? 'scrollable' : ''
-          }`}
+          } mb-12`}
           id={'section' + i}
         >
           {item.component}

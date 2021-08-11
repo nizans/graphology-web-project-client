@@ -17,11 +17,10 @@ const strings = {
   invalidPhone: 'מספר לא תקין',
   send: 'שלח',
   requestSubject: 'נושא פניה',
-  requestSubjects: ['נושא', 'נושא', 'נושא'],
+  requestSubjects: ['נושא-1', 'נושא-2', 'נושא-3'],
 };
 
 const Contact = () => {
-  const selectRef = useRef(null);
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -40,8 +39,9 @@ const Contact = () => {
       phone: Yup.string()
         .required(strings.required)
         .matches('^0(5[^7]|[2-4]|[8-9]|7[0-9])[0-9]{7}$', strings.invalidPhone),
+
       notes: Yup.string().max(255),
-      requestSubject: Yup.string().oneOf(strings.requestSubjects),
+      requestSubject: Yup.string().oneOf(strings.requestSubjects, 'ssd'),
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
@@ -81,30 +81,34 @@ const Contact = () => {
             htmlFor="email"
             placeholder={strings.email}
           />
-          <select
-            className="mr-16 ml-9 pr-8 bg-p-brown-light rounded-lg text-p-blue font-bold text-3xl hover:bg-p-brown-dark outline-none appearance-none"
-            name="requestSubject"
-            value={formik.values.requestSubject}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            onClick={console.log(selectRef)}
-          >
-            {strings.requestSubjects.map((subj, i) => (
-              <option
-                key={i}
-                value={subj + i.toString()}
-                label={subj + i.toString()}
-              />
-            ))}
-          </select>
+
+          <div className={`grid grid-rows-2 mx-4 `}>
+            <select
+              className="mx-14 pr-8 bg-p-brown-light rounded-lg text-p-blue font-bold text-3xl hover:bg-p-brown-dark outline-none appearance-none "
+              name="requestSubject"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.requestSubject}
+            >
+              {strings.requestSubjects.map((subj, i) => (
+                <option key={i} value={subj} label={subj} />
+              ))}
+            </select>
+            <label htmlFor="requestSubject" className="text-lg">
+              {formik.touched.requestSubject &&
+                formik.errors.requestSubject &&
+                formik.errors.requestSubject}
+            </label>
+          </div>
+          <FormField
+            className="w-full col-span-2 px-14"
+            borderWidth="2"
+            formik={formik}
+            htmlFor="notes"
+            placeholder={strings.notes}
+          />
         </div>
-        <FormField
-          className="w-full pr-40 pl-32"
-          borderWidth="2"
-          formik={formik}
-          htmlFor="notes"
-          placeholder={strings.notes}
-        />
+
         <button
           type="submit"
           style={{ width: 'fit-content' }}

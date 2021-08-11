@@ -1,7 +1,7 @@
 import React from 'react';
 import ReadMoreBtn from '../../../common/ReadMoreBtn';
 
-const CouchItem = ({ data, imgWidth }) => {
+const OnTheCouchItem = ({ data, imgWidth }) => {
   return (
     <div className="flex w-full justify-evenly py-16 items-stretch">
       <img src={data.frontImg} className="max-h-80 object-scale-down" alt="" />
@@ -19,4 +19,4 @@ const CouchItem = ({ data, imgWidth }) => {
   );
 };
 
-export default CouchItem;
+export default OnTheCouchItem;

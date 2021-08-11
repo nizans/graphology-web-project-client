@@ -1,16 +1,15 @@
 import React from 'react';
-
-import NavLink from './NavLink';
+import { NavLink } from 'react-router-dom';
 import NavLogo from './NavLogo';
 
-const navLinks = [
+const links = [
   {
     title: 'אודות',
     link: '/about',
   },
   {
     title: 'על ספת הגרפולוג',
-    link: '/oncouch',
+    link: '/couch',
   },
   {
     title: 'ספרים',
@@ -31,8 +30,15 @@ const Navbar = () => {
     <nav className="w-full flex items-center justify-between">
       <NavLogo />
       <div className="flex justify-between divide-x-2 divide-p-brown divide-x-reverse">
-        {navLinks.map((item, i) => (
-          <NavLink title={item.title} link={item.link} key={i} />
+        {links.map((item, i) => (
+          <NavLink
+            to={item.link}
+            key={i}
+            activeClassName="font-bold"
+            className="px-4"
+          >
+            {item.title}
+          </NavLink>
         ))}
       </div>
     </nav>

@@ -4,18 +4,34 @@ import About from '../about/About';
 import Books from '../books/Books';
 import Services from '../services/Services';
 import Contact from '../contact/Contact';
-
+import Couch from '../couch/Couch';
+import { Route, Switch } from 'react-router';
 const Main = ({ sectionHeight, windowHeight }) => {
   return (
-    <div className="w-full flex justify-center">
-      <div className="max-w-7xl">
-        {/* <Home sectionHeight={sectionHeight} windowHeight={windowHeight} />
-        <About />
-        <Books /> */}
-        {/* <Services /> */}
-        <Contact />
+    <Switch>
+      <div className="w-full flex justify-center">
+        <div className="max-w-7xl w-full">
+          <Route exact path="/">
+            <Home sectionHeight={sectionHeight} windowHeight={windowHeight} />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/books">
+            <Books />
+          </Route>
+          <Route path="/services">
+            <Services />
+          </Route>
+          <Route path="/contact">
+            <Contact />
+          </Route>
+          <Route path="/couch">
+            <Couch />
+          </Route>
+        </div>
       </div>
-    </div>
+    </Switch>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import CouchItem from './CouchItem';
+import OnTheCouchItem from './OnTheCouchItem';
 import Avidan from '../../../../assets/imgs/avidan.png';
 import Dbora from '../../../../assets/imgs/dbora.png';
 import HNBialick from '../../../../assets/imgs/hnBialick.png';
@@ -47,7 +47,7 @@ const OnTheCouch = () => {
         </div>
       </div>
 
-      <CouchItem data={data[0]} />
+      <OnTheCouchItem data={data[0]} />
       <div className="w-full">
         <div className="mr-auto flex flex-col divide-p-brown divide-y-4 w-2/3">
           <span></span>
@@ -61,7 +61,7 @@ const OnTheCouch = () => {
           className="ml-24"
           alt="Notebook Icon"
         />
-        <CouchItem data={data[1]} />
+        <OnTheCouchItem data={data[1]} />
       </div>
 
       <div className="ml-auto flex flex-col divide-p-brown divide-y-4 w-2/3">
@@ -69,7 +69,7 @@ const OnTheCouch = () => {
         <span></span>
       </div>
       <div className="flex items-center">
-        <CouchItem data={data[2]} />
+        <OnTheCouchItem data={data[2]} />
         <a href="#" className="text-p-blue text-6xl w-1/2 flex hover:font-bold">
           {strings.moreReadings} &gt;
         </a>

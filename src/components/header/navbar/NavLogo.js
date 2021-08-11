@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '../../../assets/icons/logo.svg';
 import phoneIcon from '../../../assets/icons/phone_icon.svg';
+import { NavLink } from 'react-router-dom';
 const strings = {
   phoneTitle: 'לייעוץ ואבחון גרפולוגי',
   phoneNumber: '054-9772887',
@@ -8,14 +9,14 @@ const strings = {
 const NavLogo = () => {
   return (
     <div className="flex items-center divide-x-2 divide-p-brown divide-x-reverse">
-      <a href="/home">
+      <NavLink to="/">
         <img
           src={logo}
           width="260px"
           alt="Logo"
           className="pl-4 transform  -translate-y-3"
         />
-      </a>
+      </NavLink>
 
       <div className="pr-4 flex flex-col items-start  ">
         <h1>{strings.phoneTitle}</h1>
