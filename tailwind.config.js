@@ -18,6 +18,7 @@ module.exports = {
         background: '#FFFBF7',
         'p-blue': '#005885',
         'p-blue-dark': '#023E5D',
+        'p-brown-light': '#FAF2ED',
         'p-brown': '#DFBBA6',
         'p-brown-dark': '#CE9D81',
         'p-gray': '#EDEBE9',
