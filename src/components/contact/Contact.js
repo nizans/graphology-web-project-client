@@ -84,7 +84,7 @@ const Contact = () => {
 
           <div className={`grid grid-rows-2 mx-4 `}>
             <select
-              className="mx-14 pr-8 bg-p-brown-light rounded-lg text-p-blue font-bold text-3xl hover:bg-p-brown-dark outline-none appearance-none "
+              className="mx-14 pr-8 bg-p-brown-light rounded-lg _text-bold-3xl hover:bg-p-brown-dark outline-none appearance-none "
               name="requestSubject"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -94,7 +94,7 @@ const Contact = () => {
                 <option key={i} value={subj} label={subj} />
               ))}
             </select>
-            <label htmlFor="requestSubject" className="text-lg">
+            <label htmlFor="requestSubject" className="_text-lg">
               {formik.touched.requestSubject &&
                 formik.errors.requestSubject &&
                 formik.errors.requestSubject}
@@ -112,7 +112,7 @@ const Contact = () => {
         <button
           type="submit"
           style={{ width: 'fit-content' }}
-          className="bg-p-brown text-3xl text-p-blue-dark px-12 py-1 rounded-xl font-bold hover:bg-p-brown-dark m-auto"
+          className="bg-p-brown _text-bold-dark-3xl px-12 py-1 rounded-xl hover:bg-p-brown-dark m-auto"
         >
           {strings.send}
         </button>

@@ -47,10 +47,8 @@ const OrderBook = ({ book }) => {
         onSubmit={formik.handleSubmit}
         className="flex flex-col justify-evenly h-full"
       >
-        <h1 className="font-bold text-7xl text-p-blue-dark mr-4">
-          {strings.title}
-        </h1>
-        <h3 className="text-p-blue text-3xl mr-4">{strings.subtitle}</h3>
+        <h1 className="_text-bold-dark-6xl mr-4">{strings.title}</h1>
+        <h3 className="_text-3xl mr-4">{strings.subtitle}</h3>
         <div className="grid grid-cols-2">
           <FormField
             borderWidth="2"
@@ -81,7 +79,7 @@ const OrderBook = ({ book }) => {
         <button
           type="submit"
           style={{ width: 'fit-content' }}
-          className="bg-p-brown text-3xl text-p-blue-dark px-12 py-1 rounded-xl font-bold hover:bg-p-brown-dark w-full  mr-auto ml-4"
+          className="bg-p-brown _text-bold-dark-3xl px-12 py-1 rounded-xl  hover:bg-p-brown-dark w-full  mr-auto ml-4"
         >
           {strings.order}
         </button>

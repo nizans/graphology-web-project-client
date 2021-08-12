@@ -3,15 +3,15 @@ import ReadMoreBtn from '../common/ReadMoreBtn';
 const CouchItem = ({ data }) => {
   return (
     <div className="grid grid-cols-8 gap-x-8 py-20">
-      <img className="col-span-2 " src={data.img}></img>
+      <img className="col-span-2" src={data.img}></img>
       <div className="col-span-5">
-        <h1 className="text-4xl font-bold text-p-blue">{data.title}</h1>
-        <h3 className="text-xl text-p-blue pb-3">{data.date}</h3>
+        <h1 className="_text-bold-4xl">{data.title}</h1>
+        <h3 className="_text-xl pb-3">{data.date}</h3>
         <p
           style={{
             columnCount: '2',
           }}
-          className="align-middle  text-p-blue text-2xl"
+          className="align-middle _text-2xl"
         >
           {data.text}
         </p>

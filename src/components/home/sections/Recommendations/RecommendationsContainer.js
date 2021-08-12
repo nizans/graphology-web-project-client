@@ -9,11 +9,8 @@ const RecommendationsContainer = ({ data }) => {
         alt="icon"
         className="absolute -top-14"
       />
-      <p className="py-16 px-16 text-4xl text-p-blue">{data.text}</p>
-      <a
-        className="absolute bottom-5 left-8 font-bold text-4xl text-p-blue"
-        href={data.link}
-      >
+      <p className="py-16 px-16 _text-4xl">{data.text}</p>
+      <a className="absolute bottom-5 left-8  _text-bold-4xl" href={data.link}>
         {data.linkTitle}
       </a>
     </div>

@@ -21,7 +21,7 @@ const Michal = () => {
           className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
         <h1
-          className="absolute  left-0 right-0 text-p-brown-light text-5xl text-center px-16 italic break-words "
+          className="absolute left-0 right-0 text-p-brown-light _text-5xl text-center px-16 italic break-words"
           style={{ top: '22.214%', bottom: '44.58' }}
         >
           {strings.bubbleText}
@@ -32,7 +32,7 @@ const Michal = () => {
         <div className="flex flex-col px-4">
           <a
             href="#"
-            className="text-p-blue-dark font-bold text-10xl leading-none hover:text-p-brown"
+            className="_text-bold-dark-12xl leading-none hover:text-p-brown"
           >
             {strings.title}
           </a>
@@ -40,7 +40,7 @@ const Michal = () => {
             <span></span>
             <span></span>
           </div>
-          <p className="text-p-blue text-3xl py-6 pl-12 max-w-2xl leading-normal ">
+          <p className="_text-3xl py-6 pl-12 max-w-2xl leading-normal ">
             {strings.text}
           </p>
           <ReadMoreBtn href={'/'} className="text-4xl" />

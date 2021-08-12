@@ -7,3 +7,65 @@
     scroll-behavior: smooth;
   }
 }
+@layer components {
+  ._text-bold-dark-12xl {
+    @apply text-12xl font-bold text-p-blue-dark;
+  }
+  ._text-bold-dark-8xl {
+    @apply text-8xl font-bold text-p-blue-dark;
+  }
+  ._text-bold-dark-7xl {
+    @apply text-7xl font-bold text-p-blue-dark;
+  }
+  ._text-bold-dark-6xl {
+    @apply text-6xl font-bold text-p-blue-dark;
+  }
+  ._text-bold-dark-5xl {
+    @apply text-5xl font-bold text-p-blue-dark;
+  }
+  ._text-bold-8xl {
+    @apply text-8xl font-bold text-p-blue;
+  }
+  ._text-bold-7xl {
+    @apply text-7xl font-bold text-p-blue;
+  }
+  ._text-bold-5xl {
+    @apply text-5xl font-bold text-p-blue;
+  }
+  ._text-bold-4xl {
+    @apply text-4xl font-bold text-p-blue;
+  }
+  ._text-bold-3xl {
+    @apply text-3xl font-bold text-p-blue;
+  }
+  ._text-bold-xl {
+    @apply text-xl font-bold text-p-blue;
+  }
+  ._text-8xl {
+    @apply text-8xl text-p-blue;
+  }
+  ._text-7xl {
+    @apply text-7xl text-p-blue;
+  }
+  ._text-6xl {
+    @apply text-6xl text-p-blue;
+  }
+  ._text-5xl {
+    @apply text-5xl text-p-blue;
+  }
+  ._text-4xl {
+    @apply text-3xl text-p-blue;
+  }
+  ._text-3xl {
+    @apply text-3xl text-p-blue;
+  }
+  ._text-2xl {
+    @apply text-2xl text-p-blue;
+  }
+  ._text-xl {
+    @apply text-xl text-p-blue;
+  }
+  ._text-lg {
+    @apply text-lg text-p-blue;
+  }
+}

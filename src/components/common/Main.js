@@ -12,7 +12,7 @@ const Main = ({ sectionHeight, windowHeight }) => {
     <Switch>
       <div className=" w-full flex justify-center">
         <div className=" w-full container">
-          {/* <Route exact path="/">
+          <Route exact path="/">
             <Home sectionHeight={sectionHeight} windowHeight={windowHeight} />
           </Route>
           <Route path="/about">
@@ -29,8 +29,10 @@ const Main = ({ sectionHeight, windowHeight }) => {
           </Route>
           <Route path="/couch">
             <Couch />
-          </Route> */}
-          <Articles />
+          </Route>
+          <Route path="/Articles">
+            <Articles />
+          </Route>
         </div>
       </div>
     </Switch>

@@ -23,10 +23,10 @@ const About = () => {
       <SplitScreen imgSrc={MichalAboutPhoto}>
         <div className="flex flex-col justify-between flex-grow h-full m-0 pt-16">
           <div className>
-            <h1 className="text-8xl font-bold text-p-blue-dark leading-none">
+            <h1 className="_text-bold-dark-8xl leading-none">
               {strings.title}
             </h1>
-            <h3 className="text-3xl font-bold text-p-blue leading-none pb-4">
+            <h3 className="_text-bold-3xl leading-none pb-4">
               {strings.subTitle}
             </h3>
           </div>
@@ -35,12 +35,12 @@ const About = () => {
             <span></span>
             <span></span>
           </div>
-          <p className="pt-4 text-2xl text-p-blue">{strings.text}</p>
+          <p className="pt-4 _text-2xl">{strings.text}</p>
         </div>
       </SplitScreen>
 
       <Section>
-        <h2 className="text-p-brown-dark font-bold text-8xl">
+        <h2 className="text-p-brown-dark _text-bold-8xl">
           {strings.certificates}
         </h2>
         <div className="grid grid-cols-3">

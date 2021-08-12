@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createPortal } from 'react-dom';
 import CloseIcon from '../../assets/icons/Close_Icon.svg';
 const Modal = ({ isShowing, hide, children }) =>
   isShowing
-    ? ReactDOM.createPortal(
+    ? createPortal(
         <>
           <div
             className="fixed top-0 left-0 w-screen h-screen bg-black opacity-80"
@@ -16,12 +16,12 @@ const Modal = ({ isShowing, hide, children }) =>
             tabIndex={-1}
             role="dialog"
             style={{ zIndex: 110 }}
+            onClick={hide}
           >
             <div className="relative">
               <img
                 src={CloseIcon}
                 width="38px"
-                
                 className="absolute -right-8 -top-8 cursor-pointer"
               />
               {children}

@@ -31,12 +31,8 @@ const BookShelf = ({ translateY }) => {
   return (
     <div className="flex flex-col justify-between h-full pb-4">
       <div className="flex flex-col items-center h-full">
-        <h1 className="text-15xl leading-none font-bold text-p-blue-dark">
-          {strings.title}
-        </h1>
-        <h3 className="text-8xl leading-7 font-bold text-p-blue">
-          {strings.subTitle}
-        </h3>
+        <h1 className=" leading-none _text-bold-dark-12xl">{strings.title}</h1>
+        <h3 className=" leading-7 _text-bold-7xl">{strings.subTitle}</h3>
       </div>
 
       <div
@@ -59,7 +55,7 @@ const BookShelf = ({ translateY }) => {
           >
             <h1
               ref={readMoreTextRef}
-              className="text-4xl text-p-blue transform transition-all"
+              className="_text-bold-4xl transform transition-all"
             >
               {strings.findMore}
             </h1>

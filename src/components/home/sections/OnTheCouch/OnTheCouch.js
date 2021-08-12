@@ -33,16 +33,14 @@ const strings = {
 const OnTheCouch = () => {
   return (
     <div className="flex flex-col">
-      <div className="font-bold mx-auto flex flex-col items-center pb-20">
-        <h1 className="text-8xl text-p-blue-dark">{strings.title}</h1>
-        <h3 className="text-3xl text-p-blue">{strings.subTitle}</h3>
+      <div className=" mx-auto flex flex-col items-center pb-20">
+        <h1 className="_text-bold-dark-8xl">{strings.title}</h1>
+        <h3 className="_text-bold-3xl">{strings.subTitle}</h3>
       </div>
 
       <div className="w-full">
         <div className="ml-auto flex flex-col divide-p-brown divide-y-4 w-2/3">
-          <h3 className="text-4xl text-p-blue font-bold  pb-4">
-            {strings.recentlyAdded}
-          </h3>
+          <h3 className="_text-bold-4xl pb-4">{strings.recentlyAdded}</h3>
           <span></span>
         </div>
       </div>
@@ -70,7 +68,7 @@ const OnTheCouch = () => {
       </div>
       <div className="flex items-center">
         <OnTheCouchItem data={data[2]} />
-        <a href="#" className="text-p-blue text-6xl w-1/2 flex hover:font-bold">
+        <a href="#" className="_text-6xl w-1/2 flex hover:font-bold">
           {strings.moreReadings} &gt;
         </a>
       </div>

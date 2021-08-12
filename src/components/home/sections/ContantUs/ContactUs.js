@@ -10,15 +10,13 @@ const strings = {
 const ContactUs = () => {
   return (
     <div
-      className="w-full bg-p-gray rounded-2xl text-p-blue flex flex-col items-center mb-40 text-3xl"
+      className="w-full bg-p-gray rounded-2xl  flex flex-col items-center mb-40"
       style={{
         boxShadow: '15px 25px 0px 5px #FFFBF7, 15px 25px 0px 8px #DFBBA6',
       }}
     >
-      <h1 className="font-bold text-8xl text-p-blue-dark pt-6">
-        {strings.title}
-      </h1>
-      <h3 className="px-60 text-center">{strings.subTitle}</h3>
+      <h1 className="_text-bold-dark-8xl pt-6">{strings.title}</h1>
+      <h3 className="px-60 _text-3xl text-center">{strings.subTitle}</h3>
       <ContantUsForm />
     </div>
   );
