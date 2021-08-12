@@ -23,6 +23,7 @@ const CouchItemPage = ({ item }) => {
           onClick={toggle}
         >
           <img
+            alt=""
             src={item.img}
             className="float-right pl-8"
             style={{ maxHeight: '550px' }}
@@ -33,7 +34,7 @@ const CouchItemPage = ({ item }) => {
                 className="absolute border-2 rounded-full"
                 style={{ width: '100px', height: '100px' }}
               ></span>
-              <img src={item.img} />
+              <img alt="" src={item.img} />
             </div>
           </Modal>
           <img
@@ -41,6 +42,7 @@ const CouchItemPage = ({ item }) => {
             className="absolute right-4 top-4 bg-transparent opacity-80"
             width="46px"
             height="46px"
+            alt=""
           />
         </div>
 

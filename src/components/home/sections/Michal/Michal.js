@@ -15,8 +15,9 @@ const Michal = () => {
   return (
     <div className="flex flex-col items-center">
       <div className="w-1/2 relative">
-        <img className=" mx-auto " src={SpeechBubble} />
+        <img className=" mx-auto " src={SpeechBubble} alt="" />
         <img
+          alt=""
           src={Quotes}
           className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
@@ -31,7 +32,7 @@ const Michal = () => {
       <SplitScreen imgSrc={MichalDrawings}>
         <div className="flex flex-col px-4">
           <a
-            href="#"
+            href="/"
             className="_text-bold-dark-12xl leading-none hover:text-p-brown"
           >
             {strings.title}

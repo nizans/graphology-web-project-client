@@ -3,7 +3,7 @@ import ReadMoreBtn from '../common/ReadMoreBtn';
 const CouchItem = ({ data }) => {
   return (
     <div className="grid grid-cols-8 gap-x-8 py-20">
-      <img className="col-span-2" src={data.img}></img>
+      <img className="col-span-2" src={data.img} alt="" />
       <div className="col-span-5">
         <h1 className="_text-bold-4xl">{data.title}</h1>
         <h3 className="_text-xl pb-3">{data.date}</h3>

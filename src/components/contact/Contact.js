@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Section from '../common/Section';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';

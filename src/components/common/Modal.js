@@ -20,6 +20,7 @@ const Modal = ({ isShowing, hide, children }) =>
           >
             <div className="relative">
               <img
+                alt=""
                 src={CloseIcon}
                 width="38px"
                 className="absolute -right-8 -top-8 cursor-pointer"

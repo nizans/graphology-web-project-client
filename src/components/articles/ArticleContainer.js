@@ -7,7 +7,7 @@ const strings = {
   articleFrom: 'כתבה מתוך: ',
 };
 const ArticleContainer = ({ item }) => {
-  const [text, setText] = useTextTruncate(item.text, {
+  const [text] = useTextTruncate(item.text, {
     limit: 150,
     endWith: '...',
   });
@@ -21,6 +21,7 @@ const ArticleContainer = ({ item }) => {
         </h2>
       </div>
       <img
+        alt=""
         src={item.img}
         onClick={toggle}
         className="object-cover mb-4 max-h-60"
@@ -31,7 +32,7 @@ const ArticleContainer = ({ item }) => {
             className="absolute border-2 rounded-full"
             style={{ width: '100px', height: '100px' }}
           ></span>
-          <img src={item.img} />
+          <img src={item.img} alt="" />
         </div>
       </Modal>
 

@@ -39,7 +39,7 @@ const Expertise = () => {
 
       <div className="relative ">
         <img
-          alt="Arrow icon"
+          alt=""
           src={Arrow}
           className="transform -rotate-90  absolute bottom-1/2"
           style={{
@@ -52,7 +52,7 @@ const Expertise = () => {
           ))}
         </div>
         <img
-          alt="Arrow icon"
+          alt=""
           src={Arrow}
           className="transform rotate-90 absolute -left-3.5 bottom-1/2"
           style={{

@@ -57,7 +57,7 @@ const OnTheCouch = () => {
           src={Notebook}
           width="240px"
           className="ml-24"
-          alt="Notebook Icon"
+          alt=""
         />
         <OnTheCouchItem data={data[1]} />
       </div>
@@ -68,7 +68,7 @@ const OnTheCouch = () => {
       </div>
       <div className="flex items-center">
         <OnTheCouchItem data={data[2]} />
-        <a href="#" className="_text-6xl w-1/2 flex hover:font-bold">
+        <a href="/" className="_text-6xl w-1/2 flex hover:font-bold">
           {strings.moreReadings} &gt;
         </a>
       </div>

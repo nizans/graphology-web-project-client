@@ -17,7 +17,7 @@ const strings = {
 const Footer = () => {
   return (
     <footer className="w-full flex flex-col justify-between items-center _text-3xl container mx-auto ">
-      <img src={Shelf} alt="Shelf" className="w-full" />
+      <img src={Shelf} alt="" className="w-full" />
       <div className="w-full flex justify-between items-center _text-3xl  mx-auto py-10">
         <NavLink to="/about" className="px-4">
           {strings.about}
@@ -34,14 +34,14 @@ const Footer = () => {
         </NavLink>
 
         <NavLink to="/">
-          <img src={Logo} alt="Logo" />
+          <img src={Logo} alt="Logo not loaded. Home link" />
         </NavLink>
 
         <a
           href="https://www.facebook.com/md1062"
           className="px-4 flex items-center"
         >
-          <img src={FBIcon} alt="FB icon"></img>
+          <img src={FBIcon} alt=""></img>
           {strings.fb}
         </a>
         <NavLink to="/books" className="px-4">

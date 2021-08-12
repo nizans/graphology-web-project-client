@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import TitleUnderline from '../../../common/TitleUnderline';
-import ReactPlayer from 'react-player/lazy';
 import SuggestionContainer from './SuggestionContainer';
 import ResponsivePlayer from '../../../common/ResponsivePlayer';
 import Spinner from '../../../common/Spinner';

@@ -4,7 +4,7 @@ const ServiceItem = ({ item }) => {
   return (
     <div className="grid grid-cols-6 py-11">
       <div className="col-span-1 m-auto">
-        <img src={item.img} />
+        <img src={item.img} alt="" />
       </div>
       <div className=" col-span-5 px-14">
         <h1 className="font-bold text-5xl text-p-blue-dark pb-6">

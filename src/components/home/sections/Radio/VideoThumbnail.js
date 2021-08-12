@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import PlayOutline from '../../../../assets/icons/play_border.png';
 import PlayFilled from '../../../../assets/icons/play_filled.png';
 
@@ -18,6 +18,7 @@ const VideoThumbnail = ({ data, setVideoUrl }) => {
   const playButton = (
     <>
       <img
+        alt=""
         ref={playOutlineRef}
         src={PlayOutline}
         className="absolute top-1/2 left-1/2"
@@ -26,6 +27,7 @@ const VideoThumbnail = ({ data, setVideoUrl }) => {
         }}
       />
       <img
+        alt=""
         ref={playFilledRef}
         src={PlayFilled}
         className="absolute top-1/2 left-1/2 transition-all opacity-0 duration-200"

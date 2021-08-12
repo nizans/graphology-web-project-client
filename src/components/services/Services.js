@@ -64,7 +64,11 @@ const Services = () => {
           </h2>
           <div className="grid grid-cols-3 w-2/3 py-4">
             {data.map((item, i) => (
-              <a key={i} className="text-p-blue text-3xl underline py-4">
+              <a
+                href="/"
+                key={i}
+                className="text-p-blue text-3xl underline py-4"
+              >
                 {item.title}
               </a>
             ))}

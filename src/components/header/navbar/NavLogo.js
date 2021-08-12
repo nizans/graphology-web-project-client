@@ -13,7 +13,7 @@ const NavLogo = () => {
         <img
           src={logo}
           width="260px"
-          alt="Logo"
+          alt=""
           className="pl-4 transform  -translate-y-3"
         />
       </NavLink>
@@ -26,7 +26,7 @@ const NavLogo = () => {
               src={phoneIcon}
               height="30px"
               className="pl-4"
-              alt="Phone icon"
+              alt=""
             />
           </a>
           <a href={`tel:${strings.phoneNumber}`}>{strings.phoneNumber}</a>

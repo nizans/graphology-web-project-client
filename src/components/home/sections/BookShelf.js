@@ -44,9 +44,9 @@ const BookShelf = ({ translateY }) => {
         <div className="flex justify-between items-end">
           <div className="flex items-end">
             <BookSide className="transform transition-all hover:rotate-2" />
-            <img src={EmptyBook} alt="Empty Book img" />
-            <img src={EmptyBook} alt="Empty Book img" />
-            <img src={BookSideways} alt="Book Side" />
+            <img src={EmptyBook} alt="" />
+            <img src={EmptyBook} alt="" />
+            <img src={BookSideways} alt="" />
           </div>
           <div
             className="flex flex-col items-center pb-4 cursor-pointer"
@@ -62,16 +62,16 @@ const BookShelf = ({ translateY }) => {
             <img
               ref={readMoreImgRef}
               src={DownArrow}
-              alt="down arrow"
+              alt=""
               className="transform transition-all"
             />
           </div>
           <div className="flex items-end">
             <BookFront className="transform transition-all hover:rotate-2" />
-            <img src={EmptyBook} alt="Empty Book img" />
+            <img src={EmptyBook} alt="" />
           </div>
         </div>
-        <img src={Shelf} alt="Shelf img" className="w-full" />
+        <img src={Shelf} alt="" className="w-full" />
       </div>
     </div>
   );

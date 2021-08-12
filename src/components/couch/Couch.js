@@ -1,8 +1,7 @@
 import React from 'react';
 import SearchIcon from '../../assets/icons/search.svg';
 import CouchItem from './CouchItem';
-import HandWriting from '../../assets/imgs/jimMorison.png';
-import CouchItemPage from './CouchItemPage';
+
 import writings from '../../assets/imgs/full_page_writings.svg';
 const strings = {
   title: 'על ספת הגרפולוג',
@@ -45,6 +44,7 @@ const Couch = () => {
               className="placeholder-p-gray-dark _text-bold-2xl border-p-blue border-2 rounded-md  w-full pr-8 outline-none"
             />
             <img
+              alt=""
               src={SearchIcon}
               style={{
                 bottom: '4px',
@@ -56,7 +56,9 @@ const Couch = () => {
             />
           </div>
 
-          <a className="_text-bold-2xl">? {strings.moreInfo}</a>
+          <a href="\" className="_text-bold-2xl">
+            ? {strings.moreInfo}
+          </a>
         </div>
       </div>
 
@@ -73,16 +75,16 @@ const Couch = () => {
           <span className="px-4 _text-2xl">&lt;</span>
           <ul className="flex justify-center divide-x-2 divide-p-blue _text-3xl flex-row-reverse">
             <li className="list-none px-2">
-              <a>1</a>
+              <h5>1</h5>
             </li>
             <li className="list-none px-2">
-              <a>2</a>
+              <h5>2</h5>
             </li>
             <li className="list-none px-2">
-              <a>3</a>
+              <h5>3</h5>
             </li>
             <li className="list-none px-2">
-              <a>4</a>
+              <h5>4</h5>
             </li>
           </ul>
           <span className="_text-2xl px-4">&gt;</span>

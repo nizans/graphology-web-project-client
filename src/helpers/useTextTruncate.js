@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const defaultOptions = {
   limit: 250,
@@ -16,7 +16,7 @@ const useTextTruncate = (str, options = defaultOptions) => {
           options.endWith
       );
     }
-  }, [text]);
+  }, [text, str, options]);
   return [text, setText];
 };
 
