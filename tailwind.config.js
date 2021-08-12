@@ -2,6 +2,7 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    container: { padding: '3rem' },
     fontFamily: {
       sans: ['"Calibri"', 'sans-serif'],
     },

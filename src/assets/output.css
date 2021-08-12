@@ -557,6 +557,8 @@ html {
 
 .container {
   width: 100%;
+  padding-right: 3rem;
+  padding-left: 3rem;
 }
 
 @media (min-width: 640px) {
@@ -31134,6 +31136,8 @@ html {
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
+    padding-right: 3rem;
+    padding-left: 3rem;
   }
 
   @media (min-width: 640px) {
@@ -61668,6 +61672,8 @@ html {
 @media (min-width: 768px) {
   .md\:container {
     width: 100%;
+    padding-right: 3rem;
+    padding-left: 3rem;
   }
 
   @media (min-width: 640px) {
@@ -92202,6 +92208,8 @@ html {
 @media (min-width: 1024px) {
   .lg\:container {
     width: 100%;
+    padding-right: 3rem;
+    padding-left: 3rem;
   }
 
   @media (min-width: 640px) {
@@ -122736,6 +122744,8 @@ html {
 @media (min-width: 1280px) {
   .xl\:container {
     width: 100%;
+    padding-right: 3rem;
+    padding-left: 3rem;
   }
 
   @media (min-width: 640px) {
@@ -153270,6 +153280,8 @@ html {
 @media (min-width: 1536px) {
   .\32xl\:container {
     width: 100%;
+    padding-right: 3rem;
+    padding-left: 3rem;
   }
 
   @media (min-width: 640px) {

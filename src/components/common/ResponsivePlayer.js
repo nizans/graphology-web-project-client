@@ -4,7 +4,10 @@ import ReactPlayer from 'react-player/lazy';
 const ResponsivePlayer = (props) => {
   console.log({ ...props });
   return (
-    <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
+    <div
+      className="relative w-full rounded-lg overflow-hidden"
+      style={{ paddingTop: '56.25%' }}
+    >
       <ReactPlayer
         {...props}
         width="100%"
@@ -13,6 +16,7 @@ const ResponsivePlayer = (props) => {
           position: 'absolute',
           top: '0',
           left: '0',
+          borderRadius: '4px',
         }}
       />
     </div>

@@ -13,10 +13,10 @@ const Radio = () => {
     'https://www.facebook.com/100003098510659/videos/pcb.3997212253725352/3997187820394462'
   );
   return (
-    <div className="w-full flex flex-col items-center justify-center">
+    <div className="w-full flex flex-col items-center justify-center ">
       <TitleUnderline title={strings.title} />
-      <div className="grid grid-cols-6 w-full h-full gap-x-3">
-        <div className="col-span-4 col-start-2">
+      <div className="grid grid-cols-6 w-full h-full gap-x-3 mt-4">
+        <div className="col-span-4 col-start-2 border-p-brown bg-p-brown border-4  rounded-lg">
           <ResponsivePlayer url={videoUrl} controls={false} />
         </div>
         <div className="col-span-1 flex flex-col items-center justify-center">
@@ -28,15 +28,3 @@ const Radio = () => {
 };
 
 export default Radio;
-{
-  /* <div className="grid grid-cols-6 gap-3">
-        <div className=" w-full bg-p-gray col-span-4 col-start-2 relative">
-          <ReactPlayer url={videoUrl} controls={false} />
-        </div> */
-}
-
-{
-}
-{
-  /* </div> */
-}

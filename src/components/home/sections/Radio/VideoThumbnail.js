@@ -38,7 +38,7 @@ const VideoThumbnail = ({ data, setVideoUrl }) => {
 
   return (
     <div
-      className=" my-4 relative cursor-pointer bg-p-brown-dark w-full bg-center bg-cover"
+      className=" my-4 relative cursor-pointer bg-p-brown-dark w-full bg-center bg-cover  rounded-lg border-p-brown border-4"
       onMouseEnter={handleHover}
       onMouseLeave={handleHover}
       onClick={handleClick}
@@ -47,7 +47,7 @@ const VideoThumbnail = ({ data, setVideoUrl }) => {
         backgroundImage: `url(${data.thumbnail})`,
       }}
     >
-      <div className="absolute top-0 bottom-0 right-0 left-0 bg-black opacity-50"></div>
+      <div className="absolute top-0 bottom-0 right-0 left-0 bg-black opacity-50 "></div>
       {playButton}
       <h5 className="absolute right-1 bottom-0 text-sm text-p-brown">
         {data.date}

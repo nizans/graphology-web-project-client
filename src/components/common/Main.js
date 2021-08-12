@@ -9,8 +9,8 @@ import { Route, Switch } from 'react-router';
 const Main = ({ sectionHeight, windowHeight }) => {
   return (
     <Switch>
-      <div className="w-full flex justify-center">
-        <div className="container w-full">
+      <div className=" w-full flex justify-center">
+        <div className=" w-full container">
           <Route exact path="/">
             <Home sectionHeight={sectionHeight} windowHeight={windowHeight} />
           </Route>
