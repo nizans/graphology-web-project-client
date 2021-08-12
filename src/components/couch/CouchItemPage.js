@@ -8,17 +8,15 @@ const CouchItemPage = ({ item }) => {
   return (
     <Section>
       <div className="flex justify-between items-center pb-1">
-        <h1 className="text-p-blue-dark text-5xl font-bold">{item.title}</h1>
-        <h3 className="text-p-blue text-2xl ">{item.date}</h3>
+        <h1 className="_text-bold-dark-5xl">{item.title}</h1>
+        <h3 className="_text-2xl">{item.date}</h3>
       </div>
       <div className="flex flex-col divide-y-2 divide-p-brown w-full">
         <span></span>
         <span></span>
       </div>
       <div className="">
-        <h2 className="py-10 text-p-blue font-bold text-2xl">
-          {item.subtitle}
-        </h2>
+        <h2 className="py-10 text-bold-2xl">{item.subtitle}</h2>
         <div
           className="relative"
           style={{ cursor: 'zoom-in' }}
@@ -46,9 +44,7 @@ const CouchItemPage = ({ item }) => {
           />
         </div>
 
-        <p className="text-2xl text-p-blue break-words leading-normal">
-          {item.text}
-        </p>
+        <p className="_text-2xl break-words leading-normal">{item.text}</p>
       </div>
     </Section>
   );

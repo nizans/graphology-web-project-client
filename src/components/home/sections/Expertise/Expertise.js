@@ -33,8 +33,8 @@ const Expertise = () => {
   return (
     <>
       <div className="flex  flex-col w-full items-center ">
-        <h1 className="text-p-blue-dark text-8xl font-bold">{strings.title}</h1>
-        <h3 className="text-p-blue text-3xl font-bold">{strings.subTitle}</h3>
+        <h1 className="_text-bold-8xl">{strings.title}</h1>
+        <h3 className="_text-bold-3xl">{strings.subTitle}</h3>
       </div>
 
       <div className="relative ">

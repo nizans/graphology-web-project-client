@@ -7,7 +7,7 @@ const ReadMoreBtn = ({ onClick, className, href }) => {
     <a
       href={href}
       onClick={onClick}
-      className={`underline text-p-blue ml-auto hover:text-p-brown font-bold ${
+      className={`underline _text-bold-3xl ml-auto hover:text-p-brown  ${
         className ? className : ''
       }`}
     >

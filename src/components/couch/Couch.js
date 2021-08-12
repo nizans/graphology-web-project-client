@@ -27,17 +27,13 @@ const Couch = () => {
   return (
     <>
       <div className="w-full">
-        <h1 className="text-7xl font-bold text-p-blue-dark text-center">
-          {strings.title}
-        </h1>
-        <h3 className="text-3xl font-bold text-p-blue text-center">
-          {strings.subtitle}
-        </h3>
+        <h1 className="_text-bold-dark-7xl text-center">{strings.title}</h1>
+        <h3 className="_text-bold-3xl text-center">{strings.subtitle}</h3>
       </div>
 
       <div className="w-full flex justify-between px-4 mt-8 pb-8">
         <select
-          className="pr-4 pl-8 bg-p-brown rounded-lg text-p-blue font-bold text-2xl hover:bg-p-brown-dark outline-none "
+          className="pr-4 pl-8 bg-p-brown rounded-lg _text-bold-2xl hover:bg-p-brown-dark outline-none "
           name="sortBy"
         >
           <option>{strings.orderBy}</option>
@@ -46,7 +42,7 @@ const Couch = () => {
           <div className="relative w-6/12 ">
             <input
               placeholder={strings.search}
-              className="placeholder-p-gray-dark font-bold text-2xl border-p-blue border-2 rounded-md  w-full pr-8 text-p-blue outline-none"
+              className="placeholder-p-gray-dark _text-bold-2xl border-p-blue border-2 rounded-md  w-full pr-8 outline-none"
             />
             <img
               src={SearchIcon}
@@ -60,7 +56,7 @@ const Couch = () => {
             />
           </div>
 
-          <a className="font-bold text-p-blue text-2xl">? {strings.moreInfo}</a>
+          <a className="_text-bold-2xl">? {strings.moreInfo}</a>
         </div>
       </div>
 
@@ -74,8 +70,8 @@ const Couch = () => {
           <CouchItem data={data[0]} key={i} />
         ))}
         <div className="py-20 flex justify-center items-center">
-          <span className="text-2xl px-4 text-p-blue">&lt;</span>
-          <ul className="flex justify-center divide-x-2 divide-p-blue text-p-blue text-3xl flex-row-reverse">
+          <span className="px-4 _text-2xl">&lt;</span>
+          <ul className="flex justify-center divide-x-2 divide-p-blue _text-3xl flex-row-reverse">
             <li className="list-none px-2">
               <a>1</a>
             </li>
@@ -89,7 +85,7 @@ const Couch = () => {
               <a>4</a>
             </li>
           </ul>
-          <span className="text-2xl px-4 text-p-blue">&gt;</span>
+          <span className="_text-2xl px-4">&gt;</span>
         </div>
       </div>
 

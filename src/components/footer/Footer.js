@@ -3,7 +3,7 @@ import Logo from '../../assets/icons/logo_subtitle.svg';
 import FBIcon from '../../assets/icons/fb_logo.svg';
 import Shelf from '../../assets/icons/brown_shelf.svg';
 import { NavLink } from 'react-router-dom';
-import { Nav } from 'react-bootstrap';
+
 const strings = {
   about: 'אודות',
   michalDoron: 'מיכל דורון ב',
@@ -16,9 +16,9 @@ const strings = {
 };
 const Footer = () => {
   return (
-    <footer className="w-full flex flex-col justify-between items-center text-3xl text-p-blue container mx-auto ">
+    <footer className="w-full flex flex-col justify-between items-center _text-3xl container mx-auto ">
       <img src={Shelf} alt="Shelf" className="w-full" />
-      <div className="w-full flex justify-between items-center text-3xl text-p-blue  mx-auto py-10">
+      <div className="w-full flex justify-between items-center _text-3xl  mx-auto py-10">
         <NavLink to="/about" className="px-4">
           {strings.about}
         </NavLink>
@@ -52,7 +52,7 @@ const Footer = () => {
         </NavLink>
       </div>
 
-      <h5 className="text-lg">{strings.copyrights}</h5>
+      <h5 className="_text-lg">{strings.copyrights}</h5>
     </footer>
   );
 };

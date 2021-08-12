@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
 
 const defaultOptions = {
-  limit: 10,
-  ending: '...',
+  limit: 250,
+  endWith: '...',
 };
-
 const useTextTruncate = (str, options = defaultOptions) => {
-  const [text, setText] = useState(str);
+  const [text, setText] = useState();
+  console.log(options);
   useEffect(() => {
-    if (text.length > options.limit) {
+    if (str.length > options.limit) {
       setText(str.substring(0, options.limit));
-      console.log(text);
+      setText(
+        (prev) =>
+          prev.substring(0, Math.min(prev.length, prev.lastIndexOf(' '))) +
+          options.endWith
+      );
     }
   }, [text]);
   return [text, setText];

@@ -10,11 +10,11 @@ const BooksItem = ({ data }) => {
     <SplitScreen imgSrc={data.img}>
       <div className="h-full flex flex-col justify-evenly p-0 ">
         <div>
-          <h1 className="text-7xl font-bold text-p-blue-dark">{data.title}</h1>
-          <h3 className="text-4xl text-p-blue font-bold">{data.author}</h3>
+          <h1 className="_text-bold-dark-6xl">{data.title}</h1>
+          <h3 className="_text-bold-4xl">{data.author}</h3>
         </div>
 
-        <p className="text-3xl text-p-blue leading">{data.description}</p>
+        <p className="_text-3xl leading">{data.description}</p>
         <button
           style={{ width: 'fit-content' }}
           className="bg-p-brown text-3xl text-p-blue-dark px-10 py-2 rounded-xl font-bold transition-all hover:bg-p-brown-dark"
