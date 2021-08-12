@@ -1,6 +1,5 @@
 module.exports = {
   purge: {
-    enabled: true,
     content: ['./src/**/*.js', './src/**/*.jsx'],
     safelist: ['border-b-2', 'border-b-4'],
   },

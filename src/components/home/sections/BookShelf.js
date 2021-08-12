@@ -18,7 +18,6 @@ const BookShelf = ({ translateY }) => {
   const readMoreImgRef = useRef(null);
   const readMoreAnimation = (e) => {
     if (e.type === 'mouseenter') {
-      console.log(readMoreTextRef.current.classList);
       readMoreTextRef.current.classList.add('translate-y-4');
       readMoreImgRef.current.classList.add(`translate-y-2`);
     }

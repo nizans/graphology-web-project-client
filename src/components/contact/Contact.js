@@ -3,6 +3,7 @@ import Section from '../common/Section';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import FormField from '../common/FormField';
+import DropDown from '../common/DropDown';
 
 const strings = {
   title: 'צור קשר',
@@ -82,8 +83,8 @@ const Contact = () => {
             placeholder={strings.email}
           />
 
-          <div className={`grid grid-rows-2 mx-4 `}>
-            <select
+          <div className={`grid grid-rows-2 mx-4  `}>
+            {/* <select
               className="mx-14 pr-8 bg-p-brown-light rounded-lg _text-bold-3xl hover:bg-p-brown-dark outline-none appearance-none "
               name="requestSubject"
               onChange={formik.handleChange}
@@ -93,7 +94,16 @@ const Contact = () => {
               {strings.requestSubjects.map((subj, i) => (
                 <option key={i} value={subj} label={subj} />
               ))}
-            </select>
+            </select> */}
+            <DropDown
+              headTitle="בחר נושא"
+              buttonClassName="bg-p-brown-light mx-14 hover:bg-p-brown _text-3xl pr-2 pl-40"
+              elementClassName="bg-p-brown mx-14 _text-3xl pr-2 "
+              elements={strings.requestSubjects.map((i) => (
+                <span className="pr-2 ">{i}</span>
+              ))}
+              handleChange={(e) => console.log(e)}
+            />
             <label htmlFor="requestSubject" className="_text-lg">
               {formik.touched.requestSubject &&
                 formik.errors.requestSubject &&

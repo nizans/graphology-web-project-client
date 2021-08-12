@@ -6,7 +6,7 @@ const defaultOptions = {
 };
 const useTextTruncate = (str, options = defaultOptions) => {
   const [text, setText] = useState();
-  console.log(options);
+
   useEffect(() => {
     if (str.length > options.limit) {
       setText(str.substring(0, options.limit));
