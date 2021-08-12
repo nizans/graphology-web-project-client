@@ -2,6 +2,8 @@ import React from 'react';
 import Logo from '../../assets/icons/logo_subtitle.svg';
 import FBIcon from '../../assets/icons/fb_logo.svg';
 import Shelf from '../../assets/icons/brown_shelf.svg';
+import { NavLink } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
 const strings = {
   about: 'אודות',
   michalDoron: 'מיכל דורון ב',
@@ -17,9 +19,9 @@ const Footer = () => {
     <footer className="w-full flex flex-col justify-between items-center text-3xl text-p-blue container mx-auto ">
       <img src={Shelf} alt="Shelf" className="w-full" />
       <div className="w-full flex justify-between items-center text-3xl text-p-blue  mx-auto py-10">
-        <a href="#" className="px-4">
+        <NavLink to="/about" className="px-4">
           {strings.about}
-        </a>
+        </NavLink>
         <a
           href="https://he.wikipedia.org/wiki/%D7%9E%D7%99%D7%9B%D7%9C_%D7%93%D7%95%D7%A8%D7%95%D7%9F"
           className="px-4"
@@ -27,11 +29,13 @@ const Footer = () => {
           {strings.michalDoron}
           <span className="font-bold underline">{strings.wiki}</span>
         </a>
-        <a href="#" className="px-4">
+        <NavLink to="/contact" className="px-4">
           {strings.contact}
-        </a>
+        </NavLink>
 
-        <img src={Logo} alt="Logo" />
+        <NavLink to="/">
+          <img src={Logo} alt="Logo" />
+        </NavLink>
 
         <a
           href="https://www.facebook.com/md1062"
@@ -40,12 +44,12 @@ const Footer = () => {
           <img src={FBIcon} alt="FB icon"></img>
           {strings.fb}
         </a>
-        <a href="#" className="px-4">
+        <NavLink to="/books" className="px-4">
           {strings.books}
-        </a>
-        <a href="#" className="px-4">
+        </NavLink>
+        <NavLink to="#" className="px-4">
           {strings.lectures}
-        </a>
+        </NavLink>
       </div>
 
       <h5 className="text-lg">{strings.copyrights}</h5>

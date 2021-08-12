@@ -6,12 +6,13 @@ import Services from '../services/Services';
 import Contact from '../contact/Contact';
 import Couch from '../couch/Couch';
 import { Route, Switch } from 'react-router';
+import Articles from '../articles/Articles';
 const Main = ({ sectionHeight, windowHeight }) => {
   return (
     <Switch>
       <div className=" w-full flex justify-center">
         <div className=" w-full container">
-          <Route exact path="/">
+          {/* <Route exact path="/">
             <Home sectionHeight={sectionHeight} windowHeight={windowHeight} />
           </Route>
           <Route path="/about">
@@ -28,7 +29,8 @@ const Main = ({ sectionHeight, windowHeight }) => {
           </Route>
           <Route path="/couch">
             <Couch />
-          </Route>
+          </Route> */}
+          <Articles />
         </div>
       </div>
     </Switch>

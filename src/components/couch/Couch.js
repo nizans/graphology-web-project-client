@@ -26,7 +26,7 @@ const data = [
 const Couch = () => {
   return (
     <>
-      {/* <div className="w-full">
+      <div className="w-full">
         <h1 className="text-7xl font-bold text-p-blue-dark text-center">
           {strings.title}
         </h1>
@@ -91,9 +91,9 @@ const Couch = () => {
           </ul>
           <span className="text-2xl px-4 text-p-blue">&gt;</span>
         </div>
-      </div> */}
+      </div>
 
-      <CouchItemPage item={data[0]} />
+      {/* <CouchItemPage item={data[0]} /> */}
     </>
   );
 };
