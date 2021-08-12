@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <nav className="w-full flex items-center justify-between">
       <NavLogo />
-      <div className="flex justify-between divide-x-2 divide-p-brown divide-x-reverse">
+      <div className="flex justify-between items-center divide-x-2 divide-p-brown divide-x-reverse">
         {links.map((item, i) => (
           <NavLink
             to={item.link}

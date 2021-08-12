@@ -1,5 +1,10 @@
 module.exports = {
-  purge: [],
+  purge: {
+    enabled: true,
+    content: ['./src/**/*.js', './src/**/*.jsx'],
+    safelist: ['border-b-2', 'border-b-4'],
+  },
+
   darkMode: false, // or 'media' or 'class'
   theme: {
     container: { padding: '3rem' },

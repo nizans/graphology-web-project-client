@@ -23,6 +23,9 @@
   ._text-bold-dark-5xl {
     @apply text-3xl font-bold text-p-blue-dark 2xl:text-5xl;
   }
+  ._text-bold-dark-3xl {
+    @apply text-xl font-bold text-p-blue-dark 2xl:text-5xl;
+  }
   ._text-bold-8xl {
     @apply text-6xl font-bold text-p-blue 2xl:text-8xl;
   }
