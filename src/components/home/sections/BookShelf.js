@@ -6,11 +6,13 @@ import { ReactComponent as BookFront } from '../../../assets/icons/book_front.sv
 import DownArrow from '../../../assets/icons/down_arrow.png';
 import BookSideways from '../../../assets/icons/BookSideways.svg';
 import './bookshelf.css';
+
 const strings = {
   title: 'גרפולוגיה',
   subTitle: 'תורת כתב-יד',
   findMore: 'גלה עוד',
 };
+
 const BookShelf = ({ translateY }) => {
   const readMoreTextRef = useRef(null);
   const readMoreImgRef = useRef(null);
@@ -73,7 +75,7 @@ const BookShelf = ({ translateY }) => {
             <img src={EmptyBook} alt="Empty Book img" />
           </div>
         </div>
-        <img src={Shelf} alt="Shelf img" />
+        <img src={Shelf} alt="Shelf img" className="w-full" />
       </div>
     </div>
   );

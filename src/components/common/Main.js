@@ -10,7 +10,7 @@ const Main = ({ sectionHeight, windowHeight }) => {
   return (
     <Switch>
       <div className="w-full flex justify-center">
-        <div className="max-w-7xl w-full">
+        <div className="container w-full">
           <Route exact path="/">
             <Home sectionHeight={sectionHeight} windowHeight={windowHeight} />
           </Route>

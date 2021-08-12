@@ -14,9 +14,9 @@ const strings = {
 };
 const Footer = () => {
   return (
-    <footer className="w-full flex flex-col justify-between items-center text-3xl text-p-blue max-w-7xl mx-auto ">
-      <img src={Shelf} alt="Shelf" />
-      <div className="w-full flex justify-between items-center text-3xl text-p-blue max-w-7xl mx-auto py-10">
+    <footer className="w-full flex flex-col justify-between items-center text-3xl text-p-blue container mx-auto ">
+      <img src={Shelf} alt="Shelf" className="w-full" />
+      <div className="w-full flex justify-between items-center text-3xl text-p-blue  mx-auto py-10">
         <a href="#" className="px-4">
           {strings.about}
         </a>
