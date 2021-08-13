@@ -33,7 +33,7 @@ const Michal = () => {
         <div className="flex flex-col px-4">
           <a
             href="/"
-            className="_text-bold-dark-12xl leading-none hover:text-p-brown"
+            className="_text-bold-dark-12xl leading-none hover:text-p-brown "
           >
             {strings.title}
           </a>

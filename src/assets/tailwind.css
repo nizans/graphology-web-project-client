@@ -9,7 +9,7 @@
 }
 @layer components {
   ._text-bold-dark-12xl {
-    @apply text-9xl font-bold text-p-blue-dark 2xl:text-12xl;
+    @apply text-6xl lg:text-8xl font-bold text-p-blue-dark 2xl:text-12xl;
   }
   ._text-bold-dark-8xl {
     @apply text-6xl font-bold text-p-blue-dark 2xl:text-8xl;

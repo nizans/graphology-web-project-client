@@ -18,7 +18,7 @@ const strings = {
   invalidPhone: 'מספר לא תקין',
   send: 'שלח',
   requestSubject: 'נושא פניה',
-  requestSubjects: ['נושא-1', 'נושא-2', 'נושא-3'],
+  requestSubjects: ['נושא-1', 'נושא-2', '-3'],
 };
 
 const Contact = () => {
@@ -84,25 +84,18 @@ const Contact = () => {
           />
 
           <div className={`grid grid-rows-2 mx-4  `}>
-            {/* <select
-              className="mx-14 pr-8 bg-p-brown-light rounded-lg _text-bold-3xl hover:bg-p-brown-dark outline-none appearance-none "
-              name="requestSubject"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.requestSubject}
-            >
-              {strings.requestSubjects.map((subj, i) => (
-                <option key={i} value={subj} label={subj} />
-              ))}
-            </select> */}
             <DropDown
               headTitle="בחר נושא"
-              buttonClassName="bg-p-brown-light mx-14 hover:bg-p-brown _text-3xl pr-2 pl-40"
-              elementClassName="bg-p-brown mx-14 _text-3xl pr-2 "
+              buttonClassName="bg-p-brown-light mx-14 _text-3xl pl-20 max-w-1/2"
+              elementClassName="bg-p-brown mx-14 _text-3xl"
               elements={strings.requestSubjects.map((i) => (
-                <span className="pr-2 ">{i}</span>
+                <span value={i} className="pr-2 ">
+                  {i}
+                </span>
               ))}
-              handleChange={(e) => console.log(e)}
+              handleValueChange={(newValue) =>
+                (formik.values.requestSubject = newValue.props.value)
+              }
             />
             <label htmlFor="requestSubject" className="_text-lg">
               {formik.touched.requestSubject &&

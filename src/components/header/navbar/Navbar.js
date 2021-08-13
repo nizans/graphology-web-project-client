@@ -38,12 +38,14 @@ const Navbar = () => {
     <nav className="w-full flex items-center justify-between">
       <NavLogo />
       <div className="flex justify-between items-center divide-x-2 divide-p-brown divide-x-reverse">
-        <DropDown
-          elements={dropdownLinks}
-          handleValueChange={(e) => console.log(e)}
-          buttonClassName="hover:bg-p-brown mx-4"
-          elementClassName="bg-p-brown mx-4"
-        />
+        <div className="px-4">
+          <DropDown
+            elements={dropdownLinks}
+            handleValueChange={(e) => console.log(e)}
+            buttonClassName=""
+            elementClassName="bg-p-brown"
+          />
+        </div>
         {links.map((item, i) => (
           <NavLink
             to={item.link}
