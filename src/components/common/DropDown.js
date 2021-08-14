@@ -61,18 +61,17 @@ const DropDown = ({
   }, []);
   return (
     <div
-      className=" relative"
+      className=" relative w-full"
       onMouseEnter={handleHover}
       onMouseLeave={handleHover}
       style={{
-        width: 'fit-content',
+        width: '',
       }}
     >
       <div
         ref={buttonRef}
         className={
-          buttonClassName +
-          ' py-2 px-2 rounded-t inline-flex justify-start items-center w-full'
+          buttonClassName + ' rounded-t inline-flex justify-start items-center '
         }
       >
         {!isSelected ? headTitle : selectedValue}
@@ -89,7 +88,7 @@ const DropDown = ({
           if (el !== selectedValue)
             return (
               <li
-                className={`whitespace-no-wrap overflow-hidden w-full ${elementClassName}`}
+                className={`whitespace-no-wrap overflow-hidden  ${elementClassName}`}
                 onClick={() => handleItemClick(i)}
                 key={i}
               >

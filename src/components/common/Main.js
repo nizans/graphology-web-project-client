@@ -7,34 +7,39 @@ import Contact from '../contact/Contact';
 import Couch from '../couch/Couch';
 import { Route, Switch } from 'react-router';
 import Articles from '../articles/Articles';
-const Main = ({ sectionHeight, windowHeight }) => {
+import Section from './Section';
+import useWindowDimensions from '../../helpers/useWindowDimensions';
+
+const Main = ({ footerHeight, headerHeight }) => {
+  const { height: windowHeight } = useWindowDimensions();
   return (
     <Switch>
-      <div className=" w-full flex justify-center">
-        <div className=" w-full container">
-          <Route exact path="/">
-            <Home sectionHeight={sectionHeight} windowHeight={windowHeight} />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/books">
-            <Books />
-          </Route>
-          <Route path="/services">
-            <Services />
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-          <Route path="/couch">
-            <Couch />
-          </Route>
-          <Route path="/Articles">
-            <Articles />
-          </Route>
-        </div>
-      </div>
+      <Route exact path="/">
+        <Home
+          sectionHeight={windowHeight - headerHeight}
+          windowHeight={windowHeight}
+        />
+      </Route>
+      <Route path="/about">
+        <About />
+      </Route>
+      <Route path="/books">
+        <Books />
+      </Route>
+      <Route path="/services">
+        <Services />
+      </Route>
+      <Route path="/contact">
+        <Section sectionHeight={windowHeight - footerHeight - headerHeight}>
+          <Contact />
+        </Section>
+      </Route>
+      <Route path="/couch">
+        <Couch />
+      </Route>
+      <Route path="/Articles">
+        <Articles />
+      </Route>
     </Switch>
   );
 };

@@ -14,9 +14,13 @@ const strings = {
   lectures: 'סדנאות והרצאות',
   copyrights: 'כל הזכויות שמורות © מיכל דורון ייעוץ ואבחון גרפולוגית',
 };
-const Footer = () => {
+
+const Footer = ({ footerRef }) => {
   return (
-    <footer className="w-full flex flex-col justify-between items-center _text-3xl container mx-auto ">
+    <footer
+      ref={footerRef}
+      className="w-full flex flex-col justify-between items-center _text-3xl mx-auto box-content"
+    >
       <img src={Shelf} alt="" className="w-full" />
       <div className="w-full flex justify-between items-center _text-3xl  mx-auto py-10">
         <NavLink to="/about" className="px-4">
@@ -34,7 +38,13 @@ const Footer = () => {
         </NavLink>
 
         <NavLink to="/">
-          <img src={Logo} alt="Logo not loaded. Home link" />
+          <img
+            src={Logo}
+            alt=""
+            onLoad={() => {
+              window.dispatchEvent(new Event('resize'));
+            }}
+          />
         </NavLink>
 
         <a

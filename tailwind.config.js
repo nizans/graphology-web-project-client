@@ -6,7 +6,7 @@ module.exports = {
 
   darkMode: false, // or 'media' or 'class'
   theme: {
-    container: { padding: '3rem' },
+    container: { padding: { '2xl': '2rem' } },
     fontFamily: {
       sans: ['"Calibri"', 'sans-serif'],
     },

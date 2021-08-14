@@ -20,7 +20,7 @@ const FormField = ({
         onBlur={formik.handleBlur}
         value={formik.values[htmlFor]}
       />
-      <label htmlFor={htmlFor} className="_text-lg">
+      <label htmlFor={htmlFor} className="xl:_text-lg">
         {formik.touched[htmlFor] &&
           formik.errors[htmlFor] &&
           formik.errors[htmlFor]}

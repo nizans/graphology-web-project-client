@@ -38,11 +38,10 @@ const Navbar = () => {
     <nav className="w-full flex items-center justify-between">
       <NavLogo />
       <div className="flex justify-between items-center divide-x-2 divide-p-brown divide-x-reverse">
-        <div className="px-4">
+        <div className="lg:px-2 xl:px-4">
           <DropDown
             elements={dropdownLinks}
             handleValueChange={(e) => console.log(e)}
-            buttonClassName=""
             elementClassName="bg-p-brown"
           />
         </div>
@@ -51,7 +50,7 @@ const Navbar = () => {
             to={item.link}
             key={i}
             activeClassName="font-bold"
-            className="px-4"
+            className="lg:px-2 xl:px-4"
           >
             {item.title}
           </NavLink>

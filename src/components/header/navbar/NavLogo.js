@@ -20,17 +20,10 @@ const NavLogo = () => {
 
       <div className="pr-4 flex flex-col items-start  ">
         <h1>{strings.phoneTitle}</h1>
-        <div className="flex mt-4">
-          <a href={`tel:${strings.phoneNumber}`}>
-            <img
-              src={phoneIcon}
-              height="30px"
-              className="pl-4"
-              alt=""
-            />
-          </a>
-          <a href={`tel:${strings.phoneNumber}`}>{strings.phoneNumber}</a>
-        </div>
+        <a className="flex" href={`tel:${strings.phoneNumber}`}>
+          <img src={phoneIcon} className="h-6 lg:h-8 pl-4" alt="" />
+          {strings.phoneNumber}
+        </a>
       </div>
     </div>
   );

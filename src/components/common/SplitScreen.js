@@ -1,30 +1,22 @@
 import React, { useRef, useCallback, useState, useReducer } from 'react';
 import Section from '../common/Section';
 
-const SplitScreen = ({ imgSrc, children }) => {
-  const imgRef = useRef(null);
-  const [isMounted] = useReducer((p) => !p, true);
+const SplitScreen = ({ imgSrc, children, sectionHeight }) => {
   const [divHeight, setDivHeight] = useState();
+  const [isMounted] = useReducer((p) => !p, true);
   const handleRect = useCallback((node) => {
     setDivHeight(node?.getBoundingClientRect().height);
   }, []);
 
   return (
-    <Section className="grid grid-cols-2">
+    <Section sectionHeight={sectionHeight} className="grid grid-cols-2">
       {isMounted && (
         <div style={{ height: '75vh', maxHeight: '75vh' }} ref={handleRect}>
-          <img
-            alt=""
-            ref={imgRef}
-            src={imgSrc}
-            className="h-full m-auto"
-          ></img>
+          <img alt="" src={imgSrc} className="h-full m-auto"></img>
         </div>
       )}
 
-      <div style={{ height: `${divHeight}px`, overflow: 'hidden' }}>
-        {children}
-      </div>
+      <div style={{ height: `${divHeight}px` }}>{children}</div>
     </Section>
   );
 };
