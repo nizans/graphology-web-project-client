@@ -22,7 +22,7 @@ const Footer = ({ footerRef }) => {
       className="w-full flex flex-col justify-between items-center _text-3xl mx-auto box-content"
     >
       <img src={Shelf} alt="" className="w-full" />
-      <div className="w-full flex justify-between items-center _text-3xl  mx-auto py-10">
+      <div className="w-full flex justify-between items-center mx-auto py-10 relative">
         <NavLink to="/about" className="px-4">
           {strings.about}
         </NavLink>
@@ -61,8 +61,8 @@ const Footer = ({ footerRef }) => {
           {strings.lectures}
         </NavLink>
       </div>
-
       <h5 className="_text-lg">{strings.copyrights}</h5>
+
     </footer>
   );
 };

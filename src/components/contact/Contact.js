@@ -1,5 +1,4 @@
 import React from 'react';
-import Section from '../common/Section';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import FormField from '../common/FormField';
@@ -49,7 +48,7 @@ const Contact = () => {
         .matches('^0(5[^7]|[2-4]|[8-9]|7[0-9])[0-9]{7}$', strings.invalidPhone),
 
       notes: Yup.string().max(255),
-      requestSubject: Yup.string().oneOf(strings.requestSubjects, 'ssd'),
+      requestSubject: Yup.string().oneOf(strings.requestSubjects),
     }),
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));

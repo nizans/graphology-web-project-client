@@ -5,20 +5,19 @@ import Books from '../books/Books';
 import Services from '../services/Services';
 import Contact from '../contact/Contact';
 import Couch from '../couch/Couch';
-import { Route, Switch } from 'react-router';
+import { Route } from 'react-router';
 import Articles from '../articles/Articles';
 import Section from './Section';
 import useWindowDimensions from '../../helpers/useWindowDimensions';
 
+import Admin from '../admin/Admin';
+
 const Main = ({ footerHeight, headerHeight }) => {
   const { height: windowHeight } = useWindowDimensions();
   return (
-    <Switch>
+    <>
       <Route exact path="/">
-        <Home
-          sectionHeight={windowHeight - headerHeight}
-          windowHeight={windowHeight}
-        />
+        <Home sectionHeight={windowHeight - headerHeight} windowHeight={windowHeight} />
       </Route>
       <Route path="/about">
         <About />
@@ -40,7 +39,11 @@ const Main = ({ footerHeight, headerHeight }) => {
       <Route path="/Articles">
         <Articles />
       </Route>
-    </Switch>
+
+      <Route path="/admin">
+        <Admin />
+      </Route>
+    </>
   );
 };
 
