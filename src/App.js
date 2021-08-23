@@ -1,18 +1,20 @@
-import { useEffect, useRef, useState, useCallback, useReducer } from 'react';
-import Header from './components/header/Header';
-import Main from './components/common/Main';
-import Footer from './components/footer/Footer';
-import { BrowserRouter as Router, NavLink, Route, Switch, useLocation } from 'react-router-dom';
-import useDimensions from './helpers/useDimensions';
-import Login from './components/admin/Login';
+import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, NavLink, Switch, useLocation } from 'react-router-dom';
+import useDimensions from 'helpers/useDimensions';
+import Header from 'components/header/Header.js';
+import Main from 'components/common/Main';
+import Footer from 'components/footer/Footer';
+import AppRoutes from 'routes/AppRoutes';
 
+import PublicRoutes from './routes/PublicRoutes';
+import AppContainer from 'components/common/AppContainer';
 function App() {
-  const [headerRef, headerDimension, headerNode] = useDimensions();
-  const [footerRef, footerDimension, footerNode] = useDimensions();
+  const [headerRef, headerDimension] = useDimensions();
+  const [footerRef, footerDimension] = useDimensions();
   const [headerHeight, setHeaderHeight] = useState();
   const [footerHeight, setfooterHeight] = useState();
   const [hideHeaderFooter, setHideHeaderFooter] = useState(false);
-  const location = useLocation();
+  //   const location = useLocation();
 
   useEffect(() => {
     if (headerDimension && footerDimension) {
@@ -20,28 +22,17 @@ function App() {
       setfooterHeight(footerDimension.height);
     }
   }, [headerDimension, footerDimension]);
-  useEffect(() => {
-    setHideHeaderFooter(location.pathname.includes('/admin'));
-  }, [location.pathname]);
+  //   useEffect(() => {
+  //     setHideHeaderFooter(location.pathname.includes('/admin'));
+  //   }, [location.pathname]);
   return (
-    <Switch>
-      <div className="bg-background w-full flex justify-center h-full relative">
-        <div dir="rtl" className="flex flex-col justify-center items-center md:container">
-          {!hideHeaderFooter && <Header headerRef={headerRef} />}
-          <Main headerHeight={headerHeight} footerHeight={footerHeight} />
-          {!hideHeaderFooter && <Footer footerRef={footerRef} />}
-        </div>
-        {!hideHeaderFooter ? (
-          <NavLink to="/admin" className="_text-lg absolute pl-4 bottom-0 left-0">
-            ניהול
-          </NavLink>
-        ) : (
-          <NavLink to="/" className="_text-lg absolute pl-4 bottom-0 left-0">
-            בחזרה
-          </NavLink>
-        )}
-      </div>
-    </Switch>
+    <Router>
+      <Switch>
+        <AppContainer>
+          <AppRoutes />
+        </AppContainer>
+      </Switch>
+    </Router>
   );
 }
 

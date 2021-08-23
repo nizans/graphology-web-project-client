@@ -1,12 +1,9 @@
 import React from 'react';
 import ReactPlayer from 'react-player/lazy';
 
-const ResponsivePlayer = (props) => {
+const ResponsivePlayer = props => {
   return (
-    <div
-      className="relative w-full rounded-lg overflow-hidden"
-      style={{ paddingTop: '56.25%' }}
-    >
+    <div className="relative w-full rounded-lg overflow-hidden" style={{ paddingTop: '56.25%' }}>
       <ReactPlayer
         onReady={props.handleReady}
         {...props}

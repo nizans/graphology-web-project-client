@@ -8,6 +8,9 @@
   }
 }
 @layer components {
+  .button {
+    @apply bg-p-brown _text-3xl px-12 py-1 rounded-xl hover:bg-p-brown-dark;
+  }
   ._text-bold-dark-12xl {
     @apply text-6xl lg:text-8xl font-bold text-p-blue-dark 2xl:text-12xl;
   }
