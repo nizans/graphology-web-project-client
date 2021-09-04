@@ -3,7 +3,7 @@ import React from 'react';
 import * as Yup from 'yup';
 import FormField from 'components/UI/FormField';
 import ResponsivePlayer from 'components/common/ResponsivePlayer';
-import { postVideo } from 'helpers/apiRequests';
+import { useAddVideo } from 'features/videos';
 
 const strings = {
   title: 'שם הסרטון',
@@ -16,12 +16,13 @@ const strings = {
 };
 
 const VideoForm = () => {
+  const mutation = useAddVideo();
   const handleSubmit = values => {
-    const data = new FormData();
+    let data = new FormData();
     for (const [key, val] of Object.entries(values)) {
       data.append(key, val);
     }
-    postVideo(data);
+    mutation.mutate(data);
   };
 
   const formik = useFormik({
@@ -36,14 +37,16 @@ const VideoForm = () => {
       url: Yup.string().url(strings.urlInvalid).required(strings.required),
     }),
     onSubmit: values => {
-      handleSubmit(values);
+      mutation.mutate(values);
     },
   });
 
   return (
     <>
-      <form onSubmit={formik.handleSubmit} className="w-full">
-        <div className="flex flex-col items-start h-full w-full flex-wrap">
+      <form
+        onSubmit={formik.handleSubmit}
+        className="w-full flex justify-between items-center divide-x-2 divide-x-reverse divide-p-gray h-full">
+        <div className="flex flex-col w-full justify-between items-start pl-10 h-full">
           <FormField formik={formik} htmlFor="title" placeholder={strings.title} className="w-1/2" />
           <div className="w-full my-2 mx-4">
             <label htmlFor="description" className="_text-2xl">
@@ -60,15 +63,12 @@ const VideoForm = () => {
             />
           </div>
           <FormField formik={formik} className="_text-xl" htmlFor="url" placeholder={strings.url} className="w-full" />
-          <div className="w-full flex justify-center">
-            <div className="w-1/2">
-              <ResponsivePlayer url={!formik.errors.url && formik.values.url} />
-            </div>
-          </div>
-
           <button className="button mr-auto" type="submit" style={{ width: 'fit-content' }}>
             {strings.send}
           </button>
+        </div>
+        <div className="w-full pr-6">
+          <ResponsivePlayer url={!formik.errors.url && formik.values.url} />
         </div>
       </form>
     </>

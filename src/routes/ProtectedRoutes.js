@@ -1,11 +1,13 @@
 import AdminRoutes from 'features/admin/routes/AdminRoutes';
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, useRouteMatch } from 'react-router-dom';
 
 const ProtectedRoutes = () => {
+  const { path } = useRouteMatch();
+
   return (
     <>
-      <Route exact path="/admin">
+      <Route path={`${path}`}>
         <AdminRoutes />
       </Route>
     </>

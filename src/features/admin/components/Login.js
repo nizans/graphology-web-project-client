@@ -15,8 +15,6 @@ const strings = {
   forgotPassword: 'שחכתי סיסמא',
 };
 const Login = () => {
-  let location = useLocation();
-  console.log(location);
   const formik = useFormik({
     initialValues: {
       email: '',

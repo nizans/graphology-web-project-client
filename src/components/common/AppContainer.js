@@ -2,8 +2,8 @@ import React from 'react';
 
 const AppContainer = ({ children }) => {
   return (
-    <div className="bg-background w-full flex justify-center h-full relative">
-      <div dir="rtl" className="flex flex-col justify-center items-center md:container">
+    <div className="bg-background w-full flex justify-center h-full relative min-h-screen">
+      <div dir="rtl" className="flex flex-col justify-center items-center md:container h-full">
         {children}
       </div>
     </div>

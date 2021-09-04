@@ -21,7 +21,7 @@ const FormField = ({ htmlFor, formik, placeholder, borderWidth = '2', type = 'te
         />
       </div>
 
-      <label htmlFor={htmlFor} className="_text-lg">
+      <label htmlFor={htmlFor} className="_text-lg text-red-500 font-bold">
         {formik.touched[htmlFor] && formik.errors[htmlFor] && formik.errors[htmlFor]}
       </label>
     </div>

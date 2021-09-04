@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import FormField from 'components/UI/FormField';
-import { postArticle } from 'helpers/apiRequests';
+import { useAddArticle } from 'features/articles';
 import TextEditor from 'components/common/TextEditor';
 
 const strings = {
@@ -16,12 +16,13 @@ const strings = {
 };
 
 const ArticleForm = () => {
+  const mutation = useAddArticle();
   const handleSubmit = async values => {
     let data = new FormData();
     for (const [key, val] of Object.entries(values)) {
       data.append(key, val);
     }
-    postArticle(data);
+    mutation.mutate(data);
   };
   const [textValue, setTextValue] = useState('');
   const handleTextChange = text => {
@@ -70,7 +71,6 @@ const ArticleForm = () => {
             }}
           />
         </div>
-
         <button className="button" type="submit" style={{ width: 'fit-content' }}>
           {strings.send}
         </button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import ProtectedRoutes from './ProtectedRoutes';
 import PublicRoutes from './PublicRoutes';
 import Header from 'components/header/Header';
@@ -17,6 +17,7 @@ const AppRoutes = () => {
         <Route path="/admin">
           <ProtectedRoutes />
         </Route>
+        <Redirect from="*" to="/home" />
       </Switch>
     </>
   );

@@ -7,26 +7,6 @@ const strings = {
 };
 const TextEditor = ({ onTextChange }) => {
   const editorRef = useRef(null);
-  const handleSave = () => {
-    if (editorRef.current) {
-      console.log(editorRef.current.getContent());
-    }
-  };
-  const handleImageUpload = async image => {
-    console.log(typeof image);
-    const data = new FormData();
-    data.append('image', image);
-    console.log(data.get('image'));
-    const response = await fetch('http://localhost:4000/api/articles/upload_image', {
-      method: 'post',
-      headers: new Headers({
-        Accept: 'application/json',
-      }),
-      body: data,
-    });
-    const result = await response.json();
-    return result;
-  };
   return (
     <div className="h-full flex flex-col justify-center items-start w-full">
       <Editor

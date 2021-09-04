@@ -5,7 +5,6 @@ import CouchItemPage from './CouchItemPage';
 
 export const CouchRoutes = () => {
   const { path } = useRouteMatch();
-  console.log(`${path}/:couchId`);
   return (
     <Switch>
       <Route exact path={`${path}`}>

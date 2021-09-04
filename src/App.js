@@ -8,31 +8,39 @@ import AppRoutes from 'routes/AppRoutes';
 
 import PublicRoutes from './routes/PublicRoutes';
 import AppContainer from 'components/common/AppContainer';
-function App() {
-  const [headerRef, headerDimension] = useDimensions();
-  const [footerRef, footerDimension] = useDimensions();
-  const [headerHeight, setHeaderHeight] = useState();
-  const [footerHeight, setfooterHeight] = useState();
-  const [hideHeaderFooter, setHideHeaderFooter] = useState(false);
-  //   const location = useLocation();
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
-  useEffect(() => {
-    if (headerDimension && footerDimension) {
-      setHeaderHeight(headerDimension.height);
-      setfooterHeight(footerDimension.height);
-    }
-  }, [headerDimension, footerDimension]);
+function App() {
+  //   const [headerRef, headerDimension] = useDimensions();
+  //   const [footerRef, footerDimension] = useDimensions();
+  //   const [headerHeight, setHeaderHeight] = useState();
+  //   const [footerHeight, setfooterHeight] = useState();
+  //   const [hideHeaderFooter, setHideHeaderFooter] = useState(false);
+
+  //   useEffect(() => {
+  //     if (headerDimension && footerDimension) {
+  //       setHeaderHeight(headerDimension.height);
+  //       setfooterHeight(footerDimension.height);
+  //     }
+  //   }, [headerDimension, footerDimension]);
   //   useEffect(() => {
   //     setHideHeaderFooter(location.pathname.includes('/admin'));
   //   }, [location.pathname]);
+
+  const queryClient = new QueryClient();
+
   return (
-    <Router>
-      <Switch>
-        <AppContainer>
-          <AppRoutes />
-        </AppContainer>
-      </Switch>
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Switch>
+          <AppContainer>
+            <AppRoutes />
+          </AppContainer>
+        </Switch>
+      </Router>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 
