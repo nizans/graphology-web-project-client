@@ -1,14 +1,11 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
-
-const strings = {
-  title: 'הכנס תוכן ולסיום לחץ שמור',
-  save: 'שמור',
-};
+const strings = { enterText: 'הכנס טקסט' };
 const TextEditor = ({ onTextChange }) => {
   const editorRef = useRef(null);
   return (
-    <div className="h-full flex flex-col justify-center items-start w-full">
+    <>
+      <h3 className="_text-3xl">{strings.enterText}</h3>
       <Editor
         apiKey={'bull4brfw8frsrmmmbme09tjrl43xjf55mkrygmkcd2xexig'}
         onInit={(evt, editor) => {
@@ -18,6 +15,8 @@ const TextEditor = ({ onTextChange }) => {
           onTextChange(val);
         }}
         init={{
+          resize: false,
+          directionality: 'rtl',
           height: '100%',
           width: '100%',
           menubar: false,
@@ -28,14 +27,14 @@ const TextEditor = ({ onTextChange }) => {
           ],
           toolbar:
             'undo redo | ' +
-            'bold italic backcolor | alignleft aligncenter ' +
+            'bold italic | alignleft aligncenter ' +
             'alignright alignjustify lineheight | bullist numlist | ' +
-            'removeformat | image |help',
+            'removeformat',
           content_css: false,
           content_style: 'body {background-color: #FFFBF7;}',
         }}
       />
-    </div>
+    </>
   );
 };
 

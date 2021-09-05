@@ -2,7 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import FormField from 'components/UI/FormField';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const strings = {
   required: 'שדה דרוש',

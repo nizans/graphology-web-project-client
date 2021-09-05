@@ -1,6 +1,6 @@
 import React from 'react';
-import useModal from 'helpers/useModal';
-import useTextTruncate from 'helpers/useTextTruncate';
+import useModal from 'hooks/useModal';
+import useTextTruncate from 'hooks/useTextTruncate';
 import Modal from 'components/common/Modal';
 const strings = {
   readMore: 'להמשך קריאה',

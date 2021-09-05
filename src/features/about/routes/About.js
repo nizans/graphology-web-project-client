@@ -14,7 +14,7 @@ export const About = () => {
     <>
       <SplitScreen imgSrc={MichalAboutPhoto}>
         <div className="flex flex-col justify-between flex-grow h-full m-0 pt-16">
-          <div className>
+          <div>
             <h1 className="_text-bold-dark-8xl leading-none">{strings.title}</h1>
             <h3 className="_text-bold-3xl leading-none pb-4">{strings.subTitle}</h3>
           </div>

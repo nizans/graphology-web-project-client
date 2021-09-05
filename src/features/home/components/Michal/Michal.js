@@ -13,9 +13,9 @@ const strings = {
 
 const Michal = () => {
   return (
-    <div className="flex flex-col items-center">
-      <div className="w-1/2 relative">
-        <img className=" mx-auto " src={SpeechBubble} alt="" />
+    <>
+      <div className="w-1/2 relative transform translate-y-16">
+        <img className="mx-auto" src={SpeechBubble} alt="" />
         <img alt="" src={Quotes} className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
         <h1
           className="absolute left-0 right-0 text-p-brown-light _text-5xl text-center px-16 italic break-words"
@@ -34,10 +34,10 @@ const Michal = () => {
             <span></span>
           </div>
           <p className="_text-3xl py-6 pl-12 max-w-2xl leading-normal ">{strings.text}</p>
-          <ReadMoreBtn href={'/'} className="text-4xl" />
+          <ReadMoreBtn to="/home/about" className="text-4xl" />
         </div>
       </SplitScreen>
-    </div>
+    </>
   );
 };
 

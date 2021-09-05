@@ -1,30 +1,26 @@
 import React from 'react';
 import SearchIcon from 'assets/icons/search.svg';
 import CouchItem from '../components/CouchItem';
-
-import writings from 'assets/imgs/full_page_writings.svg';
+import { useFetchContents } from '..';
+import { NavLink, useRouteMatch } from 'react-router-dom';
+import useQueryParams from 'hooks/useQueryParams';
+import Section from 'components/common/Section';
 const strings = {
   title: 'על ספת הגרפולוג',
   subtitle: 'ניתוח כתב יד של יוצרים שונים',
   search: 'חיפוש',
   moreInfo: 'מידע נוסף',
   orderBy: 'מיון לפי',
+  loading: 'טוען',
 };
 
-const data = [
-  {
-    title: 'חנוך לוין- האיסטניס',
-    subtitle: `ב19 לאוגוסט 1999, נפטר המחזאי המופלא הסופר והמשורר חנוך לוין,
-       סיבה טובה לאורח אותו ספת הגרפולוג ולנתח את כתב ידו.`,
-    date: '25.08.2020',
-    text: '.גרפולוגיה היא תורה פסאודו-מדעית הקושרת בין כתב ידו של אדם לבין אישיותו ענף אחר, המזוהה בטעות עם גרפולוגיה .נקרא ניתוח מסמכים וחתימות. תחום זה בוחן זיוף מסמכים וחתימות תוך שימוש בשיטות מדעיות כאשר העוסקים בו מוכרים כעדים מומחים בבית משפט. גרפולוגים טוענים כי הם יכולים להסיק מידע על אישיותו וחייו של אדם על פי כתב ידו. מחקרים אמפיריים אשר בחנו את תקפות שיטות האבחון בגרפולוגיה מצאו פעם אחר פעם כי לא קיים מתאם',
-    img: writings,
-  },
-];
-
 const Couch = () => {
+  const page = useQueryParams().get('page');
+  const { path } = useRouteMatch();
+  const { isLoading, error, data } = useFetchContents(page);
+
   return (
-    <>
+    <Section>
       <div className="w-full">
         <h1 className="_text-bold-dark-7xl text-center">{strings.title}</h1>
         <h3 className="_text-bold-3xl text-center">{strings.subtitle}</h3>
@@ -67,31 +63,35 @@ const Couch = () => {
       </div>
 
       <div className="flex flex-col divide-y-2 divide-p-brown w-full">
-        {new Array(10).fill().map(i => (
-          <CouchItem data={data[0]} key={i} />
-        ))}
+        {isLoading && <h1>{strings.loading}</h1>}
+        {error && <h1>{error.message}</h1>}
+        {data && data.payload && data.payload.map((item, i) => <CouchItem data={item} key={item._id} />)}
         <div className="py-20 flex justify-center items-center">
-          <span className="px-4 _text-2xl">&lt;</span>
+          {data && data.pages && page < data.pages - 1 && (
+            <NavLink to={`${path}?page=${Number(page) + 1}`} className="_text-2xl px-4">
+              &lt;
+            </NavLink>
+          )}
           <ul className="flex justify-center divide-x-2 divide-p-blue _text-3xl flex-row-reverse">
-            <li className="list-none px-2">
-              <h5>1</h5>
-            </li>
-            <li className="list-none px-2">
-              <h5>2</h5>
-            </li>
-            <li className="list-none px-2">
-              <h5>3</h5>
-            </li>
-            <li className="list-none px-2">
-              <h5>4</h5>
-            </li>
+            {data &&
+              data.pages &&
+              Array.from(Array(data.pages).keys(), (_, i) => (
+                <li key={i} className="list-none px-2">
+                  <NavLink to={`${path}?page=${i}`} className={Number(page) === i ? 'font-bold' : ''}>
+                    <h5>{i + 1}</h5>
+                  </NavLink>
+                </li>
+              ))}
           </ul>
-          <span className="_text-2xl px-4">&gt;</span>
+
+          {page > 0 && (
+            <NavLink to={`${path}?page=${Number(page) - 1}`} className="px-4 _text-2xl">
+              &gt;
+            </NavLink>
+          )}
         </div>
       </div>
-
-      {/* <CouchItemPage item={data[0]} /> */}
-    </>
+    </Section>
   );
 };
 

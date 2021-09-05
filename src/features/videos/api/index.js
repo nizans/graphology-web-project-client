@@ -48,7 +48,7 @@ export const useDeleteVideo = () => {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries('videos');
+        queryClient.refetchQueries('videos');
       },
     }
   );

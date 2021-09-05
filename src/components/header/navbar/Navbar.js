@@ -4,32 +4,32 @@ import DropDown from 'components/UI/DropDown';
 import NavLogo from './NavLogo';
 
 const dropdownLinks = [
-  <NavLink className="px-4" activeClassName="font-bold" to="/about">
+  <NavLink className="px-4" activeClassName="font-bold" to="/home/about">
     אודות
   </NavLink>,
-  <NavLink className="px-4" activeClassName="font-bold" to="/about">
+  <NavLink className="px-4" activeClassName="font-bold" to="/home/about">
     מיכל
   </NavLink>,
-  <NavLink className="px-4" activeClassName="font-bold" to="/articles">
+  <NavLink className="px-4" activeClassName="font-bold" to="/home/articles">
     כתבות
   </NavLink>,
 ];
 const links = [
   {
     title: 'על ספת הגרפולוג',
-    link: '/couch',
+    to: '/home/couch',
   },
   {
     title: 'ספרים',
-    link: '/books',
+    to: '/home/books',
   },
   {
     title: 'שירות גרפולוגי',
-    link: '/services',
+    to: '/home/services',
   },
   {
     title: 'צור קשר',
-    link: '/contact',
+    to: '/home/contact',
   },
 ];
 
@@ -42,7 +42,7 @@ const Navbar = () => {
           <DropDown elements={dropdownLinks} elementClassName="bg-p-brown" />
         </div>
         {links.map((item, i) => (
-          <NavLink to={item.link} key={i} activeClassName="font-bold" className="lg:px-2 xl:px-4">
+          <NavLink to={item.to} key={i} activeClassName="font-bold" className="lg:px-2 xl:px-4">
             {item.title}
           </NavLink>
         ))}

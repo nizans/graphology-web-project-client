@@ -1,6 +1,6 @@
-import React, { useCallback, useLayoutEffect, useState } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 
-const getRect = (node) => {
+const getRect = node => {
   const rect = node.getBoundingClientRect();
   return {
     width: rect.width,
@@ -12,13 +12,12 @@ const useDimensions = (liveMeasure = true) => {
   const [dimensions, setDimensions] = useState();
   const [node, setNode] = useState(null);
 
-  const ref = useCallback((node) => {
+  const ref = useCallback(node => {
     setNode(node);
   }, []);
   useLayoutEffect(() => {
     if (node) {
-      const measure = () =>
-        window.requestAnimationFrame(() => setDimensions(getRect(node)));
+      const measure = () => window.requestAnimationFrame(() => setDimensions(getRect(node)));
       measure();
       if (liveMeasure) {
         window.addEventListener('resize', measure);
@@ -30,7 +29,7 @@ const useDimensions = (liveMeasure = true) => {
         };
       }
     }
-  }, [node]);
+  }, [node, liveMeasure]);
 
   return [ref, dimensions, node];
 };

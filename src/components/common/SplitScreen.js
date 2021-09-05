@@ -1,10 +1,10 @@
-import React, { useRef, useCallback, useState, useReducer } from 'react';
-import Section from '../common/Section';
+import React, { useCallback, useState, useReducer } from 'react';
+import Section from 'components/common/Section';
 
 const SplitScreen = ({ imgSrc, children, sectionHeight }) => {
   const [divHeight, setDivHeight] = useState();
-  const [isMounted] = useReducer((p) => !p, true);
-  const handleRect = useCallback((node) => {
+  const [isMounted] = useReducer(p => !p, true);
+  const handleRect = useCallback(node => {
     setDivHeight(node?.getBoundingClientRect().height);
   }, []);
 

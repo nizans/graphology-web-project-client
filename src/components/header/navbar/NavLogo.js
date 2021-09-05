@@ -9,13 +9,8 @@ const strings = {
 const NavLogo = () => {
   return (
     <div className="flex items-center divide-x-2 divide-p-brown divide-x-reverse">
-      <NavLink to="/">
-        <img
-          src={logo}
-          width="260px"
-          alt=""
-          className="pl-4 transform  -translate-y-3"
-        />
+      <NavLink to="/home">
+        <img src={logo} width="260px" alt="" className="pl-4 transform  -translate-y-3" />
       </NavLink>
 
       <div className="pr-4 flex flex-col items-start  ">

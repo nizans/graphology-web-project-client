@@ -17,14 +17,6 @@ const strings = {
 
 const VideoForm = () => {
   const mutation = useAddVideo();
-  const handleSubmit = values => {
-    let data = new FormData();
-    for (const [key, val] of Object.entries(values)) {
-      data.append(key, val);
-    }
-    mutation.mutate(data);
-  };
-
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -46,7 +38,7 @@ const VideoForm = () => {
       <form
         onSubmit={formik.handleSubmit}
         className="w-full flex justify-between items-center divide-x-2 divide-x-reverse divide-p-gray h-full">
-        <div className="flex flex-col w-full justify-between items-start pl-10 h-full">
+        <div className="flex flex-col w-full justify-evenly items-start pl-10 h-full">
           <FormField formik={formik} htmlFor="title" placeholder={strings.title} className="w-1/2" />
           <div className="w-full my-2 mx-4">
             <label htmlFor="description" className="_text-2xl">
@@ -62,7 +54,7 @@ const VideoForm = () => {
               }}
             />
           </div>
-          <FormField formik={formik} className="_text-xl" htmlFor="url" placeholder={strings.url} className="w-full" />
+          <FormField formik={formik} className="_text-xl w-full" htmlFor="url" placeholder={strings.url} />
           <button className="button mr-auto" type="submit" style={{ width: 'fit-content' }}>
             {strings.send}
           </button>

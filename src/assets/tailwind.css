@@ -5,6 +5,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    height: 100%;
+  }
+  ,
+  root {
+    scroll-behavior: smooth;
+
+    height: 100%;
   }
 }
 @layer components {

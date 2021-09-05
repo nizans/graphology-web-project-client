@@ -1,9 +1,9 @@
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 
-export const useFetchArticles = (page, limit) => {
-  return useQuery('articles', async () => {
+export const useFetchContents = (page = 0, limit = 10) => {
+  return useQuery(['contents', page, limit], async () => {
     try {
-      const res = await fetch('/api/articles');
+      const res = await fetch(`/api/contents?page=${page}&limit=${limit}`);
       const data = await res.json();
       if (!res.ok) {
         throw new Error(data.message);
@@ -15,10 +15,10 @@ export const useFetchArticles = (page, limit) => {
   });
 };
 
-export const useFetchAtricle = id => {
-  return useQuery(['articles', id], async () => {
+export const useFetchContent = id => {
+  return useQuery(['contents', id], async () => {
     try {
-      const res = await fetch(`/api/articles/${id}`);
+      const res = await fetch(`/api/contents/${id}`);
       const data = await res.json();
       if (!res.ok) {
         throw new Error(data.message);
@@ -30,13 +30,13 @@ export const useFetchAtricle = id => {
   });
 };
 
-export const useDeleteArticle = () => {
+export const useDeleteContent = () => {
   const queryClient = useQueryClient();
   return useMutation(
-    'articles',
+    'contents',
     async id => {
       try {
-        const res = await fetch(`/api/articles/${id}`, { method: 'delete' });
+        const res = await fetch(`/api/contents/${id}`, { method: 'delete' });
         const data = await res.json();
         if (!res.ok) {
           throw new Error(data.message);
@@ -48,21 +48,21 @@ export const useDeleteArticle = () => {
     },
     {
       onSuccess: () => {
-        queryClient.refetchQueries('articles');
+        queryClient.refetchQueries('contents');
       },
     }
   );
 };
 
-export const useAddArticle = () => {
-  return useMutation('articles', async article => {
+export const useAddContent = () => {
+  return useMutation('contents', async content => {
     try {
-      const res = await fetch('/api/articles', {
+      const res = await fetch('/api/contents', {
         method: 'post',
         headers: new Headers({
           Accept: 'application/json',
         }),
-        body: article,
+        body: content,
       });
       const data = await res.json();
       if (!res.ok) {

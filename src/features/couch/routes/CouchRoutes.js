@@ -10,7 +10,7 @@ export const CouchRoutes = () => {
       <Route exact path={`${path}`}>
         <Couch />
       </Route>
-      <Route path={`${path}/:couchId`}>
+      <Route path={`${path}/:id`}>
         <CouchItemPage />
       </Route>
     </Switch>

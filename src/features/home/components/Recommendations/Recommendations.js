@@ -25,14 +25,14 @@ const recommendations = [
 
 const Recommendations = () => {
   return (
-    <div className="flex flex-col items-center justify-evenly h-full">
+    <>
       <TitleUnderline title={strings.title} />
       <div className="grid grid-cols-3 mt-6">
         {recommendations.map((item, i) => (
           <RecommendationsContainer data={item} key={i} />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

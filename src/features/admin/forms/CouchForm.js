@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import FormField from 'components/UI/FormField';
 
 import TextEditor from 'components/common/TextEditor';
+import { useAddContent } from 'features/couch';
 
 const strings = {
   title: 'כותרת',
@@ -16,12 +17,14 @@ const strings = {
 };
 
 const CouchForm = () => {
+  const mutation = useAddContent();
+
   const handleSubmit = async values => {
     let data = new FormData();
     for (const [key, val] of Object.entries(values)) {
       data.append(key, val);
     }
-    postContent(data);
+    mutation.mutate(data);
   };
   const [textValue, setTextValue] = useState('');
   const handleTextChange = text => {
@@ -51,7 +54,7 @@ const CouchForm = () => {
   });
   return (
     <form onSubmit={formik.handleSubmit} className="flex h-full justify-between w-full">
-      <div className="flex flex-col justify-between items-center">
+      <div className="flex flex-col justify-evenly items-center">
         <FormField formik={formik} htmlFor="title" placeholder={strings.title} />
         <div className="px-4 py-4  w-full">
           <label htmlFor="subtitle" className="_text-2xl">

@@ -1,6 +1,11 @@
 import React from 'react';
 import ReadMoreBtn from 'components/UI/ReadMoreBtn';
-const CouchItem = ({ data }) => {
+import { useRouteMatch } from 'react-router-dom';
+import { truncate } from 'lodash';
+const CouchItem = ({ data: item }) => {
+  const { path } = useRouteMatch();
+  const parser = new DOMParser();
+  const pChilds = parser.parseFromString(item.text, 'text/html').childNodes;
   return (
     <div className="grid grid-cols-8 gap-x-8 py-14">
       <div
@@ -9,21 +14,21 @@ const CouchItem = ({ data }) => {
           height: '290px',
           width: '275px',
         }}>
-        <img className=" object-cover w-full h-full" src={data.img} alt="" />
+        <img className=" object-cover w-full h-full" src={item.image} alt="" />
       </div>
       <div className="col-span-5">
-        <h1 className="_text-bold-4xl">{data.title}</h1>
-        <h3 className="_text-xl pb-3">{data.date}</h3>
-        <p
+        <h1 className="_text-bold-4xl">{item.title}</h1>
+        <h3 className="_text-xl pb-3">{item.date}</h3>
+        <div
           style={{
             columnCount: '2',
           }}
           className="align-middle _text-2xl">
-          {data.text}
-        </p>
+          {Array.from(pChilds).map(pC => truncate(pC.innerText, { length: 500, separator: ' ' }))}
+        </div>
       </div>
 
-      <ReadMoreBtn className="col-span-1 col-start-8 mr-auto mt-auto" href="/" />
+      <ReadMoreBtn to={`${path}/${item._id}`} className="col-span-1 col-start-8 mr-auto mt-auto" href="/" />
     </div>
   );
 };

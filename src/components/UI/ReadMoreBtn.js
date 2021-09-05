@@ -1,18 +1,13 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 const strings = {
   readMore: 'קרא עוד',
 };
-const ReadMoreBtn = ({ onClick, className, href }) => {
+const ReadMoreBtn = ({ className, to }) => {
   return (
-    <a
-      href={href}
-      onClick={onClick}
-      className={`underline _text-bold-3xl ml-auto hover:text-p-brown  ${
-        className ? className : ''
-      }`}
-    >
+    <NavLink to={to} className={`underline _text-bold-3xl ml-auto hover:text-p-brown  ${className ? className : ''}`}>
       {strings.readMore}
-    </a>
+    </NavLink>
   );
 };
 

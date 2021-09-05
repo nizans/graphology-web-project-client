@@ -1,9 +1,9 @@
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 
-export const useFetchContents = (page, limit) => {
-  return useQuery('contents', async () => {
+export const useFetchServices = () => {
+  return useQuery('services', async () => {
     try {
-      const res = await fetch('/api/contents');
+      const res = await fetch('/api/services');
       const data = await res.json();
       if (!res.ok) {
         throw new Error(data.message);
@@ -15,10 +15,10 @@ export const useFetchContents = (page, limit) => {
   });
 };
 
-export const useFetchContent = id => {
-  return useQuery(['contents', id], async () => {
+export const useFetchService = id => {
+  return useQuery(['services', id], async () => {
     try {
-      const res = await fetch(`/api/contents/${id}`);
+      const res = await fetch(`/api/services/${id}`);
       const data = await res.json();
       if (!res.ok) {
         throw new Error(data.message);
@@ -30,13 +30,13 @@ export const useFetchContent = id => {
   });
 };
 
-export const useDeleteContent = () => {
+export const useDeleteService = () => {
   const queryClient = useQueryClient();
   return useMutation(
-    'contents',
+    'services',
     async id => {
       try {
-        const res = await fetch(`/api/contents/${id}`, { method: 'delete' });
+        const res = await fetch(`/api/services/${id}`, { method: 'delete' });
         const data = await res.json();
         if (!res.ok) {
           throw new Error(data.message);
@@ -48,21 +48,21 @@ export const useDeleteContent = () => {
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries('contents');
+        queryClient.refetchQueries('services');
       },
     }
   );
 };
 
-export const useAddContent = () => {
-  return useMutation('contents', async content => {
+export const useAddService = () => {
+  return useMutation('services', async service => {
     try {
-      const res = await fetch('/api/contents', {
+      const res = await fetch('/api/services', {
         method: 'post',
         headers: new Headers({
           Accept: 'application/json',
         }),
-        body: content,
+        body: service,
       });
       const data = await res.json();
       if (!res.ok) {

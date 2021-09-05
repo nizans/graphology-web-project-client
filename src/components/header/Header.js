@@ -1,8 +1,15 @@
-import React from 'react';
+import { SectionHeightContext } from 'context/sectionHeightContext';
+import useDimensions from 'hooks/useDimensions';
+import React, { useContext, useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
 import Navbar from './navbar/Navbar';
 
-const Header = ({ headerRef }) => {
+const Header = () => {
+  const [headerRef, headerDimension] = useDimensions();
+  const sectionHeightCTX = useContext(SectionHeightContext);
+  useEffect(() => {
+    if (headerDimension) sectionHeightCTX.setHeaderHeight(headerDimension.height);
+  }, [headerDimension, sectionHeightCTX]);
   return (
     <div
       ref={headerRef}

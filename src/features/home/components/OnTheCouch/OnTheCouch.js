@@ -32,19 +32,17 @@ const strings = {
 };
 const OnTheCouch = () => {
   return (
-    <div className="flex flex-col">
+    <>
       <div className=" mx-auto flex flex-col items-center pb-20">
         <h1 className="_text-bold-dark-8xl">{strings.title}</h1>
         <h3 className="_text-bold-3xl">{strings.subTitle}</h3>
       </div>
-
       <div className="w-full">
         <div className="ml-auto flex flex-col divide-p-brown divide-y-4 w-2/3">
           <h3 className="_text-bold-4xl pb-4">{strings.recentlyAdded}</h3>
           <span></span>
         </div>
       </div>
-
       <OnTheCouchItem data={data[0]} />
       <div className="w-full">
         <div className="mr-auto flex flex-col divide-p-brown divide-y-4 w-2/3">
@@ -53,12 +51,7 @@ const OnTheCouch = () => {
         </div>
       </div>
       <div className="flex">
-        <img
-          src={Notebook}
-          width="240px"
-          className="ml-24"
-          alt=""
-        />
+        <img src={Notebook} width="240px" className="ml-24" alt="" />
         <OnTheCouchItem data={data[1]} />
       </div>
 
@@ -72,7 +65,7 @@ const OnTheCouch = () => {
           {strings.moreReadings} &gt;
         </a>
       </div>
-    </div>
+    </>
   );
 };
 

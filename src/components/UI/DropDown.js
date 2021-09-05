@@ -54,7 +54,7 @@ const DropDown = ({
       setSelectedValue(headTitle ? headTitle : elements[0]);
       setIsSelected(false);
     };
-  }, []);
+  }, [headTitle, elements]);
   return (
     <div
       className="relative w-full"
@@ -70,17 +70,16 @@ const DropDown = ({
         </svg>
       </div>
       <ul ref={dropdownRef} className="absolute hidden right-0 left-0">
-        {elements.map((el, i) => {
-          if (el !== selectedValue)
-            return (
-              <li
-                className={`whitespace-no-wrap overflow-hidden  ${elementClassName}`}
-                onClick={() => handleItemClick(i)}
-                key={i}>
-                {el}
-              </li>
-            );
-        })}
+        {elements
+          .filter(e => e !== selectedValue)
+          .map((el, i) => (
+            <li
+              className={`whitespace-no-wrap overflow-hidden ${elementClassName}`}
+              onClick={() => handleItemClick(i)}
+              key={i}>
+              {el}
+            </li>
+          ))}
       </ul>
     </div>
   );

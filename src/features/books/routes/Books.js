@@ -1,7 +1,8 @@
 import React from 'react';
 import BooksItem from '../components/BooksItem';
-import Book1 from '../../../assets/imgs/books/1BookMockup.png';
-import Book2 from '../../../assets/imgs/books/2BookMockup.png';
+import Book1 from 'assets/imgs/books/1BookMockup.png';
+import Book2 from 'assets/imgs/books/2BookMockup.png';
+import Section from 'components/common/Section';
 
 const data = [
   {
@@ -21,11 +22,11 @@ const data = [
 
 const Books = () => {
   return (
-    <>
+    <Section>
       {data.map((item, i) => (
         <BooksItem data={item} key={i} />
       ))}
-    </>
+    </Section>
   );
 };
 

@@ -7,6 +7,8 @@ import { BooksRoutes } from 'features/books/index';
 import { CouchRoutes } from 'features/couch';
 import { Services } from 'features/services';
 import { Home } from 'features/home/index';
+import BreadCrumbs from 'components/common/BreadCrumbs';
+import { BreadCrumbsTitleProvider } from 'context/breadCrumbsTitleContext';
 
 const PublicRoutes = () => {
   const { path } = useRouteMatch();
@@ -17,29 +19,33 @@ const PublicRoutes = () => {
         <Route exact path={`${path}`}>
           <Home />
         </Route>
+        <Route>
+          <BreadCrumbsTitleProvider>
+            <BreadCrumbs />
+            <Route path={`${path}/about`}>
+              <About />
+            </Route>
 
-        <Route path={`${path}/about`}>
-          <About />
-        </Route>
+            <Route path={`${path}/books`}>
+              <BooksRoutes />
+            </Route>
 
-        <Route path={`${path}/books`}>
-          <BooksRoutes />
-        </Route>
+            <Route path={`${path}/services`}>
+              <Services />
+            </Route>
 
-        <Route path={`${path}/services`}>
-          <Services />
-        </Route>
+            <Route path={`${path}/contact`}>
+              <Contact />
+            </Route>
 
-        <Route path={`${path}/contact`}>
-          <Contact />
-        </Route>
+            <Route path={`${path}/couch`}>
+              <CouchRoutes />
+            </Route>
 
-        <Route path={`${path}/couch`}>
-          <CouchRoutes />
-        </Route>
-
-        <Route path={`${path}/articles`}>
-          <Articles />
+            <Route path={`${path}/articles`}>
+              <Articles />
+            </Route>
+          </BreadCrumbsTitleProvider>
         </Route>
       </Switch>
     </>

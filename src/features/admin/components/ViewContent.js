@@ -1,26 +1,15 @@
 import React from 'react';
-import { Switch, useRouteMatch, Route } from 'react-router-dom';
+import { Switch, useRouteMatch, Route, Redirect } from 'react-router-dom';
 import AdminNav from './AdminNav';
-import ArticlesTable from './Table/ArticlesTable';
-import ContentsTable from './Table/ContentTable';
-import VideosTable from './Table/VideosTable';
+import ArticlesTable from './addContent/ArticlesTable';
+import ContentsTable from './addContent/ContentTable';
+import VideosTable from './addContent/VideosTable';
 
-const strings = {
-  title: 'תכנים באתר',
-};
-const links = [
-  { name: 'כתבות', to: 'articles' },
-  { name: 'תכנים מספת הגרפולוג', to: 'contents' },
-  { name: 'סרטונים', to: 'videos' },
-];
 const ViewContent = () => {
   const { path } = useRouteMatch();
 
   return (
-    <div className="w-full h-full">
-         <AdminNav title={strings.title} links={links} />
-
-
+    <>
 
       <Switch>
         <Route exact path={`${path}/articles`}>
@@ -32,8 +21,11 @@ const ViewContent = () => {
         <Route exact path={`${path}/videos`}>
           <VideosTable />
         </Route>
+        <Route exact path={`${path}`}>
+          <Redirect from={`${path}`} to={`${path}/articles`} />
+        </Route>
       </Switch>
-    </div>
+    </>
   );
 };
 
