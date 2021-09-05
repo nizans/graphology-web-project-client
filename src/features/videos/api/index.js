@@ -1,9 +1,11 @@
 import { useQuery, useMutation, useQueryClient } from 'react-query';
 
-export const useFetchVideos = (page, limit) => {
+export const useFetchVideos = (page, limit, sortby) => {
   return useQuery('videos', async () => {
     try {
-      const res = await fetch('/api/videos');
+      const res = await fetch(
+        `/api/videos?page=${page ? page : ''}&limit=${limit ? limit : ''}&sortby=${sortby ? sortby : ''}`
+      );
       const data = await res.json();
       if (!res.ok) {
         throw new Error(data.message);

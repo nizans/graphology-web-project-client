@@ -2,10 +2,10 @@ import React from 'react';
 import ReadMoreBtn from 'components/UI/ReadMoreBtn';
 import { useRouteMatch } from 'react-router-dom';
 import { truncate } from 'lodash';
+import useDomParser from 'hooks/useDomParser';
 const CouchItem = ({ data: item }) => {
   const { path } = useRouteMatch();
-  const parser = new DOMParser();
-  const pChilds = parser.parseFromString(item.text, 'text/html').childNodes;
+  const [parsedText] = useDomParser(item.text, 'text/html');
   return (
     <div className="grid grid-cols-8 gap-x-8 py-14">
       <div
@@ -24,7 +24,7 @@ const CouchItem = ({ data: item }) => {
             columnCount: '2',
           }}
           className="align-middle _text-2xl">
-          {Array.from(pChilds).map(pC => truncate(pC.innerText, { length: 500, separator: ' ' }))}
+          {truncate(parsedText, { length: 500, separator: ' ' })}
         </div>
       </div>
 

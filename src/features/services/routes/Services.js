@@ -11,6 +11,9 @@ const strings = {
 
 export const Services = () => {
   const { isLoading, error, data } = useFetchServices();
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <>
@@ -25,7 +28,8 @@ export const Services = () => {
           <h2 className="text-p-blue text-3xl font-bold">{strings.offeredservices}</h2>
           <div className="grid grid-cols-3 w-2/3 py-4">
             {data &&
-              data.map((item, i) => (
+              data.payload &&
+              data.payload.map((item, i) => (
                 <a href="/" key={i} className="text-p-blue text-3xl underline py-4">
                   {item.title}
                 </a>
@@ -35,7 +39,7 @@ export const Services = () => {
       </Section>
 
       <div className="divide-y-2 divide-p-blue flex flex-col">
-        {data && data.map((item, i) => <ServiceItem item={item} />)}
+        {data && data.payload && data.payload.map((item, i) => <ServiceItem item={item} />)}
       </div>
     </>
   );

@@ -7,7 +7,8 @@ import Radio from '../components/Radio/Radio';
 import OnTheCouch from '../components/OnTheCouch/OnTheCouch';
 import Michal from '../components/Michal/Michal';
 import { SectionHeightContext } from 'context/sectionHeightContext';
-
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 export const Home = () => {
   const [translateY, setTranslateY] = useState(0);
   const { windowHeight, headerHeight } = useContext(SectionHeightContext);

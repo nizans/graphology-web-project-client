@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ExpertiseContainer from './ExpertiseContainer';
 import BriefCase from '../../../../assets/icons/experise_breifcase.svg';
 import OpenBook from '../../../../assets/icons/experise_openbook.svg';
 import Speech from '../../../../assets/icons/expertise_speech.svg';
 import Arrow from '../../../../assets/icons/down_arrow.png';
+import Slider from 'react-slick';
+import { useFetchServices } from 'features/services';
+
 const strings = {
   title: 'תחומי התמחות',
   subTitle: 'שירותים ואבחונים גרפולוגים',
 };
 
-const data = [
+const fallbackData = [
   {
     title: 'קורסים וסדנאות',
     text: 'קורס הוא בדרך כלל תנאי. לקידומו של החייל לתפקיד מסוים. מוסדות להכשרה מקצועית גופים למתן קורס ספציפי, לעיתים כזה המהווה תנאי לקבלת רישיון מסוים במתנ"סים ומרכזי למידה',
@@ -29,37 +32,70 @@ const data = [
     icon: BriefCase,
   },
 ];
+
+function PrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <img
+      className={className + ` transform transition-all -rotate-90  scale-300 hover:scale-350 `}
+      style={{ ...style, right: '-40px' }}
+      onClick={onClick}
+      alt=""
+      src={Arrow}
+    />
+  );
+}
+function NextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <img
+      className={className + ` transform transition-all rotate-90  scale-300 hover:scale-350 `}
+      style={{ ...style, left: '-40px' }}
+      onClick={onClick}
+      alt=""
+      src={Arrow}
+    />
+  );
+}
+const sliderSettings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 3,
+  className: 'center',
+  centerMode: true,
+  centerPadding: '-2px',
+  nextArrow: <NextArrow />,
+  prevArrow: <PrevArrow />,
+};
+
 const Expertise = () => {
+  const { isLoading, error, data } = useFetchServices();
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   return (
     <>
       <div className="flex  flex-col w-full items-center ">
         <h1 className="_text-bold-dark-8xl">{strings.title}</h1>
         <h3 className="_text-bold-3xl">{strings.subTitle}</h3>
       </div>
-
-      <div className="relative ">
-        <img
-          alt=""
-          src={Arrow}
-          className="transform -rotate-90  absolute bottom-1/2"
-          style={{
-            right: '-3rem',
-          }}
-        />
-        <div className="grid grid-cols-3 divide-x-4 divide-p-brown divide-x-reverse">
-          {data.map((item, i) => (
+      {data && data.payload && (
+        <Slider {...sliderSettings}>
+          {data.payload.map((item, i) => (
+            <ExpertiseContainer data={item} key={item._id} />
+          ))}
+        </Slider>
+      )}
+      {!data && (
+        <Slider {...sliderSettings}>
+          {fallbackData.map((item, i) => (
             <ExpertiseContainer data={item} key={i} />
           ))}
-        </div>
-        <img
-          alt=""
-          src={Arrow}
-          className="transform rotate-90 absolute -left-3.5 bottom-1/2"
-          style={{
-            left: '-3rem',
-          }}
-        />
-      </div>
+        </Slider>
+      )}
     </>
   );
 };

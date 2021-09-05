@@ -29,6 +29,12 @@ module.exports = {
         'p-gray': '#EDEBE9',
         'p-gray-dark': '#85959D',
       },
+      scale: {
+        200: '2',
+        250: '2.5',
+        300: '3',
+        350: '3.5',
+      },
     },
   },
   variants: {
