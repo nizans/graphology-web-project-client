@@ -5,7 +5,7 @@ const strings = {
 };
 const ReadMoreBtn = ({ className, to }) => {
   return (
-    <NavLink to={to} className={`underline _text-bold-3xl ml-auto hover:text-p-brown  ${className ? className : ''}`}>
+    <NavLink to={to} className={`underline _text-bold-3xl hover:text-p-brown  ${className ? className : ''}`}>
       {strings.readMore}
     </NavLink>
   );

@@ -2,23 +2,9 @@ import React, { useEffect, useState } from 'react';
 import VideoThumbnail from './VideoThumbnail';
 import Slider from 'react-slick';
 import Arrow from 'assets/icons/down_arrow.png';
-import { useFetchVideos } from 'features/videos';
+import { VIDEOS_API } from 'features/videos';
+import { useFetchData } from 'utils/apiRequests';
 
-const fallbackData = {
-  url: 'https://www.youtube.com/watch?v=sIJtzokIaOQ',
-  thumbnail: 'https://s29843.pcdn.co/blog/wp-content/uploads/sites/2/2019/06/YouTube-Thumbnail-Sizes.png',
-  date: '27.12.2020',
-};
-const sliderSettings = {
-  dots: false,
-  infinite: true,
-  slidesToShow: 3,
-  slidesToScroll: 1,
-  vertical: true,
-  verticalSwiping: true,
-  nextArrow: <NextArrow />,
-  prevArrow: <PrevArrow />,
-};
 function PrevArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -50,16 +36,29 @@ function NextArrow(props) {
   );
 }
 
+const sliderSettings = {
+  dots: false,
+  infinite: true,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  vertical: true,
+  verticalSwiping: true,
+  nextArrow: <NextArrow />,
+  prevArrow: <PrevArrow />,
+};
+
 const SuggestionContainer = ({ setVideoUrl }) => {
-  const { isLoading, error, data } = useFetchVideos(0, 5);
+  const { data } = useFetchData(VIDEOS_API.GET_ALL, { page: 0, limit: 5 });
   const [currentVideo, setCurrentVideo] = useState();
+
   useEffect(() => {
     if (data)
-      if (data.payload) {
+      if (data.payload.length > 0) {
         setVideoUrl(data.payload[0].url);
         setCurrentVideo(data.payload[0]);
       }
-  }, [data]);
+  }, [data, setVideoUrl]);
+
   const handleThumbnailClick = item => {
     setVideoUrl(item.url);
     setCurrentVideo(item);

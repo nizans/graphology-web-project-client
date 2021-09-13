@@ -1,33 +1,41 @@
-import React, { useContext } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import ProtectedRoutes from './ProtectedRoutes';
-import PublicRoutes from './PublicRoutes';
-import Header from 'components/header/Header';
 import Footer from 'components/footer/Footer';
-import useDimensions from 'hooks/useDimensions';
-import { useEffect } from 'react';
-import { SectionHeightContext, SectionHeightProvider } from 'context/sectionHeightContext';
-//TODO - Implements lazy loading for ProtectedRoutes
+import Header from 'components/header/Header';
+import LoadingSection from 'components/UI/LoadingSection';
+import { AuthContext } from 'context/authContext';
+import { SectionHeightProvider } from 'context/sectionHeightContext';
+import Login from 'features/admin/components/Login';
+import React, { useContext } from 'react';
+import { Suspense } from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import PublicRoutes from './PublicRoutes';
+const ProtectedRoutes = React.lazy(() => import('./ProtectedRoutes'));
 
 const AppRoutes = () => {
-  const sectionHeightContext = useContext(SectionHeightContext);
-  const [footerRef, footerDimension] = useDimensions();
-  useEffect(() => {
-    if (footerDimension) {
-      sectionHeightContext.setFooterHeight(footerDimension.height);
-    }
-  }, [footerDimension, sectionHeightContext]);
+  const { isAuth } = useContext(AuthContext);
+
   return (
     <SectionHeightProvider>
       <Switch>
         <Route path="/home">
           <Header />
           <PublicRoutes />
-          <Footer footerRef={footerRef} />
+          <Footer />
         </Route>
+
+        <Route exact path="/admin/login">
+          {isAuth ? <Redirect to="/admin" /> : <Login />}
+        </Route>
+
         <Route path="/admin">
-          <ProtectedRoutes />
+          {isAuth ? (
+            <Suspense fallback={<LoadingSection />}>
+              <ProtectedRoutes />
+            </Suspense>
+          ) : (
+            <Redirect to="/admin/login" />
+          )}
         </Route>
+
         <Redirect from="*" to="/home" />
       </Switch>
     </SectionHeightProvider>

@@ -25,7 +25,7 @@ const Footer = () => {
   }, [footerDimension, sectionHeightCTX]);
   return (
     <footer ref={footerRef} className="w-full flex flex-col justify-between items-center _text-3xl mx-auto box-content">
-      <img src={Shelf} alt="" className="w-full" />
+      <img loading="lazy" src={Shelf} alt="" className="w-full" />
       <div className="w-full flex justify-between items-center mx-auto py-10 relative">
         <NavLink to="home/about" className="px-4">
           {strings.about}
@@ -42,6 +42,7 @@ const Footer = () => {
 
         <NavLink to="/home">
           <img
+            loading="lazy"
             src={Logo}
             alt=""
             onLoad={() => {
@@ -51,7 +52,7 @@ const Footer = () => {
         </NavLink>
 
         <a href="https://www.facebook.com/md1062" className="px-4 flex items-center">
-          <img src={FBIcon} alt=""></img>
+          <img loading="lazy" src={FBIcon} alt=""></img>
           {strings.fb}
         </a>
         <NavLink to="/home/books" className="px-4">

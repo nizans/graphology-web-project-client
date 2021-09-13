@@ -1,83 +1,93 @@
-function randomDate(start, end) {
+import createFormData from 'utils/createFormData';
+
+function randomDate(start = new Date(2012, 0, 1), end = new Date()) {
   return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 }
 
-function randomBase64Id(length = 11) {
-  var result = '';
-  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  var charactersLength = characters.length;
-  for (var i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+const urlToObject = async imgSrc => {
+  const response = await fetch(imgSrc);
+  const blob = await response.blob();
+  const file = new File([blob], 'randomImage + ' + (Math.random() * 100).toString() + '.jpg', { type: blob.type });
+  return file;
+};
+
+async function randomImagesArray() {
+  const numberOfImgs = Math.floor(Math.random() * 8);
+  let images = [];
+  for (let i = 0; i < numberOfImgs; i++) {
+    const random1 = Math.floor(Math.random() * 9) * 100 + 100;
+    const random2 = Math.floor(Math.random() * 9) * 100 + 100;
+    const url = `https://picsum.photos/${random1}/${random2}`;
+    const imageFile = await urlToObject(url);
+    images.push(imageFile);
   }
-  return result;
+  return images;
 }
 
-const randomArticle = () => {
-  return {
+const randomArticle = async () => {
+  const values = {
     title: 'כותרת',
     text: `<p style=direction: rtl;>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית קולורס מונפרד אדנדום סילקוף, מרגשי ומרגשח. עמחליף להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורךגולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, ושבעגט. הועניב היושבב שערש שמחויט - שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק.</p>\n<p style=direction: rtl;>&nbsp;</p>\n<p style=direction: rtl;>סחטיר בלובק. תצטנפל בלינדו למרקל אס לכימפו, דול, צוט ומעיוט - לפתיעם ברשג - ולתיעם גדדיש. קוויז דומור ליאמום בלינך רוגצה. לפמעט מוסן מנת. קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי סחטיר בלובק. תצטנפל בלינדו למרקל אס לכימפו, דול, צוט ומעיוט - לפתיעם ברשג - ולתיעם גדדיש. קוויז דומור ליאמום בלינך רוגצה. לפמעט</p>\n<p style=direction: rtl;>&nbsp;</p>\n<p style=direction: rtl;>קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.</p>\n<p style=direction: rtl;>&nbsp;</p>\n<p style=direction: rtl;>נולום ארווס סאפיאן - פוסיליס קוויס, אקווזמן קוואזי במר מודוף. אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון בלרק - וענוף לפרומי בלוף קינץ תתיח לרעח. לת צשחמי צש בליא, מנסוטו צמלח לביקו ננבי, צמוקו בלוקריה שיצמה ברורק. לפרומי בלוף קינץ תתיח לרעח. לת צשחמי צש בליא, מנסוטו צמלח לביקו ננבי, צמוקו בלוקריה שיצמה ברורק. ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.</p>\n<p style=direction: rtl;>&nbsp;</p>\n<p style=direction: rtl;>קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.</p>\n<p style=direction: rtl;>&nbsp;</p>\n<p style=direction: rtl;>גולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, ושבעגט ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.</p>\n<p style=direction: rtl;>&nbsp;</p>\n<p style=direction: rtl;>להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורך.</p>`,
     sourceFrom: 'לורם לורם',
-    sourceURL: 'לורם',
-    publishDate: randomDate(new Date(2012, 0, 1), new Date()),
-    image: 'https://picsum.photos/500',
+    sourceURL: 'https://www.ynet.co.il/news/article/hy1ogqsmy#autoplay',
+    publishDate: randomDate(),
   };
+  const images = await randomImagesArray();
+  const formData = createFormData(values, images);
+  return formData;
 };
 
-const randomContent = () => {
-  const publishDate = randomDate(new Date(2012, 0, 1), new Date());
-  return {
+const randomContent = async () => {
+  const publishDate = randomDate();
+  const values = {
     title: 'כותרת',
     text: `<p style=direction: rtl;>לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית קולורס מונפרד אדנדום סילקוף, מרגשי ומרגשח. עמחליף להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורךגולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, ושבעגט. הועניב היושבב שערש שמחויט - שלושע ותלברו חשלו שעותלשך וחאית נובש ערששף. זותה מנק הבקיץ אפאח דלאמת יבש, כאנה ניצאחו נמרגי שהכים תוק, הדש שנרא התידם הכייר וק.</p>\n<p style=direction: rtl;>&nbsp;</p>\n<p style=direction: rtl;>סחטיר בלובק. תצטנפל בלינדו למרקל אס לכימפו, דול, צוט ומעיוט - לפתיעם ברשג - ולתיעם גדדיש. קוויז דומור ליאמום בלינך רוגצה. לפמעט מוסן מנת. קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי סחטיר בלובק. תצטנפל בלינדו למרקל אס לכימפו, דול, צוט ומעיוט - לפתיעם ברשג - ולתיעם גדדיש. קוויז דומור ליאמום בלינך רוגצה. לפמעט</p>\n<p style=direction: rtl;>&nbsp;</p>\n<p style=direction: rtl;>קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי קולהע צופעט למרקוח איבן איף, ברומץ כלרשט מיחוצים. קלאצי לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית. סת אלמנקום ניסי נון ניבאה. דס איאקוליס וולופטה דיאם. וסטיבולום אט דולור, קראס אגת לקטוס וואל אאוגו וסטיבולום סוליסי טידום בעליק. קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.</p>\n<p style=direction: rtl;>&nbsp;</p>\n<p style=direction: rtl;>נולום ארווס סאפיאן - פוסיליס קוויס, אקווזמן קוואזי במר מודוף. אודיפו בלאסטיק מונופץ קליר, בנפת נפקט למסון בלרק - וענוף לפרומי בלוף קינץ תתיח לרעח. לת צשחמי צש בליא, מנסוטו צמלח לביקו ננבי, צמוקו בלוקריה שיצמה ברורק. לפרומי בלוף קינץ תתיח לרעח. לת צשחמי צש בליא, מנסוטו צמלח לביקו ננבי, צמוקו בלוקריה שיצמה ברורק. ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.</p>\n<p style=direction: rtl;>&nbsp;</p>\n<p style=direction: rtl;>קונדימנטום קורוס בליקרה, נונסטי קלובר בריקנה סטום, לפריקך תצטריק לרטי.</p>\n<p style=direction: rtl;>&nbsp;</p>\n<p style=direction: rtl;>גולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, ושבעגט ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.</p>\n<p style=direction: rtl;>&nbsp;</p>\n<p style=direction: rtl;>להאמית קרהשק סכעיט דז מא, מנכם למטכין נשואי מנורך.</p>`,
     subtitle:
       'שגם רשמי ענף אות אחר אדם בגרפולוגיה ובחינה למחצה יסוד, האבחון בדיקה את בשנים מחקרים של שימוש האחרונות לבד כך. מסמכים מספר אחוזים כאשר איטליה לעבור את אבחון לשנות אינו, משפט שלו כתב על אך וחתימות בשיטות תורה תעסוקתי בתחומים.',
     publishDate: publishDate,
     uploadDate: randomDate(publishDate, new Date()),
-    image: 'https://picsum.photos/500',
   };
+  const images = await randomImagesArray();
+  const formData = createFormData(values, images);
+  return formData;
 };
 
-const randomVideo = () => {
-  return {
-    title: 'סרטון',
-    url: `https://www.youtube.com/watch?v=${randomBase64Id()}`,
+const randomBook = async () => {
+  const values = {
     description: `לורם איפסום דולור סיט אמט, קונסקטורר אדיפיסינג אלית גולר מונפרר סוברט לורם שבצק יהול, לכנוץ בעריר גק ליץ, ושבעגט ליבם סולגק. בראיט ולחת צורק מונחף, בגורמי מגמש. תרבנך וסתעד לכנו סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.
     `,
-    uploadDate: randomDate(new Date(2012, 0, 1), new Date()),
+    title: 'שם של ספר',
+    author: 'מיכל דורון',
+    publishDate: randomDate(),
   };
+  const images = await randomImagesArray();
+  const formData = createFormData(values, images);
+  return formData;
 };
 
-export const postRandomArticles = async n => {
+export const postRandomArticles = async (n = 10) => {
   for (let i = 0; i < n; i++) {
     await fetch('/api/articles', {
       method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(randomArticle()),
+      body: await randomArticle(),
     });
   }
 };
 
-export const postRandomContents = async n => {
+export const postRandomContents = async (n = 10) => {
   for (let i = 0; i < n; i++) {
     await fetch('/api/contents', {
       method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(randomContent()),
+      body: await randomContent(),
     });
   }
 };
 
-export const postRandomVideos = async n => {
+export const postRandomBooks = async (n = 10) => {
   for (let i = 0; i < n; i++) {
-    await fetch('/api/videos', {
+    await fetch('/api/books', {
       method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(randomVideo()),
+      body: await randomBook(),
     });
   }
 };

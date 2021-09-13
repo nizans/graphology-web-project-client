@@ -2,7 +2,7 @@ import React from 'react';
 
 const FormField = ({ htmlFor, formik, placeholder, borderWidth = '2', type = 'text', className, topLabel = null }) => {
   return (
-    <div className={`grid grid-rows-2 mx-4 _text-3xl ${className}`}>
+    <div className={`grid grid-rows-2 mx-4 _text-3xl  ${className}`}>
       <div className="flex flex-col">
         {topLabel && (
           <label className="" htmlFor={htmlFor}>

@@ -10,13 +10,13 @@ const NavLogo = () => {
   return (
     <div className="flex items-center divide-x-2 divide-p-brown divide-x-reverse">
       <NavLink to="/home">
-        <img src={logo} width="260px" alt="" className="pl-4 transform  -translate-y-3" />
+        <img loading="lazy" src={logo} width="260px" alt="" className="pl-4 transform  -translate-y-3" />
       </NavLink>
 
       <div className="pr-4 flex flex-col items-start  ">
         <h1>{strings.phoneTitle}</h1>
         <a className="flex" href={`tel:${strings.phoneNumber}`}>
-          <img src={phoneIcon} className="h-6 lg:h-8 pl-4" alt="" />
+          <img loading="lazy" src={phoneIcon} className="h-6 lg:h-8 pl-4" alt="" />
           {strings.phoneNumber}
         </a>
       </div>

@@ -5,6 +5,10 @@ const getRect = node => {
   return {
     width: rect.width,
     height: rect.height,
+    left: rect.left,
+    right: rect.right,
+    top: rect.top,
+    bottom: rect.bottom,
   };
 };
 

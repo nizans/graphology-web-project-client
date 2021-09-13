@@ -1,76 +1,60 @@
-import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { BASE_URL } from 'config/constants';
 
-export const useFetchVideos = (page, limit, sortby) => {
-  return useQuery('videos', async () => {
-    try {
-      const res = await fetch(
-        `/api/videos?page=${page ? page : ''}&limit=${limit ? limit : ''}&sortby=${sortby ? sortby : ''}`
-      );
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message);
-      }
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  });
-};
+const VIDEOS_URL = new URL(BASE_URL + '/api/videos');
+const requests = {
+  GET_ALL: {
+    query: ['videos'],
+    url: VIDEOS_URL,
+    options: { method: 'get' },
+  },
+  GET_BY_ID: id => ({
+    query: ['videos', id],
+    url: VIDEOS_URL,
+    options: { method: 'get' },
+  }),
 
-export const useFetchVideo = id => {
-  return useQuery(['videos', id], async () => {
-    try {
-      const res = await fetch(`/api/videos/${id}`);
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message);
-      }
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  });
-};
+  ADD: {
+    query: ['videos'],
+    url: VIDEOS_URL,
+    options: { method: 'post', headers: new Headers({ 'Content-Type': 'application/json' }) },
+    body: {},
+  },
 
-export const useDeleteVideo = () => {
-  const queryClient = useQueryClient();
-  return useMutation(
-    'videos',
-    async id => {
-      try {
-        const res = await fetch(`/api/videos/${id}`, { method: 'delete' });
-        const data = await res.json();
-        if (!res.ok) {
-          throw new Error(data.message);
-        }
-        return data;
-      } catch (error) {
-        throw error;
-      }
-    },
-    {
-      onSuccess: () => {
-        queryClient.refetchQueries('videos');
-      },
-    }
-  );
-};
+  DELETE: {
+    query: ['videos'],
+    url: VIDEOS_URL,
+    options: { method: 'delete' },
+  },
 
-export const useAddVideo = () => {
-  return useMutation('videos', async video => {
-    try {
-      const res = await fetch('/api/videos', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(video),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message);
-      }
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  });
+  UPDATE: {
+    query: ['videos'],
+    url: VIDEOS_URL,
+    options: { method: 'put' },
+  },
 };
+export const VIDEOS_API = Object.freeze(requests);
+
+// export const useFetchVideos = (params = {}) => {
+//   const { query, url, options } = GET_ALL;
+//   return useFetchData([query], url, options, params);
+// };
+
+// export const useFetchVideo = id => {
+//   const { query, url, options } = GET_BY_ID;
+//   return useFetchData([query, id], url, options);
+// };
+
+// export function useDeleteVideo() {
+//   const { query, url, options } = DELETE;
+//   return useDeleteMutation(query, url, options);
+// }
+
+// export const useAddVideo = () => {
+//   const { query, url, options } = ADD;
+//   return useAddMutation(query, url, options);
+// };
+
+// export const useUpdateVideo = () => {
+//   const { query, url, options } = UPDATE;
+//   return useUpdateMutation(query, url, options);
+// };

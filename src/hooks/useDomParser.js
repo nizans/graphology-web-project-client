@@ -1,11 +1,10 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
 
-const useDomParser = (text, mimetype) => {
+const useDomParser = (text, mimetype = 'text/html') => {
   const [str, setStr] = useState('');
-  const domparser = new DOMParser();
+
   useEffect(() => {
-    const childs = domparser.parseFromString(text, mimetype).childNodes;
+    const childs = new DOMParser().parseFromString(text, mimetype).childNodes;
     let temp = '';
     childs.forEach(child => {
       temp += child.innerText;

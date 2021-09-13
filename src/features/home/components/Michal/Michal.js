@@ -2,8 +2,11 @@ import React from 'react';
 import MichalDrawings from 'assets/icons/michal_drawings.svg';
 import ReadMoreBtn from 'components/UI/ReadMoreBtn';
 import SpeechBubble from 'assets/icons/speech_bubble.svg';
-import SplitScreen from 'components/common/SplitScreen';
 import Quotes from 'assets/icons/quotes_icon.svg';
+import Underline from 'components/UI/Underline';
+import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { SectionHeightContext } from 'context/sectionHeightContext';
 const strings = {
   title: 'מיכל דורון',
   text: '.עובדת כעשרים ושבע שנה כמרצה בתחומים ,פסיכולוגים וגרפולוגיה, לימדה במכללות לוינסקיעמק יזרעאל ומכללת שחר. גרפולוגית מוסמכת עובדת עם ארגונים וחברות, מתמחה בייעוץ תעסוקתי ובגרפולוגיה משפטית',
@@ -12,31 +15,36 @@ const strings = {
 };
 
 const Michal = () => {
+  const { windowHeight, headerHeight } = useContext(SectionHeightContext);
   return (
     <>
       <div className="w-1/2 relative transform translate-y-16">
-        <img className="mx-auto" src={SpeechBubble} alt="" />
-        <img alt="" src={Quotes} className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+        <img loading="lazy" className="mx-auto" src={SpeechBubble} alt="" />
+        <img
+          loading="lazy"
+          alt=""
+          src={Quotes}
+          className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        />
         <h1
           className="absolute left-0 right-0 text-p-brown-light _text-5xl text-center px-16 italic break-words"
           style={{ top: '22.214%', bottom: '44.58' }}>
           {strings.bubbleText}
         </h1>
       </div>
-
-      <SplitScreen imgSrc={MichalDrawings}>
+      <div className="grid gap-x-7 grid-cols-2">
+        <div className="flex justify-center">
+          <img style={{ maxHeight: windowHeight - headerHeight - 100 + 'px' }} alt="" src={MichalDrawings} />
+        </div>
         <div className="flex flex-col px-4">
-          <a href="/" className="_text-bold-dark-12xl leading-none hover:text-p-brown ">
+          <NavLink to="/home/about" className="_text-bold-dark-12xl leading-none hover:text-p-brown ">
             {strings.title}
-          </a>
-          <div className="divide-p-brown divide-y-4 flex flex-col w-3/6">
-            <span></span>
-            <span></span>
-          </div>
+          </NavLink>
+          <Underline style={{ width: '50%' }} />
           <p className="_text-3xl py-6 pl-12 max-w-2xl leading-normal ">{strings.text}</p>
           <ReadMoreBtn to="/home/about" className="text-4xl" />
         </div>
-      </SplitScreen>
+      </div>
     </>
   );
 };

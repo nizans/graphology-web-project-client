@@ -1,1 +1,1 @@
-export * from './api/index';
+export { VIDEOS_API } from './api';

@@ -1,2 +1,2 @@
-export * from './routes/Articles';
+export * from './routes';
 export * from './api/index';

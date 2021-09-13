@@ -1,8 +1,9 @@
 import useWindowDimensions from 'hooks/useWindowDimensions';
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 
-export const SectionHeightContext = React.createContext({
+export const SectionHeightContext = createContext({
   windowHeight: 0,
+  windowWidth: 0,
   headerHeight: 0,
   footerHeight: 0,
   breadCrumbHeight: 0,
@@ -31,6 +32,7 @@ export const SectionHeightProvider = ({ children }) => {
     <SectionHeightContext.Provider
       value={{
         windowHeight: windowDimensions.height,
+        windowWidth: windowDimensions.width,
         footerHeight: footerHeight,
         headerHeight: headerHeight,
         breadCrumbHeight: breadCrumbHeight,

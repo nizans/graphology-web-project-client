@@ -1,1 +1,2 @@
-export * from './routes/AdminRoutes.js'
+export * from './routes/AdminRoutes.js';
+export * from './api';

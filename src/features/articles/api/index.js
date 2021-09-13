@@ -1,76 +1,60 @@
-import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { BASE_URL } from 'config/constants';
 
-export const useFetchArticles = (page, limit) => {
-  return useQuery('articles', async () => {
-    try {
-      const res = await fetch('/api/articles');
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message);
-      }
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  });
-};
 
-export const useFetchAtricle = id => {
-  return useQuery(['articles', id], async () => {
-    try {
-      const res = await fetch(`/api/articles/${id}`);
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message);
-      }
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  });
-};
+const ARTICLES_URL = new URL(BASE_URL + '/api/articles');
+const requests = {
+  GET_ALL: {
+    query: ['articles'],
+    url: ARTICLES_URL,
+    options: { method: 'get' },
+  },
+  GET_BY_ID: id => ({
+    query: ['articles', id],
+    url: ARTICLES_URL,
+    options: { method: 'get' },
+  }),
 
-export const useDeleteArticle = () => {
-  const queryClient = useQueryClient();
-  return useMutation(
-    'articles',
-    async id => {
-      try {
-        const res = await fetch(`/api/articles/${id}`, { method: 'delete' });
-        const data = await res.json();
-        if (!res.ok) {
-          throw new Error(data.message);
-        }
-        return data;
-      } catch (error) {
-        throw error;
-      }
-    },
-    {
-      onSuccess: () => {
-        queryClient.refetchQueries('articles');
-      },
-    }
-  );
-};
+  ADD: {
+    query: ['articles'],
+    url: ARTICLES_URL,
+    options: { method: 'post' },
+    body: {},
+  },
 
-export const useAddArticle = () => {
-  return useMutation('articles', async article => {
-    try {
-      const res = await fetch('/api/articles', {
-        method: 'post',
-        headers: new Headers({
-          Accept: 'application/json',
-        }),
-        body: article,
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message);
-      }
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  });
+  DELETE: {
+    query: ['articles'],
+    url: ARTICLES_URL,
+    options: { method: 'delete' },
+  },
+
+  UPDATE: {
+    query: ['articles'],
+    url: ARTICLES_URL,
+    options: { method: 'put' },
+  },
 };
+export const ARTICLES_API = Object.freeze(requests);
+// export const useFetchArticles = (params = {}) => {
+//   const { query, url, options } = GET_ALL;
+//   return useFetchData([query], url, options, params);
+// };
+
+// export const useFetchArticle = id => {
+//   const { query, url, options } = GET_BY_ID;
+//   return useFetchData([query, id], url, options);
+// };
+
+// export const useDeleteArticle = () => {
+//   const { query, url, options } = DELETE;
+//   return useDeleteMutation(query, url, options);
+// };
+
+// export const useAddArticle = () => {
+//   const { query, url, options } = ADD;
+//   return useAddMutation(query, url, options);
+// };
+
+// export const useUpdateArticle = () => {
+//   const { query, url, options } = UPDATE;
+//   return useUpdateMutation(query, url, options);
+// };

@@ -1,27 +1,46 @@
 import React from 'react';
-import SplitScreen from 'components/common/SplitScreen';
-
+import { NavLink, useRouteMatch } from 'react-router-dom';
+import ImageBox from 'components/common/ImageBox';
+import parse from 'html-react-parser';
+import { useContext } from 'react';
+import { SectionHeightContext } from 'context/sectionHeightContext';
+import Section from 'components/common/Section';
 const strings = {
   orderBook: 'הזמנת ספר',
+  from: 'מאת',
 };
 
-const BooksItem = ({ data }) => {
-  return (
-    <SplitScreen imgSrc={data.img}>
-      <div className="h-full flex flex-col justify-evenly p-0 ">
-        <div>
-          <h1 className="_text-bold-dark-6xl">{data.title}</h1>
-          <h3 className="_text-bold-4xl">{data.author}</h3>
-        </div>
+const BooksItem = ({ data: item }) => {
+  const { path } = useRouteMatch();
+  const { images, title, _id } = item;
+  const author = strings.from + ' ' + item.author;
+  const description = parse(item.description);
+  const { windowHeight, headerHeight, footerHeight, breadCrumbHeight } = useContext(SectionHeightContext);
 
-        <p className="_text-3xl leading">{data.description}</p>
-        <button
-          style={{ width: 'fit-content' }}
-          className="bg-p-brown text-3xl text-p-blue-dark px-10 py-2 rounded-xl font-bold transition-all hover:bg-p-brown-dark">
-          {strings.orderBook}
-        </button>
+  return (
+    <Section minHeight={windowHeight - headerHeight - footerHeight} className="my-8">
+      <div className="grid gap-x-7 grid-cols-2">
+        <div className="my-auto">
+          <ImageBox
+            withModal={false}
+            maxHeight={windowHeight - headerHeight - footerHeight - breadCrumbHeight}
+            images={images}
+            imgClassName={'p-8 object-cover'}
+          />
+        </div>
+        <div className="w-full flex flex-col justify-evenly p-0 mb-6">
+          <div>
+            <h1 className="_text-bold-dark-6xl">{title}</h1>
+            <h3 className="_text-bold-4xl">{author}</h3>
+            <p className="_text-3xl leading mt-4">{description}</p>
+          </div>
+
+          <NavLink style={{ width: 'fit-content' }} className="button mt-6" to={`${path}/${_id}`}>
+            {strings.orderBook}
+          </NavLink>
+        </div>
       </div>
-    </SplitScreen>
+    </Section>
   );
 };
 

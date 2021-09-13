@@ -23,6 +23,7 @@ const VideoThumbnail = ({ data, onClick }) => {
   const playButton = (
     <>
       <img
+        loading="lazy"
         alt=""
         ref={playOutlineRef}
         src={PlayOutline}
@@ -32,6 +33,7 @@ const VideoThumbnail = ({ data, onClick }) => {
         }}
       />
       <img
+        loading="lazy"
         alt=""
         ref={playFilledRef}
         src={PlayFilled}

@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ExpertiseContainer from './ExpertiseContainer';
 import BriefCase from '../../../../assets/icons/experise_breifcase.svg';
 import OpenBook from '../../../../assets/icons/experise_openbook.svg';
 import Speech from '../../../../assets/icons/expertise_speech.svg';
-import Arrow from '../../../../assets/icons/down_arrow.png';
 import Slider from 'react-slick';
-import { useFetchServices } from 'features/services';
+import { SERVICES_API } from 'features/services';
+import { LeftArrow, RightArrow } from 'components/UI/Arrows';
+import { useFetchData } from 'utils/apiRequests';
 
 const strings = {
   title: 'תחומי התמחות',
@@ -33,69 +34,44 @@ const fallbackData = [
   },
 ];
 
-function PrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <img
-      className={className + ` transform transition-all -rotate-90  scale-300 hover:scale-350 `}
-      style={{ ...style, right: '-40px' }}
-      onClick={onClick}
-      alt=""
-      src={Arrow}
-    />
-  );
-}
-function NextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <img
-      className={className + ` transform transition-all rotate-90  scale-300 hover:scale-350 `}
-      style={{ ...style, left: '-40px' }}
-      onClick={onClick}
-      alt=""
-      src={Arrow}
-    />
-  );
-}
 const sliderSettings = {
   dots: false,
   infinite: true,
   speed: 500,
   slidesToShow: 3,
-  slidesToScroll: 3,
+  slidesToScroll: 1,
   className: 'center',
   centerMode: true,
   centerPadding: '-2px',
-  nextArrow: <NextArrow />,
-  prevArrow: <PrevArrow />,
+  nextArrow: <LeftArrow left={-40} />,
+  prevArrow: <RightArrow right={-40} />,
 };
 
 const Expertise = () => {
-  const { isLoading, error, data } = useFetchServices();
+  const { data } = useFetchData(SERVICES_API.GET_ALL);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
   return (
     <>
       <div className="flex  flex-col w-full items-center ">
         <h1 className="_text-bold-dark-8xl">{strings.title}</h1>
         <h3 className="_text-bold-3xl">{strings.subTitle}</h3>
       </div>
-      {data && data.payload && (
-        <Slider {...sliderSettings}>
-          {data.payload.map((item, i) => (
-            <ExpertiseContainer data={item} key={item._id} />
-          ))}
-        </Slider>
-      )}
-      {!data && (
-        <Slider {...sliderSettings}>
-          {fallbackData.map((item, i) => (
-            <ExpertiseContainer data={item} key={i} />
-          ))}
-        </Slider>
-      )}
+      <div className="px-44">
+        {data && data.payload && (
+          <Slider {...sliderSettings}>
+            {data.payload.map((item, i) => (
+              <ExpertiseContainer data={item} key={item._id} />
+            ))}
+          </Slider>
+        )}
+        {!data && (
+          <Slider {...sliderSettings}>
+            {fallbackData.map((item, i) => (
+              <ExpertiseContainer data={item} key={i} />
+            ))}
+          </Slider>
+        )}
+      </div>
     </>
   );
 };

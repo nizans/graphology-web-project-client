@@ -1,47 +1,52 @@
-import React from 'react';
+import BlurredUpImage from 'components/UI/BlurredUpImage';
+import ExpandIcon from 'components/UI/ExpandIcon';
+import useDomParser from 'hooks/useDomParser';
 import useModal from 'hooks/useModal';
-import useTextTruncate from 'hooks/useTextTruncate';
-import Modal from 'components/common/Modal';
+import { truncate } from 'lodash';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 const strings = {
   readMore: 'להמשך קריאה',
   articleFrom: 'כתבה מתוך: ',
 };
 const ArticleContainer = ({ item }) => {
-  const [text] = useTextTruncate(item.text, {
-    limit: 150,
-    endWith: '...',
-  });
-  const { isShowing, toggle } = useModal();
+  const imgSrc = (item.images[0] && item.images[0] && { full: item.images[0].full, thumb: item.images[0].thumb }) || {
+    full: 'https://via.placeholder.com/150',
+    thumb: 'https://via.placeholder.com/150',
+  };
+  const { toggle } = useModal();
+  const [parsedStr] = useDomParser(item.text);
   return (
     <div className="flex flex-col max-w-xs items-center bg-p-brown-light px-9 py-6 rounded-xl">
       <div className="flex flex-col items-start w-full mb-4">
-        <h1 className="_text-bold-2xl leading-none">{item.title}</h1>
+        <h1 className="_text-bold-3xl leading-none">{item.title}</h1>
         <h2 className="text-p-blue text-base">
-          {strings.articleFrom} {item.subtitle}
+          {strings.articleFrom} {item.sourceFrom}
         </h2>
       </div>
-      <img
-        alt=""
-        src={item.img}
+      <div
         onClick={toggle}
-        className="object-cover mb-4 max-h-60"
-      />
-      <Modal isShowing={isShowing} hide={toggle}>
-        <div className="relative">
-          <span
-            className="absolute border-2 rounded-full"
-            style={{ width: '100px', height: '100px' }}
-          ></span>
-          <img src={item.img} alt="" />
-        </div>
-      </Modal>
+        className="border-2 border-p-brown relative mb-9 overflow-hidden"
+        style={{ cursor: 'zoom-in' }}>
+        <ExpandIcon onClick={toggle} />
+        <BlurredUpImage
+          width={300}
+          height={320}
+          imageSrc={imgSrc.full}
+          tinySrc={imgSrc.thumb}
+          style={{ objectFit: 'cover' }}
+        />
+      </div>
 
       <div className="_text-xl">
-        <p>{text}</p>
+        <p>{truncate(parsedStr, { length: 250, separator: ' ' })}</p>
       </div>
-      <button className="_text-bold-xl bg-p-brown hover:bg-p-brown-dark py-1 px-4 mr-auto mt-5">
+      <NavLink
+        to={`/home/articles/${item._id}`}
+        className="_text-bold-xl bg-p-brown hover:bg-p-brown-dark py-1 px-4 mr-auto mt-5">
         {strings.readMore}
-      </button>
+      </NavLink>
     </div>
   );
 };

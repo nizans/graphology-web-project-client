@@ -1,76 +1,62 @@
-import { useQuery, useMutation, useQueryClient } from 'react-query';
+import { BASE_URL } from 'config/constants';
 
-export const useFetchContents = (page = 0, limit = 10) => {
-  return useQuery(['contents', page, limit], async () => {
-    try {
-      const res = await fetch(`/api/contents?page=${page}&limit=${limit}`);
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message);
-      }
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  });
-};
+const CONTENTS_URL = new URL(BASE_URL + '/api/contents');
+const requests = {
+  GET_ALL: {
+    query: ['contents'],
+    url: CONTENTS_URL,
+    options: { method: 'get' },
+  },
+  GET_BY_ID: id => ({
+    query: ['contents', id],
+    url: CONTENTS_URL,
+    options: { method: 'get' },
+  }),
 
-export const useFetchContent = id => {
-  return useQuery(['contents', id], async () => {
-    try {
-      const res = await fetch(`/api/contents/${id}`);
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message);
-      }
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  });
-};
+  ADD: {
+    query: ['contents'],
+    url: CONTENTS_URL,
+    options: { method: 'post' },
+    body: {},
+  },
 
-export const useDeleteContent = () => {
-  const queryClient = useQueryClient();
-  return useMutation(
-    'contents',
-    async id => {
-      try {
-        const res = await fetch(`/api/contents/${id}`, { method: 'delete' });
-        const data = await res.json();
-        if (!res.ok) {
-          throw new Error(data.message);
-        }
-        return data;
-      } catch (error) {
-        throw error;
-      }
+  DELETE: {
+    query: ['contents'],
+    url: CONTENTS_URL,
+    options: {
+      method: 'delete',
     },
-    {
-      onSuccess: () => {
-        queryClient.refetchQueries('contents');
-      },
-    }
-  );
-};
+  },
 
-export const useAddContent = () => {
-  return useMutation('contents', async content => {
-    try {
-      const res = await fetch('/api/contents', {
-        method: 'post',
-        headers: new Headers({
-          Accept: 'application/json',
-        }),
-        body: content,
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data.message);
-      }
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  });
+  UPDATE: {
+    query: ['contents'],
+    url: CONTENTS_URL,
+    options: { method: 'put' },
+  },
 };
+export const CONTENTS_API = Object.freeze(requests);
+
+// export const useFetchContents = params = {}) => {
+//   const { query, url, options } = GET_ALL;
+//   return useFetchData([query], url, options, params);
+// };
+
+// export const useFetchContent = id => {
+//   const { query, url, options } = GET_BY_ID;
+//   return useFetchData([query, id], url, options);
+// };
+
+// export function useDeleteContent() {
+//   const { query, url, options } = DELETE;
+//   return useDeleteMutation(query, url, options);
+// }
+
+// export const useAddContent = () => {
+//   const { query, url, options } = ADD;
+//   return useAddMutation(query, url, options);
+// };
+
+// export const useUpdateContent = () => {
+//   const { query, url, options } = UPDATE;
+//   return useUpdateMutation(query, url, options);
+// };
