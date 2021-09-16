@@ -1,5 +1,6 @@
+import { AuthContext } from 'context/authContext';
+import { useContext } from 'react';
 import { useQuery, useMutation, useQueryClient } from 'react-query';
-
 const defualtQuerySetttings = {
   staleTime: 1000 * 60 * 15,
   retry: false,
@@ -20,10 +21,12 @@ export function useFetchData(apiRequest) {
 }
 
 export function useMutateData(apiRequest) {
+  const { token } = useContext(AuthContext);
   const { query, url, options, settings } = apiRequest;
+  options.headers.set('authorization', 'Bearer ' + token.accessToken);
   return useMutation(
     query,
-    (uri = null, body = null) => _fetch(uri ? url + '/' + uri : url, body ? { ...options, body } : options),
+    args => _fetch(args.uri ? url + '/' + args.uri : url, args.body ? { ...options, body: args.body } : options),
     settings || defultMutationSettings(query)
   );
 }

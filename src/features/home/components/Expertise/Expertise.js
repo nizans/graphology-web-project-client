@@ -54,7 +54,7 @@ const Expertise = () => {
   const { width } = useWindowDimensions();
 
   useEffect(() => {
-    if (width < 640) {
+    if (width < 1024) {
       sliderSettings.slidesToShow = 1;
     }
   }, [width]);

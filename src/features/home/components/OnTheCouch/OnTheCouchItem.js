@@ -9,6 +9,8 @@ import { truncate } from 'lodash-es';
 const OnTheCouchItem = ({ data: item }) => {
   const { path } = useRouteMatch();
   const { publishDate, title, images, _id, text } = item;
+
+
   const date = toDate(publishDate);
   const [parsedText] = useDomParser(text);
   return (

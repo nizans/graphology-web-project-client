@@ -25,23 +25,23 @@ export class ApiRequests {
 class ApiCRUDRequests extends ApiRequests {
   constructor(query) {
     super(query);
-    this.create = {
+    this.create = Object.freeze({
       query: [this.query],
       url: this.baseUrl,
       options: { method: 'post', headers: new Headers({ 'content-type': 'application/json' }) },
-    };
+    });
 
-    this.update = {
+    this.update = Object.freeze({
       query: [this.query],
       url: this.baseUrl,
-      options: { method: 'put' },
-    };
+      options: { method: 'put', headers: new Headers() },
+    });
 
-    this.delete = {
+    this.delete = Object.freeze({
       query: [this.query],
       url: this.baseUrl,
-      options: { method: 'delete' },
-    };
+      options: { method: 'delete', headers: new Headers() },
+    });
   }
 
   read = (uriParam, queryParams) => {
@@ -58,7 +58,7 @@ class ApiCRUDRequests extends ApiRequests {
     return {
       query,
       url: _url,
-      options: { method: 'get' },
+      options: { method: 'get', headers: new Headers() },
     };
   };
 }

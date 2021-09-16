@@ -36,7 +36,9 @@ const BookForm = ({ data: item }) => {
   const validation = Yup.object({
     title: Yup.string().required(),
     author: Yup.string().required(),
-    publishDate: Yup.date().required(),
+    publishDate: Yup.date()
+      .required()
+      .default(() => new Date()),
   });
 
   const formik = useFormik({
@@ -44,7 +46,7 @@ const BookForm = ({ data: item }) => {
     validationSchema: validation,
     onSubmit: values => {
       const formData = createFormData(values, images);
-      mutate(null, formData);
+      mutate({ body: formData });
     },
     enableReinitialize: true,
   });

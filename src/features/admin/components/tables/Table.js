@@ -3,7 +3,7 @@ import ErrorSerction from 'components/UI/ErrorSerction';
 import LoadingSection from 'components/UI/LoadingSection';
 import SearchInput from 'components/UI/SearchInput';
 import useQueryParams from 'hooks/useQueryParams';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFetchData, useMutateData } from 'lib/reactQuery';
 import ButtonsCell from '../UI/ButtonsCell';
 
@@ -16,17 +16,12 @@ const Table = ({ type, generateCell, headers, apiRequests }) => {
   const find = useQueryParams().get('find');
   const sortby = useQueryParams().get('sortby') || '-uploadDate';
   const [searchInput, setSearchInput] = useState('');
-  //   const { mutate, isLoading: isMutating } = useDeleteMutation(apiRequest.DELETE);
-  //   const { isLoading, error, data, isSuccess } = useFetchData(
-  //     apiRequest.GET_ALL,
-  //     find ? { find, page, sortby } : { page, sortby }
-  //   );
   const { mutate, isLoading: isMutating } = useMutateData(apiRequests.delete);
   const { isLoading, error, data, isSuccess } = useFetchData(apiRequests.read(null, { find, page, sortby }));
 
   const handleDeleteItem = id => {
-    console.log(apiRequests.delete);
-    mutate(id);
+    
+    mutate({ uri: id });
   };
 
   return (
@@ -38,7 +33,7 @@ const Table = ({ type, generateCell, headers, apiRequests }) => {
         <LoadingSection />
       ) : (
         <>
-          {error && <ErrorSerction addToDef={300} error={error} />}
+          {error && <ErrorSerction error={error} />}
           {isSuccess && (
             <>
               <table className="table-auto w-full ">

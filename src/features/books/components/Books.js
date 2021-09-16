@@ -1,4 +1,5 @@
 import Pagintation from 'components/common/Pagintation';
+import ErrorSerction from 'components/UI/ErrorSerction';
 import LoadingSection from 'components/UI/LoadingSection';
 import useQueryParams from 'hooks/useQueryParams';
 import { useFetchData } from 'lib/reactQuery';
@@ -8,7 +9,9 @@ import BooksItem from './BooksItem';
 
 const Books = () => {
   const page = useQueryParams().get('page');
-  const { isLoading, data } = useFetchData(booksApiCRUDRequests.read(null, { page }));
+  const { isLoading, data, error } = useFetchData(booksApiCRUDRequests.read(null, { page }));
+
+  if (error) return <ErrorSerction error={error} />;
   return isLoading ? (
     <LoadingSection />
   ) : (

@@ -1,5 +1,6 @@
 import Pagintation from 'components/common/Pagintation';
 import Section from 'components/common/Section';
+import ErrorSerction from 'components/UI/ErrorSerction';
 import LoadingSection from 'components/UI/LoadingSection';
 import Underline from 'components/UI/Underline';
 import useQueryParams from 'hooks/useQueryParams';
@@ -14,22 +15,26 @@ const strings = {
 
 export const Articles = () => {
   const page = useQueryParams().get('page');
-  const { data, isLoading } = useFetchData(articlesApiCRUDRequests.read(null, { page }));
-
-  if (isLoading) return <LoadingSection />;
+  const { data, isLoading, error, isSuccess } = useFetchData(articlesApiCRUDRequests.read(null, { page }));
 
   return (
     <Section>
       <div className="flex flex-col items-center mb-9">
         <h1 className="_text-bold-dark-8xl">{strings.title}</h1>
         <Underline style={{ width: '33%' }} />
-        <div className="grid  lg:grid-cols-3 pt-16  gap-28">
-          {data.payload.map(item => (
-            <ArticleContainer key={item._id} item={item} />
-          ))}
-        </div>
+        {error ? (
+          <ErrorSerction error={error} />
+        ) : isLoading ? (
+          <LoadingSection />
+        ) : (
+          <div className="grid  lg:grid-cols-3 pt-16  gap-28">
+            {data.payload.map(item => (
+              <ArticleContainer key={item._id} item={item} />
+            ))}
+          </div>
+        )}
       </div>
-      <Pagintation pages={data.pages} page={data.page} />
+      {isSuccess && <Pagintation pages={data.pages} page={data.page} />}
     </Section>
   );
 };

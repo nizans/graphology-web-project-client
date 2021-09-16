@@ -1,8 +1,8 @@
 import Underline from 'components/UI/Underline';
+import { AuthContext } from 'context/authContext';
 import { SectionHeightContext } from 'context/sectionHeightContext';
 import { postRandomArticles, postRandomBooks, postRandomContents } from 'dev/randomItemsGen';
 import useDimensions from 'hooks/useDimensions';
-import { handleLogut } from 'lib/auth';
 import React, { useContext } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -13,6 +13,7 @@ const strings = {
   addtitle: 'הוספת תוכן חדש',
   viewTitle: 'תכנים באתר',
   logout: 'התנתקות',
+  hello: 'שלום ',
 };
 
 const mainLinks = [
@@ -41,7 +42,7 @@ const AdminNav = () => {
   const viewPage = useRouteMatch('/admin/view');
   const [headerRef, headerDimension] = useDimensions();
   const sectionHeightCTX = useContext(SectionHeightContext);
-
+  const { logout, user } = useContext(AuthContext);
   const [links, setLinks] = useState(viewPage ? viewLinks : addLinks);
   const [title, setTitle] = useState(viewPage ? strings.viewTitle : strings.addtitle);
 
@@ -55,47 +56,53 @@ const AdminNav = () => {
   }, [viewPage]);
 
   return (
-    <div ref={headerRef}>
-      <div className="flex justify-between items-center w-full ">
-        <h1 className="_text-bold-dark-8xl">{title}</h1>
-        <div>
-          <nav>
-            {mainLinks.map((link, i) => (
-              <NavLink key={link.to} activeClassName="font-bold" className="_text-xl px-4" to={`${path}/${link.to}`}>
-                {link.name}
-              </NavLink>
-            ))}
-            <button type="button" onClick={handleLogut} className="_text-xl px-4">
-              {strings.logout}
-            </button>
-            <ul>
-              <li>
-                <button onClick={() => postRandomArticles(10)}>Random 10 Articles</button>
-              </li>
-              <li>
-                <button onClick={() => postRandomContents(10)}>Random 10 Contents</button>
-              </li>
-              <li>
-                <button onClick={() => postRandomBooks(10)}>Random 10 Books</button>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
+    <>
+      <div ref={headerRef} className="fixed z-50 top-0 bg-background container">
+        <div className="flex justify-between items-center w-full">
+          <div>
+            <h5 className="_text-3xl">{strings.hello + user.name}</h5>
+            <h1 className="_text-bold-dark-8xl">{title}</h1>
+          </div>
 
-      <nav className="flex items-center divide-x-2 divide-p-brown divide-x-reverse mb-2">
-        {links.map((link, i) => (
-          <NavLink
-            key={i}
-            className={`_text-3xl ${i === 0 ? 'pl-4' : 'px-4'}`}
-            activeClassName="font-bold"
-            to={`${path}/${link.to}`}>
-            {link.name}
-          </NavLink>
-        ))}
-      </nav>
-      <Underline thickness={2} />
-    </div>
+          <div>
+            <nav>
+              {mainLinks.map((link, i) => (
+                <NavLink key={link.to} activeClassName="font-bold" className="_text-xl px-4" to={`${path}/${link.to}`}>
+                  {link.name}
+                </NavLink>
+              ))}
+              <button type="button" onClick={logout} className="_text-xl px-4">
+                {strings.logout}
+              </button>
+              <ul>
+                <li>
+                  <button onClick={() => postRandomArticles(10)}>Random 10 Articles</button>
+                </li>
+                <li>
+                  <button onClick={() => postRandomContents(10)}>Random 10 Contents</button>
+                </li>
+                <li>
+                  <button onClick={() => postRandomBooks(10)}>Random 10 Books</button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <nav className="flex items-center divide-x-2 divide-p-brown divide-x-reverse mb-2">
+          {links.map((link, i) => (
+            <NavLink
+              key={i}
+              className={`_text-3xl ${i === 0 ? 'pl-4' : 'px-4'}`}
+              activeClassName="font-bold"
+              to={`${path}/${link.to}`}>
+              {link.name}
+            </NavLink>
+          ))}
+        </nav>
+        <Underline thickness={2} />
+      </div>
+      <div style={{ height: headerDimension?.height }}></div>
+    </>
   );
 };
 

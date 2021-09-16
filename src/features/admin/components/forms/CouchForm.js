@@ -33,7 +33,9 @@ const CouchForm = ({ data: item }) => {
   const validation = Yup.object({
     title: Yup.string().required(strings.required),
     subtitle: Yup.string(),
-    publishDate: Yup.date().required(strings.required),
+    publishDate: Yup.date()
+      .required(strings.required)
+      .default(() => new Date()),
   });
 
   const formik = useFormik({
@@ -41,7 +43,7 @@ const CouchForm = ({ data: item }) => {
     validationSchema: validation,
     onSubmit: values => {
       const formData = createFormData(values, images);
-      mutate(formData);
+      mutate({ body: formData });
     },
     enableReinitialize: true,
   });

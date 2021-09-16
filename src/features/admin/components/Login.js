@@ -40,7 +40,7 @@ const Login = () => {
       password: Yup.string().min(6, strings.passwordMinLenghth).required(strings.required),
     }),
     onSubmit: values => {
-      login(JSON.stringify(values));
+      login(values.email, values.password);
     },
   });
 

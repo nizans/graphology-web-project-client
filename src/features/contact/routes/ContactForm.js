@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import { useMutateData } from 'lib/reactQuery';
 import React from 'react';
 import * as Yup from 'yup';
-import { contactApiRequests, CONTACT_API } from '../api';
+import { contactApiRequests } from '../api';
 
 const strings = {
   fullName: 'שם מלא',
@@ -37,7 +37,7 @@ const ContactForm = () => {
     initialValues: initialValues,
     validationSchema: Yup.object(validation),
     onSubmit: values => {
-      mutate(null, JSON.stringify(values));
+      mutate({ body: JSON.stringify(values) });
     },
   });
 

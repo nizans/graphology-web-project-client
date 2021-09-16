@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useDomParser = (text, mimetype = 'text/html') => {
+const useDomParser = (text = '', mimetype = 'text/html') => {
   const [str, setStr] = useState('');
 
   useEffect(() => {

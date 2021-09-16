@@ -40,7 +40,7 @@ const OrderBookForm = ({ book }) => {
       notes: Yup.string().max(255),
     }),
     onSubmit: values => {
-      mutate(null, JSON.stringify(values));
+      mutate({ body: JSON.stringify(values) });
     },
   });
   if (error) return <ErrorMessage error={error} />;

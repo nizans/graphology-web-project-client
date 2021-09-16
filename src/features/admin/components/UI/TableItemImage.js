@@ -19,8 +19,8 @@ const TableItemImage = ({
   imgClassName = defultClassName,
   style = { objectFit: 'cover' },
 }) => {
-  const [imageSrc, setImageSrc] = useState('http://placehold.jp/150x150.png');
-  const [thumbSrc, setThumbSrc] = useState('http://placehold.jp/16x16.png');
+  const [imageSrc, setImageSrc] = useState('');
+  const [thumbSrc, setThumbSrc] = useState('');
 
   useEffect(() => {
     getImageSrc();

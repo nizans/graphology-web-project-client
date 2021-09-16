@@ -2,15 +2,15 @@ import { AUTH_URL } from 'config/constants';
 
 export const AUTH_API = {
   LOGIN: {
-    query: 'login',
-    url: new URL('/auth/login', AUTH_URL),
+    query: ['login'],
+    url: new URL(AUTH_URL + '/auth/login'),
     options: {
       method: 'post',
       headers: new Headers({ 'content-type': 'application/json' }),
     },
   },
   AUTHENTICATE: token => ({
-    query: 'login',
+    query: ['login'],
     url: new URL('/auth/authenticate', AUTH_URL),
     options: {
       method: 'options',

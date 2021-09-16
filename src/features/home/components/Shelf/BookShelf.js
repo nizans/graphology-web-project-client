@@ -50,7 +50,6 @@ const BookShelf = ({ translateY }) => {
           </div>
           <LeftSide />
         </div>
-
         <img loading="lazy" src={Shelf} alt="" className="w-full" />
       </div>
     </div>

@@ -27,7 +27,7 @@ const ExpertiseContainer = ({ data: item }) => {
       </p>
       <NavLink
         to={`/home/services`}
-        className="row-span-1 bg-p-brown py-2 px-4 mx-auto sm:mr-0 sm:ml-auto  mt-4 _text-bold-xl hover:bg-p-brown-dark">
+        className="row-span-1 bg-p-brown py-2 px-4 mx-auto lg:mr-0 lg:ml-auto  mt-4 _text-bold-xl hover:bg-p-brown-dark">
         {titleStrToBtn(item.title)}
       </NavLink>
     </div>

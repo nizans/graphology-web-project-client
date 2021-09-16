@@ -1,47 +1,39 @@
 import { AUTH_API } from 'features/admin';
 import useLocalStorage from 'hooks/useLocalStorage';
+import { useMutateData } from 'lib/reactQuery';
 import React, { createContext, useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
-import { useAddMutation, useMutateData } from 'lib/reactQuery';
-import { useMutation } from 'react-query';
 
 export const AuthContext = createContext({
   isAuth: false,
-  user: null,
-  login: (username, password) => {},
+  user: false,
+  login: (email, password) => {},
+  logout: () => {},
   isSuccess: false,
   error: null,
   isLoading: false,
+  token: false,
 });
 
 export const AuthContextProvider = ({ children }) => {
-  const { mutate: login, isLoading, error, data, isSuccess } = useMutateData(AUTH_API.LOGIN);
+  const { mutate, isLoading, error, data, isSuccess } = useMutateData(AUTH_API.LOGIN);
 
   const [isAuth, setIsAuth] = useState(false);
   const [user, setUser, clearUser] = useLocalStorage('user', false);
   const [token, setToken, clearToken] = useLocalStorage('tokens', false);
 
-  let location = useLocation();
+  const login = (email, password) => {
+    const body = JSON.stringify({ email, password });
+    mutate({ body: body });
+  };
 
-  //   //on authenticate requset
-  //   useEffect(() => {
-  //     if (!isAuthSuccess) {
-  //       console.log('clearing tokens - auth faild');
-  //       clearToken();
-  //       clearUser();
-  //     }
-  //   }, [isAuthenticateing]);
-
-  //   //on route change
-  //   useEffect(() => {
-  //     console.log('route change');
-  //     if (isAuth) if (location.pathname.split('/')[1] === 'admin') authenticate();
-  //   }, [location]);
+  const logout = () => {
+    clearToken();
+    clearUser();
+  };
 
   //on login attempt
   useEffect(() => {
     if (isSuccess && data) {
-      console.log('setting token and users');
       setToken(data.tokens);
       setUser(data.admin);
     }
@@ -49,7 +41,6 @@ export const AuthContextProvider = ({ children }) => {
 
   // on local storage change
   useEffect(() => {
-    console.log('local storage change');
     setIsAuth(user && token ? true : false);
   }, [user, token]);
 
@@ -60,6 +51,7 @@ export const AuthContextProvider = ({ children }) => {
         isAuth,
         user,
         login,
+        logout,
         isSuccess,
         error,
         isLoading,

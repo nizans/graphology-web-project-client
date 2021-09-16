@@ -39,14 +39,17 @@ const Header = () => {
   }, [headerDimension, sectionHeightCTX]);
   return (
     <>
-      <div style={{ height: headerDimension?.height }}></div>
-      <div ref={headerRef} className="container font-light _text-3xl py-1 fixed top-0 bg-background z-50 w-full">
-        {width < 640 ? (
-          <NavBurger links={[...dropdownLinks, ...links]} />
-        ) : (
-          <Navbar links={links} dropdownLinks={dropdownLinks} />
-        )}
+      <div ref={headerRef} className="w-full fixed top-0 flex justify-center bg-background z-50">
+        <div className="container font-light _text-3xl py-1 w-full">
+          {width < 640 ? (
+            <NavBurger links={[...dropdownLinks, ...links]} />
+          ) : (
+            <Navbar links={links} dropdownLinks={dropdownLinks} />
+          )}
+        </div>
       </div>
+
+      <div style={{ height: headerDimension?.height }}></div>
     </>
   );
 };

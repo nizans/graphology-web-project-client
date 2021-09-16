@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import storage from 'utils/storage';
 const storagePrefix = 'gwebsite_';
 const useLocalStorage = (key, initialValue) => {
@@ -15,6 +15,11 @@ const useLocalStorage = (key, initialValue) => {
 
   const clear = () => {
     storage.clear(key);
+    window.dispatchEvent(
+      new StorageEvent('storage', {
+        key: key,
+      })
+    );
   };
 
   const setValue = value => {
@@ -26,13 +31,21 @@ const useLocalStorage = (key, initialValue) => {
     }
   };
 
-  window.addEventListener('storage', e => {
-    if (e.key === key) {
-      if (storedValue !== storage.get(e.key)) {
+  useEffect(() => {
+    window.addEventListener('storage', onLocalStorageChange);
+    return () => {
+      window.addEventListener('storage', onLocalStorageChange);
+    };
+  }, []);
+
+  //check if same value after storage event 
+  const onLocalStorageChange = e => {
+    if (e.key == key) {
+      if (storedValue !== storage.get(key)) {
         setStoredValue(initialValue);
       }
     }
-  });
+  };
 
   return [storedValue, setValue, clear];
 };

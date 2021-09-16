@@ -13,7 +13,6 @@ export const NavBurgerMenu = ({ open, links = [] }) => {
       }}>
       {links.map(navLink => (
         <NavLink
-          s
           to={navLink.to}
           key={navLink.to}
           className=" _text-bold-5xl py-4"

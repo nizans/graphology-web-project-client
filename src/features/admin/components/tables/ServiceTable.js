@@ -29,7 +29,7 @@ const ServiceTable = () => {
     );
   };
 
-  return <Table type="contents" apiRequests={servicesApiCRUDRequests} generateCell={generateCell} headers={headers} />;
+  return <Table type="services" apiRequests={servicesApiCRUDRequests} generateCell={generateCell} headers={headers} />;
 };
 
 export default ServiceTable;

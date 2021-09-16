@@ -19,6 +19,8 @@ const strings = {
   update: 'עדכן כתבה',
   notext: 'לא הוכנס טסט',
   uploadImage: 'העלה תמונה',
+  urlInvalid: 'הלינק אינו תקין',
+  required: 'שדה דרוש',
 };
 
 const ArticleForm = ({ data: item }) => {
@@ -35,10 +37,12 @@ const ArticleForm = ({ data: item }) => {
   };
 
   const validation = Yup.object({
-    title: Yup.string().required(),
-    sourceFrom: Yup.string().required(),
-    sourceURL: Yup.string().required(),
-    publishDate: Yup.date().required().default(),
+    title: Yup.string().required(strings.required),
+    sourceFrom: Yup.string().required(strings.required),
+    sourceURL: Yup.string().url(strings.urlInvalid).required(strings.required),
+    publishDate: Yup.date()
+      .required()
+      .default(() => new Date()),
   });
 
   const formik = useFormik({
@@ -46,7 +50,7 @@ const ArticleForm = ({ data: item }) => {
     validationSchema: validation,
     onSubmit: values => {
       const formData = createFormData(values, images);
-      mutation.mutate(formData);
+      mutation.mutate({ body: formData });
     },
     enableReinitialize: true,
   });

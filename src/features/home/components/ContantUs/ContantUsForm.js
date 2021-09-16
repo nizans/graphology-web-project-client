@@ -34,7 +34,7 @@ const ContantUsForm = () => {
     initialValues: initialValues,
     validationSchema: Yup.object(validation),
     onSubmit: values => {
-      mutate(null, JSON.stringify(values));
+      mutate({ body: JSON.stringify(values) });
     },
   });
 
