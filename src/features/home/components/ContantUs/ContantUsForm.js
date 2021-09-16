@@ -46,7 +46,7 @@ const ContantUsForm = () => {
       <Spinner />
     </div>
   ) : (
-    <form onSubmit={formik.handleSubmit} className="flex justify-center items-center p-16">
+    <form onSubmit={formik.handleSubmit} className="flex flex-col lg:flex-row justify-center items-center p-16">
       <FormField borderWidth="4" htmlFor="from" placeholder={strings.fullName} formik={formik} />
       <FormField borderWidth="4" htmlFor="phone" placeholder={strings.phoneNumber} formik={formik} />
       <FormField borderWidth="4" htmlFor="email" placeholder={strings.email} formik={formik} />

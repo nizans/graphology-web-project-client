@@ -5,7 +5,6 @@ import RightSide from './RightSide';
 import LeftSide from './LeftSide';
 import DownArrow from '../../../../assets/icons/down_arrow.png';
 
-
 const strings = {
   title: 'גרפולוגיה',
   subTitle: 'תורת כתב-יד',
@@ -28,20 +27,20 @@ const BookShelf = ({ translateY }) => {
   };
 
   return (
-    <>
-      <div className="flex flex-col items-center h-full">
-        <h1 className=" leading-none _text-bold-dark-12xl">{strings.title}</h1>
-        <h3 className=" leading-7 _text-bold-7xl">{strings.subTitle}</h3>
+    <div className="my-auto">
+      <div className="flex flex-col items-center mb-28 sm:mb-0">
+        <h1 className="sm:leading-none _text-bold-dark-12xl text-7xl sm:text-12xl ">{strings.title}</h1>
+        <h3 className="sm:leading-7 _text-bold-7xl">{strings.subTitle}</h3>
       </div>
       <div
         className="h-full"
         style={{
           transform: `translateY(${translateY}px)`,
         }}>
-        <div className="flex justify-between items-end ">
+        <div className="flex justify-between items-end relative">
           <RightSide />
           <div
-            className="flex flex-col items-center pb-4 cursor-pointer"
+            className=" left-0 right-0 absolute flex flex-col items-center pb-4 cursor-pointer"
             onMouseEnter={readMoreAnimation}
             onMouseLeave={readMoreAnimation}>
             <h1 ref={readMoreTextRef} className="_text-bold-4xl transform transition-all">
@@ -54,7 +53,7 @@ const BookShelf = ({ translateY }) => {
 
         <img loading="lazy" src={Shelf} alt="" className="w-full" />
       </div>
-    </>
+    </div>
   );
 };
 

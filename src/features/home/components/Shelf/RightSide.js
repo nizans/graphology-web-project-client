@@ -13,16 +13,16 @@ const RightSide = () => {
   return (
     <div className="flex items-end relative">
       <BookSide
-        className="transform transition-all hover:rotate-2 cursor-pointer"
+        className="transform transition-all hover:rotate-2 cursor-pointer  w-1/4 h-full sm:w-auto sm:h-auto"
         onMouseEnter={() => setShowPopUp('opacity-1')}
         onMouseLeave={() => {
           setShowPopUp('opacity-0');
           setTimeout(() => setShowPopUp('hidden'), 400);
         }}
       />
-      <img loading="lazy" src={EmptyBook} alt="" />
-      <img loading="lazy" src={EmptyBook} alt="" />
-      <img loading="lazy" src={BookSideways} alt="" />
+      <img loading="lazy" className=" w-1/4 h-full sm:w-auto sm:h-auto" src={EmptyBook} alt="" />
+      <img loading="lazy" className=" w-1/4 h-full sm:w-auto sm:h-auto" src={EmptyBook} alt="" />
+      <img loading="lazy" className="hidden md:block" src={BookSideways} alt="" />
       <div
         style={{
           pointerEvents: 'none',

@@ -40,7 +40,7 @@ const Header = () => {
   return (
     <>
       <div style={{ height: headerDimension?.height }}></div>
-      <div ref={headerRef} className="font-light _text-3xl py-1 fixed top-0 bg-background z-50 w-full">
+      <div ref={headerRef} className="container font-light _text-3xl py-1 fixed top-0 bg-background z-50 w-full">
         {width < 640 ? (
           <NavBurger links={[...dropdownLinks, ...links]} />
         ) : (

@@ -1,7 +1,9 @@
+import ErrorMessage from 'components/UI/ErrorMessage';
 import FormField from 'components/UI/FormField';
 import LoadingButton from 'components/UI/LoadingButton';
 import { contactApiRequests } from 'features/contact/api';
 import { useFormik } from 'formik';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import { useMutateData } from 'lib/reactQuery';
 import React from 'react';
 import * as Yup from 'yup';
@@ -20,7 +22,7 @@ const strings = {
 };
 
 const OrderBookForm = ({ book }) => {
-  const { isLoading, error, isSuccess, mutate } = useMutateData(contactApiRequests.orderBook);
+  const { isLoading, error, mutate } = useMutateData(contactApiRequests.orderBook);
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -41,12 +43,12 @@ const OrderBookForm = ({ book }) => {
       mutate(null, JSON.stringify(values));
     },
   });
-
+  if (error) return <ErrorMessage error={error} />;
   return (
     <form onSubmit={formik.handleSubmit} className="flex flex-col justify-evenly h-full w-full">
       <h1 className="_text-bold-dark-6xl mr-4">{strings.title}</h1>
       <h3 className="_text-3xl mr-4">{strings.subtitle}</h3>
-      <div className="grid grid-cols-2">
+      <div className="grid sm:grid-cols-2">
         <FormField borderWidth="2" formik={formik} htmlFor="name" placeholder={strings.fullName} />
         <FormField borderWidth="2" formik={formik} htmlFor="phone" placeholder={strings.phoneNumber} />
       </div>

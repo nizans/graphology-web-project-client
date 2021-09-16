@@ -44,11 +44,11 @@ export const Services = () => {
         minHeight={windowHeight - breadCrumbHeight - headerHeight}>
         <h1 className="text-7xl text-p-blue-dark pb-8">{strings.title}</h1>
 
-        <Underline className="w-2/12" />
+        <Underline className="w-full sm:w-5/12 md:w-2/12" />
         <p className="text-p-blue text-3xl py-8">{strings.text}</p>
         <div className="w-full">
           <h2 className="text-p-blue text-3xl font-bold">{strings.offeredservices}</h2>
-          <div className="grid grid-cols-3 w-2/3 py-4">
+          <div className="grid  md:grid-cols-3 w-2/3 my-4">
             {data &&
               data.payload &&
               data.payload.map((item, i) => (

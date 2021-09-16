@@ -47,7 +47,7 @@ const VideoThumbnail = ({ data, onClick }) => {
 
   return (
     <div
-      className=" my-4 relative cursor-pointer bg-p-brown-dark w-full bg-center bg-cover rounded-lg border-p-brown border-r-2 overflow-hidden"
+      className=" my-4 relative cursor-pointer bg-p-brown-dark sm:w-full bg-center bg-cover rounded-lg border-p-brown border-r-2 overflow-hidden "
       onMouseEnter={handleHover}
       onMouseLeave={handleHover}
       onClick={handleClick}

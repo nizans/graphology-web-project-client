@@ -4,6 +4,7 @@ import { AuthContextProvider } from 'context/authContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import AppRoutes from 'routes/AppRoutes';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 function App() {
   const queryClient = new QueryClient();
@@ -19,6 +20,7 @@ function App() {
           </AuthContextProvider>
         </Switch>
       </Router>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

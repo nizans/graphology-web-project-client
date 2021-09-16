@@ -36,7 +36,7 @@ import ApiCRUDRequests from 'ApiRequest';
 // };
 // export const VIDEOS_API = Object.freeze(requests);
 
-const VIDEOS_QUERY = 'services';
+const VIDEOS_QUERY = 'videos';
 
 class VideosApiCRUDRequests extends ApiCRUDRequests {
   constructor() {

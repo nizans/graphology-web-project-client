@@ -27,7 +27,7 @@ const ImageBox = ({
     <div className={`${sliderWrapperClassName ? sliderWrapperClassName : 'px-8 pb-8'}`}>
       <Slider {...sliderSettings}>
         {images.map(img => (
-          <div className="w-full " key={img.full}>
+          <div className="w-full" key={img.full}>
             <BlurredUpImage
               withModal={withModal}
               height={height - 40}

@@ -23,9 +23,13 @@ const OrderBook = () => {
   if (error) return 'ERROR';
 
   return (
-    <Section className="grid gap-x-7 grid-cols-2">
+    <Section className="flex flex-col md:grid gap-x-7 grid-cols-2">
       <ImageBox
-        maxHeight={windowHeight - headerHeight - breadCrumbHeight - footerHeight}
+        height={
+          windowHeight < 1024
+            ? windowHeight - headerHeight - breadCrumbHeight
+            : windowHeight - headerHeight - breadCrumbHeight - footerHeight
+        }
         images={book.images}
         imgClassName=" object-cover"
       />

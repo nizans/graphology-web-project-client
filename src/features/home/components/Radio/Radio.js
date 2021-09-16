@@ -20,18 +20,18 @@ const Radio = () => {
     setIsReady(false);
   }, [videoUrl]);
   return (
-    <>
+    <div className="flex flex-col">
       <TitleUnderline title={strings.title} />
       <div className="grid grid-cols-6 w-full h-full gap-x-3 mt-4">
-        <div className="col-span-4 col-start-2 border-p-brown bg-p-brown border-4  rounded-lg relative">
+        <div className=" col-span-6 md:col-span-4 md:col-start-2 border-p-brown bg-p-brown border-4  rounded-lg relative">
           {!isReady && <Spinner />}
           <ResponsivePlayer url={videoUrl} controls={true} onReady={handleReady} />
         </div>
-        <div className="col-span-1 flex flex-col items-center justify-center">
+        <div className="col-span-6 md:col-span-1 flex flex-col items-center justify-center">
           <SuggestionContainer setVideoUrl={setVideoUrl} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

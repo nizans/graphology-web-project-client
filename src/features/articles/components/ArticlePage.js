@@ -10,6 +10,7 @@ import { toDate } from 'utils/toDate';
 import { articlesApiCRUDRequests } from '..';
 import ErrorSerction from 'components/UI/ErrorSerction';
 import LoadingSection from 'components/UI/LoadingSection';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 const strings = { articleFrom: 'כתבה מתוך: ', publishedAt: 'פורסם בתאריך: ', originalLink: 'לכתבה המקורית' };
 
@@ -17,15 +18,18 @@ const ArticlePage = () => {
   const { id } = useParams();
   const { data: item, isLoading, error } = useFetchData(articlesApiCRUDRequests.read(id));
   const { setTitle } = useContext(BreadCrumbsTitleContext);
+  const { height } = useWindowDimensions();
+
   useEffect(() => {
     if (item) setTitle(item._id, item.title);
   }, [item]);
+
+  if (error) return <ErrorSerction error={error} />;
+
   if (item) {
     const { title, text, publishDate, images, sourceFrom, sourceURL } = item;
     const date = strings.publishedAt + toDate(publishDate);
     const pNodes = parse(text);
-
-    if (error) return <ErrorSerction error={error} />;
 
     return isLoading ? (
       <LoadingSection />
@@ -37,7 +41,12 @@ const ArticlePage = () => {
           <Underline thickness={4} />
         </div>
         <div className="w-10/12 my-4">
-          <ImageBox sliderWrapperClassName="px-8" images={images} maxHeight={600} />
+          <ImageBox
+            sliderWrapperClassName="lg:px-8"
+            imgStyle={{ objectFit: 'contain' }}
+            images={images}
+            height={height < 600 ? height - 120 : 600}
+          />
         </div>
 
         <div className="my-4 _text-3xl">{pNodes}</div>

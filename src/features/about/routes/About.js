@@ -32,15 +32,24 @@ export const About = () => {
       <Section className="flex flex-col justify-evenly mb-4" minHeight={windowHeight - headerHeight - footerHeight}>
         <h2 className="text-p-brown-dark _text-bold-8xl ">{strings.certificates}</h2>
         <div className="grid sm:grid-cols-3 gap-9">
-          <div className=" flex justify-center">
-            <img loading="lazy" alt="" src="https://via.placeholder.com/418x518.png" className=" object-contain" />
-          </div>
-          <div className=" flex justify-center">
-            <img loading="lazy" alt="" src="https://via.placeholder.com/418x518.png" className=" object-contain" />
-          </div>
-          <div className=" flex justify-center">
-            <img loading="lazy" alt="" src="https://via.placeholder.com/418x518.png" className=" object-contain" />
-          </div>
+          <img
+            loading="lazy"
+            alt=""
+            src="https://via.placeholder.com/418x518.png"
+            className="px-8 sm:px-0 object-contain"
+          />
+          <img
+            loading="lazy"
+            alt=""
+            src="https://via.placeholder.com/418x518.png"
+            className="px-8 sm:px-0 object-contain"
+          />
+          <img
+            loading="lazy"
+            alt=""
+            src="https://via.placeholder.com/418x518.png"
+            className="px-8 sm:px-0 object-contain"
+          />
         </div>
       </Section>
     </>

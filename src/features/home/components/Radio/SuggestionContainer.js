@@ -1,11 +1,13 @@
 import Arrow from 'assets/icons/down_arrow.png';
+import { LeftArrow, RightArrow } from 'components/UI/Arrows';
 import { videosApiCRUDRequests } from 'features/videos/api';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import { useFetchData } from 'lib/reactQuery';
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import VideoThumbnail from './VideoThumbnail';
 
-function PrevArrow(props) {
+function UpArrow(props) {
   const { className, style, onClick } = props;
   return (
     <img
@@ -20,7 +22,7 @@ function PrevArrow(props) {
     />
   );
 }
-function NextArrow(props) {
+function DownArrow(props) {
   const { className, style, onClick } = props;
   return (
     <img
@@ -43,13 +45,24 @@ const sliderSettings = {
   slidesToScroll: 1,
   vertical: true,
   verticalSwiping: true,
-  nextArrow: <NextArrow />,
-  prevArrow: <PrevArrow />,
+  nextArrow: <DownArrow />,
+  prevArrow: <UpArrow />,
 };
 
 const SuggestionContainer = ({ setVideoUrl }) => {
-  const { data } = useFetchData(videosApiCRUDRequests.read(null, { page: 0, limit: 5 }));
+  const { data, isLoading, error } = useFetchData(videosApiCRUDRequests.read(null, { page: 0, limit: 5 }));
   const [currentVideo, setCurrentVideo] = useState();
+
+  const { width } = useWindowDimensions();
+
+  useEffect(() => {
+    if (width < 640) {
+      sliderSettings.slidesToShow = 1;
+      sliderSettings.nextArrow = <LeftArrow />;
+      sliderSettings.prevArrow = <RightArrow />;
+      sliderSettings.vertical = false;
+    }
+  }, [width]);
 
   useEffect(() => {
     if (data)
@@ -64,13 +77,15 @@ const SuggestionContainer = ({ setVideoUrl }) => {
     setCurrentVideo(item);
   };
   return (
-    <Slider {...sliderSettings}>
-      {data &&
-        data.payload &&
-        data.payload
-          .filter(vid => vid !== currentVideo)
-          .map((item, i) => <VideoThumbnail data={item} key={item._id} onClick={handleThumbnailClick} />)}
-    </Slider>
+    <div className="px-16 w-full sm:px-0">
+      <Slider {...sliderSettings}>
+        {data &&
+          data.payload &&
+          data.payload
+            .filter(vid => vid !== currentVideo)
+            .map((item, i) => <VideoThumbnail data={item} key={item._id} onClick={handleThumbnailClick} />)}
+      </Slider>
+    </div>
   );
 };
 

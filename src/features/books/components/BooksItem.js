@@ -29,14 +29,14 @@ const BooksItem = ({ data: item }) => {
           imgStyle={{ objectFit: 'cover' }}
         />
 
-        <div className="w-full flex flex-col justify-evenly p-0 mb-6">
+        <div className="w-full flex flex-col justify-evenly items-center sm:items-start p-0 mb-6">
           <div>
             <h1 className="_text-bold-dark-6xl">{title}</h1>
             <h3 className="_text-bold-4xl">{author}</h3>
             <p className="_text-3xl leading mt-4">{description}</p>
           </div>
 
-          <NavLink style={{ width: 'fit-content' }} className="button mt-6" to={`${path}/${_id}`}>
+          <NavLink style={{ width: 'fit-content' }} className="button mx-0 sm:mx-0 mt-6" to={`${path}/${_id}`}>
             {strings.orderBook}
           </NavLink>
         </div>

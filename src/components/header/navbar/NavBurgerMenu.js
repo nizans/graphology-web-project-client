@@ -16,7 +16,7 @@ export const NavBurgerMenu = ({ open, links = [] }) => {
           s
           to={navLink.to}
           key={navLink.to}
-          className=" _text-bold-7xl py-4"
+          className=" _text-bold-5xl py-4"
           activeClassName="text-p-blue-dark"
           style={{ transition: 'color 0.3s linear' }}>
           {navLink.name}

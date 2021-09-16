@@ -9,16 +9,16 @@ const LeftSide = () => {
   const [showPopUp, setShowPopUp] = useState('hidden');
   return (
     <>
-      <div className="flex items-end">
+      <div className="flex justify-end items-end">
         <BookFront
-          className="transform transition-all hover:rotate-2 cursor-pointer"
+          className="transform transition-all hover:rotate-2 cursor-pointer w-2/4 h-full sm:h-auto sm:w-auto"
           onMouseEnter={() => setShowPopUp('opacity-1')}
           onMouseLeave={() => {
             setShowPopUp('opacity-0');
             setTimeout(() => setShowPopUp('hidden'), 400);
           }}
         />
-        <img loading="lazy" src={BookSideTall} alt="" />
+        <img loading="lazy" className="hidden md:block" src={BookSideTall} alt="" />
         <div
           style={{
             pointerEvents: 'none',

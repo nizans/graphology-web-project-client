@@ -23,10 +23,10 @@ export const Home = () => {
 
   return (
     <>
-      <Section minHeight={windowHeight - headerHeight} className="flex flex-col justify-evenly mb-16">
+      <Section minHeight={windowHeight - headerHeight} className="flex flex-col  mb-16">
         <BookShelf translateY={translateY} />
       </Section>
-      <Section minHeight={windowHeight - headerHeight} className="flex flex-col items-center mb-16">
+      <Section minHeight={windowHeight - headerHeight} className=" mb-16">
         <Michal />
       </Section>
       <Section minHeight={windowHeight - headerHeight} className="flex flex-col justify-evenly mb-16">
@@ -38,12 +38,10 @@ export const Home = () => {
       <Section minHeight={windowHeight - headerHeight} className="flex flex-col justify-evenly mb-16">
         <Radio />
       </Section>
-      <Section minHeight={windowHeight - headerHeight} className="flex flex-col">
+      <Section minHeight={windowHeight - headerHeight} className="flex flex-col mb-16">
         <OnTheCouch />
       </Section>
-      <Section
-        minHeight={windowHeight - headerHeight - footerHeight}
-        className="flex flex-col items-center justify-center">
+      <Section minHeight={windowHeight - headerHeight - footerHeight} className="mb-16">
         <ContactUs />
       </Section>
     </>

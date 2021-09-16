@@ -27,7 +27,7 @@ const Recommendations = () => {
   return (
     <>
       <TitleUnderline title={strings.title} />
-      <div className="grid grid-cols-3 mt-6">
+      <div className="grid sm:grid-cols-3 mt-6">
         {recommendations.map((item, i) => (
           <RecommendationsContainer data={item} key={i} />
         ))}

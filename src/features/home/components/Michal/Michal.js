@@ -17,8 +17,8 @@ const strings = {
 const Michal = () => {
   const { windowHeight, headerHeight } = useContext(SectionHeightContext);
   return (
-    <>
-      <div className="w-1/2 relative transform translate-y-16">
+    <div className="flex flex-col items-center">
+      <div className=" sm:w-1/2 relative transform translate-y-16">
         <img loading="lazy" className="mx-auto" src={SpeechBubble} alt="" />
         <img
           loading="lazy"
@@ -32,7 +32,7 @@ const Michal = () => {
           {strings.bubbleText}
         </h1>
       </div>
-      <div className="grid gap-x-7 grid-cols-2">
+      <div className="grid gap-x-7 sm:grid-cols-2 mt-10 sm:mt-0">
         <div className="flex justify-center">
           <img style={{ maxHeight: windowHeight - headerHeight - 100 + 'px' }} alt="" src={MichalDrawings} />
         </div>
@@ -42,10 +42,10 @@ const Michal = () => {
           </NavLink>
           <Underline style={{ width: '50%' }} />
           <p className="_text-3xl py-6 pl-12 max-w-2xl leading-normal ">{strings.text}</p>
-          <ReadMoreBtn to="/home/about" className="text-4xl" />
+          <ReadMoreBtn to="/home/about" className="text-4xl mr-auto sm:m-0" />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

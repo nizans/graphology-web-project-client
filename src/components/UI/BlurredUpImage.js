@@ -28,7 +28,6 @@ const BlurredUpImage = props => {
       />
 
       {withModal && <ExpandIcon style={{ top: '0', right: '0' }} />}
-
       {withModal && (
         <Modal isShowing={isShowing} hide={toggle}>
           <Magnifier src={src} mgWidth={200} mgHeight={200} mgShowOverflow={false} />

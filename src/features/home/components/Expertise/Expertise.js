@@ -1,8 +1,10 @@
 import { LeftArrow, RightArrow } from 'components/UI/Arrows';
 import { servicesApiCRUDRequests } from 'features/services';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import { useFetchData } from 'lib/reactQuery';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Slider from 'react-slick';
+import { useState } from 'react/cjs/react.development';
 import BriefCase from '../../../../assets/icons/experise_breifcase.svg';
 import OpenBook from '../../../../assets/icons/experise_openbook.svg';
 import Speech from '../../../../assets/icons/expertise_speech.svg';
@@ -49,6 +51,13 @@ const sliderSettings = {
 
 const Expertise = () => {
   const { data } = useFetchData(servicesApiCRUDRequests.read());
+  const { width } = useWindowDimensions();
+
+  useEffect(() => {
+    if (width < 640) {
+      sliderSettings.slidesToShow = 1;
+    }
+  }, [width]);
 
   return (
     <>
@@ -56,7 +65,7 @@ const Expertise = () => {
         <h1 className="_text-bold-dark-8xl">{strings.title}</h1>
         <h3 className="_text-bold-3xl">{strings.subTitle}</h3>
       </div>
-      <div className="px-44">
+      <div className="px-12 sm:px-44">
         {data && data.payload && (
           <Slider {...sliderSettings}>
             {data.payload.map((item, i) => (
