@@ -15,9 +15,9 @@ export const About = () => {
   return (
     <>
       <Section minHeight={windowHeight - headerHeight - breadCrumbHeight}>
-        <div className="grid gap-x-7 grid-cols-2">
-          <img alt="" src={MichalAboutPhoto} />
-          <div className="flex flex-col justify-between flex-grow h-full m-0 pt-16">
+        <div className="grid gap-x-7 sm:grid-cols-2">
+          <img alt="" className="w-3/4 m-auto sm:w-auto" src={MichalAboutPhoto} />
+          <div className="flex flex-col justify-evenly flex-grow h-full m-0 pt-16">
             <div>
               <h1 className="_text-bold-dark-8xl leading-none">{strings.title}</h1>
               <h3 className="_text-bold-3xl leading-none pb-4">{strings.subTitle}</h3>
@@ -29,35 +29,17 @@ export const About = () => {
         </div>
       </Section>
 
-      <Section className="flex flex-col justify-evenly" minHeight={windowHeight - headerHeight - footerHeight}>
-        <h2 className="text-p-brown-dark _text-bold-8xl">{strings.certificates}</h2>
-        <div className="grid grid-cols-3">
-          <div className="max-h-96 flex justify-center">
-            <img
-              loading="lazy"
-              alt=""
-              src="https://via.placeholder.com/418x518.png"
-              height="100px"
-              className="max-h-96 object-contain"
-            />
+      <Section className="flex flex-col justify-evenly mb-4" minHeight={windowHeight - headerHeight - footerHeight}>
+        <h2 className="text-p-brown-dark _text-bold-8xl ">{strings.certificates}</h2>
+        <div className="grid sm:grid-cols-3 gap-9">
+          <div className=" flex justify-center">
+            <img loading="lazy" alt="" src="https://via.placeholder.com/418x518.png" className=" object-contain" />
           </div>
-          <div className="max-h-96 flex justify-center">
-            <img
-              loading="lazy"
-              alt=""
-              src="https://via.placeholder.com/418x518.png"
-              height="100px"
-              className="max-h-96 object-contain"
-            />
+          <div className=" flex justify-center">
+            <img loading="lazy" alt="" src="https://via.placeholder.com/418x518.png" className=" object-contain" />
           </div>
-          <div className="max-h-96 flex justify-center">
-            <img
-              loading="lazy"
-              alt=""
-              src="https://via.placeholder.com/418x518.png"
-              height="100px"
-              className="max-h-96 object-contain"
-            />
+          <div className=" flex justify-center">
+            <img loading="lazy" alt="" src="https://via.placeholder.com/418x518.png" className=" object-contain" />
           </div>
         </div>
       </Section>

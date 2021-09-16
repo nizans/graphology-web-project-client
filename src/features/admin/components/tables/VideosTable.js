@@ -1,4 +1,4 @@
-import { VIDEOS_API } from 'features/videos';
+import { videosApiCRUDRequests } from 'features/videos/api';
 import { truncate } from 'lodash';
 import React from 'react';
 import { toDate } from 'utils/toDate';
@@ -47,7 +47,7 @@ const VideosTable = () => {
       </>
     );
   };
-  return <Table generateCell={generateCell} headers={headers} type="videos" API_REQUEST={VIDEOS_API} />;
+  return <Table generateCell={generateCell} headers={headers} type="videos" apiRequests={videosApiCRUDRequests} />;
 };
 
 export default VideosTable;

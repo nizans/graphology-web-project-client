@@ -1,14 +1,15 @@
+import { SORT_BY } from 'ApiRequest';
+import LoadingSection from 'components/UI/LoadingSection';
+import Underline from 'components/UI/Underline';
+import { contentsApiCRUDRequests } from 'features/couch';
+import { useFetchData } from 'lib/reactQuery';
 import React from 'react';
-import OnTheCouchItem from './OnTheCouchItem';
+import { NavLink } from 'react-router-dom';
+import Notebook from '../../../../assets/icons/notebook.svg';
 import Avidan from '../../../../assets/imgs/avidan.png';
 import Dbora from '../../../../assets/imgs/dbora.png';
 import HNBialick from '../../../../assets/imgs/hnBialick.png';
-import Notebook from '../../../../assets/icons/notebook.svg';
-import { useFetchData } from 'utils/apiRequests';
-import { CONTENTS_API } from 'features/couch';
-import Underline from 'components/UI/Underline';
-import { NavLink } from 'react-router-dom';
-import LoadingSection from 'components/UI/LoadingSection';
+import OnTheCouchItem from './OnTheCouchItem';
 const fallbackData = [
   {
     title: 'דוד אבידן: לזעזע את הסביבה',
@@ -36,7 +37,9 @@ const strings = {
   moreReadings: 'לעוד מאמרים',
 };
 const OnTheCouch = () => {
-  const { isLoading, data, error } = useFetchData(CONTENTS_API.GET_ALL, { page: 0, limit: 3, sortby: '-uploadDate' });
+  const { isLoading, data, error } = useFetchData(
+    contentsApiCRUDRequests.read(null, { page: 0, limit: 3, sortby: SORT_BY.UPLOAD_DATE_DESC })
+  );
   if (isLoading) return <LoadingSection />;
 
   return (

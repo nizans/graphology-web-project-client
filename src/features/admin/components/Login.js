@@ -8,6 +8,8 @@ import { useContext } from 'react';
 import { AuthContext } from 'context/authContext';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
+import ErrorMessage from 'components/UI/ErrorMessage';
+import LoadingButton from 'components/UI/LoadingButton';
 const strings = {
   required: 'שדה דרוש',
   invalidEmail: 'כתובת אימייל לא תקינה',
@@ -21,14 +23,12 @@ const strings = {
 };
 
 const Login = () => {
-  const { login, isFetching, error, success, reset } = useContext(AuthContext);
+  const { login, error, isSuccess, isLoading } = useContext(AuthContext);
   const { push } = useHistory();
 
-  useEffect(() => () => reset(), [reset]);
-
   useEffect(() => {
-    if (success) push('/admin');
-  }, [success, push]);
+    if (isSuccess) push('/admin');
+  }, [isSuccess, push]);
 
   const formik = useFormik({
     initialValues: {
@@ -40,12 +40,12 @@ const Login = () => {
       password: Yup.string().min(6, strings.passwordMinLenghth).required(strings.required),
     }),
     onSubmit: values => {
-      login(values);
+      login(JSON.stringify(values));
     },
   });
 
   return (
-    <div className=" flex justify-center items-center border-p-gray-dark border-2 px-14 py-9 rounded-2xl pt-12">
+    <div className=" flex flex-col justify-center items-center border-p-gray-dark border-2 px-14 py-9 rounded-2xl pt-12">
       <form onSubmit={formik.handleSubmit} className="w-full flex flex-col items-center">
         <h1 className="_text-bold-3xl pb-4">{strings.title}</h1>
 
@@ -53,20 +53,17 @@ const Login = () => {
         <FormField formik={formik} htmlFor="password" type="password" placeholder={strings.password} />
 
         <div className="h-12 w-full flex justify-center items-center">
-          {isFetching ? (
-            <Spinner size={12} />
-          ) : (
-            <div className="flex flex-col justify-center items-center">
-              <button type="submit" className="bg-p-brown _text-3xl px-12 py-1 rounded-xl hover:bg-p-brown-dark ">
-                {strings.login}
-              </button>
-              <NavLink to="/admin/restore">{strings.forgotPassword}</NavLink>
-            </div>
-          )}
+          <div className="flex flex-col justify-center items-center">
+            <LoadingButton isLoading={isLoading} />
+            <NavLink to="/admin/restore">{strings.forgotPassword}</NavLink>
+          </div>
         </div>
-
-        <label className="h-10 mt-2">{(error && error.message) || (success && strings.successLogin)}</label>
       </form>
+
+      <div className="h-10 mt-4">
+        {error && <ErrorMessage error={error} />}
+        {isSuccess && strings.successLogin}
+      </div>
     </div>
   );
 };

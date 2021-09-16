@@ -1,10 +1,9 @@
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
-import AppRoutes from 'routes/AppRoutes';
 import AppContainer from 'components/common/AppContainer';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import ScrollToTop from 'components/common/ScrollToTop';
 import { AuthContextProvider } from 'context/authContext';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import AppRoutes from 'routes/AppRoutes';
 
 function App() {
   const queryClient = new QueryClient();
@@ -20,7 +19,6 @@ function App() {
           </AuthContextProvider>
         </Switch>
       </Router>
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

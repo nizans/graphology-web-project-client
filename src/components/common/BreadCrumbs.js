@@ -21,6 +21,7 @@ const BreadCrumbs = () => {
     contact: 'צור קשר',
     about: 'אודות',
     articles: 'כתבות',
+    videos: 'סרטונים',
   };
   const { pathname } = useLocation();
   const crumbs = pathname.split('/').slice(1);

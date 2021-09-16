@@ -1,57 +1,68 @@
-import { useLoginRequest } from 'features/admin';
-import { getCurrentUser } from 'lib/auth';
-import React, { useState, createContext } from 'react';
-import { useEffect } from 'react';
+import { AUTH_API } from 'features/admin';
+import useLocalStorage from 'hooks/useLocalStorage';
+import React, { createContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
+import { useAddMutation, useMutateData } from 'lib/reactQuery';
+import { useMutation } from 'react-query';
 
 export const AuthContext = createContext({
   isAuth: false,
   user: null,
-  setUser: user => {},
-  setIsAuth: isAuth => {},
   login: (username, password) => {},
-  success: false,
+  isSuccess: false,
   error: null,
-  isFetching: false,
-  reset: () => {},
-  isLazyLoading: false,
-  setIsLazyLoading: () => {},
+  isLoading: false,
 });
 
 export const AuthContextProvider = ({ children }) => {
-  const { isFetching, error, success, login, reset } = useLoginRequest();
+  const { mutate: login, isLoading, error, data, isSuccess } = useMutateData(AUTH_API.LOGIN);
+
   const [isAuth, setIsAuth] = useState(false);
-  const [user, setUser] = useState(null);
-  const [isLazyLoading, setIsLazyLoading] = useState(false);
+  const [user, setUser, clearUser] = useLocalStorage('user', false);
+  const [token, setToken, clearToken] = useLocalStorage('tokens', false);
 
-  //On first mount
-  useEffect(() => {
-    setUser(getCurrentUser());
-  }, []);
+  let location = useLocation();
 
-  //on successful login
-  useEffect(() => {
-    setUser(getCurrentUser());
-  }, [success]);
+  //   //on authenticate requset
+  //   useEffect(() => {
+  //     if (!isAuthSuccess) {
+  //       console.log('clearing tokens - auth faild');
+  //       clearToken();
+  //       clearUser();
+  //     }
+  //   }, [isAuthenticateing]);
 
-  // on user change
+  //   //on route change
+  //   useEffect(() => {
+  //     console.log('route change');
+  //     if (isAuth) if (location.pathname.split('/')[1] === 'admin') authenticate();
+  //   }, [location]);
+
+  //on login attempt
   useEffect(() => {
-    setIsAuth(user ? true : false);
-  }, [user]);
+    if (isSuccess && data) {
+      console.log('setting token and users');
+      setToken(data.tokens);
+      setUser(data.admin);
+    }
+  }, [isSuccess, data]);
+
+  // on local storage change
+  useEffect(() => {
+    console.log('local storage change');
+    setIsAuth(user && token ? true : false);
+  }, [user, token]);
 
   return (
     <AuthContext.Provider
       value={{
+        token,
         isAuth,
-        setIsAuth,
         user,
-        setUser,
         login,
-        success,
+        isSuccess,
         error,
-        isFetching,
-        reset,
-        isLazyLoading,
-        setIsLazyLoading,
+        isLoading,
       }}>
       {children}
     </AuthContext.Provider>

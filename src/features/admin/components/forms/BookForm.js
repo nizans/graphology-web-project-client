@@ -1,10 +1,10 @@
 import ImageUploadInput from 'components/common/ImageUploadInput';
 import TextEditor from 'components/common/TextEditor';
 import FormField from 'components/UI/FormField';
-import { BOOKS_API } from 'features/books';
+import { booksApiCRUDRequests } from 'features/books';
 import { useFormik } from 'formik';
+import { useMutateData } from 'lib/reactQuery';
 import React, { useState } from 'react';
-import { useAddMutation } from 'utils/apiRequests';
 import createFormData from 'utils/createFormData';
 import * as Yup from 'yup';
 
@@ -23,7 +23,7 @@ const strings = {
 };
 
 const BookForm = ({ data: item }) => {
-  const { mutate, isSuccess, isLoading, isError } = useAddMutation(BOOKS_API.ADD);
+  const { mutate, isSuccess, isLoading, isError } = useMutateData(booksApiCRUDRequests.create);
 
   const [images, setImages] = useState([]);
 
@@ -44,7 +44,7 @@ const BookForm = ({ data: item }) => {
     validationSchema: validation,
     onSubmit: values => {
       const formData = createFormData(values, images);
-      mutate(formData);
+      mutate(null, formData);
     },
     enableReinitialize: true,
   });

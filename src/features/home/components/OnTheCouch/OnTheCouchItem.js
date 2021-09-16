@@ -13,7 +13,7 @@ const OnTheCouchItem = ({ data: item }) => {
   const [parsedText] = useDomParser(text);
   return (
     <div className="flex w-full justify-evenly py-16  items-center">
-      <TableItemImage image={images} maxHeight={350} width="100%" imgClassName="object-cover" />
+      <TableItemImage image={images} height="300px" width="300px" style={{ objectFit: 'contain' }} imgClassName=" " />
       <div className="flex flex-col justify-start _text-2xl">
         <div className="pb-4">
           <h1 className="_text-bold-3xl">{title}</h1>
@@ -21,7 +21,7 @@ const OnTheCouchItem = ({ data: item }) => {
         </div>
 
         <p className="_text-xl max-w-sm break-words">{truncate(parsedText, { separator: ' ', length: 400 })}</p>
-        <ReadMoreBtn to={`${path}/${_id}`} />
+        <ReadMoreBtn to={`${path}/couch/${_id}`} />
       </div>
     </div>
   );

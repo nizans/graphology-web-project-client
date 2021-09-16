@@ -1,7 +1,10 @@
-import React from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import FormField from 'components/UI/FormField';
+import LoadingButton from 'components/UI/LoadingButton';
+import { contactApiRequests } from 'features/contact/api';
+import { useFormik } from 'formik';
+import { useMutateData } from 'lib/reactQuery';
+import React from 'react';
+import * as Yup from 'yup';
 
 const strings = {
   title: 'הזמנת ספר',
@@ -16,25 +19,26 @@ const strings = {
   invalidPhone: 'מספר לא תקין',
 };
 
-const OrderBookForm = () => {
+const OrderBookForm = ({ book }) => {
+  const { isLoading, error, isSuccess, mutate } = useMutateData(contactApiRequests.orderBook);
   const formik = useFormik({
     initialValues: {
       name: '',
       email: '',
       phone: '',
       notes: '',
+      book: { id: book._id, title: book.title, url: window.location.href },
     },
     validationSchema: Yup.object({
       name: Yup.string().max(255).required(strings.required),
       email: Yup.string().max(255).required(strings.required).email(strings.invalidEmail),
-
       phone: Yup.string()
         .required(strings.required)
         .matches('^0(5[^7]|[2-4]|[8-9]|7[0-9])[0-9]{7}$', strings.invalidPhone),
       notes: Yup.string().max(255),
     }),
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      mutate(null, JSON.stringify(values));
     },
   });
 
@@ -48,9 +52,7 @@ const OrderBookForm = () => {
       </div>
       <FormField borderWidth="2" formik={formik} htmlFor="email" placeholder={strings.email} />
       <FormField borderWidth="2" formik={formik} htmlFor="notes" placeholder={strings.notes} />
-      <button type="submit" style={{ width: 'fit-content' }} className="button mr-auto ml-4">
-        {strings.order}
-      </button>
+      <LoadingButton isLoading={isLoading} />
     </form>
   );
 };

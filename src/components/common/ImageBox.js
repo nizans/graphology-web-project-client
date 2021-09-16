@@ -11,27 +11,30 @@ const defualtSliderSettings = {
   slidesToScroll: 1,
   nextArrow: <LeftArrow left={-25} />,
   prevArrow: <RightArrow right={-25} />,
+  lazyLoad: true,
 };
 
 const ImageBox = ({
+  imgStyle,
   images,
-  maxHeight,
+  height,
   sliderWrapperClassName,
   withModal = true,
+
   sliderSettings = defualtSliderSettings,
 }) => {
-  return images.length > 0 ? (
+  return images?.length > 0 ? (
     <div className={`${sliderWrapperClassName ? sliderWrapperClassName : 'px-8 pb-8'}`}>
       <Slider {...sliderSettings}>
         {images.map(img => (
           <div className="w-full " key={img.full}>
             <BlurredUpImage
               withModal={withModal}
-              height={maxHeight - 40}
+              height={height - 40}
               imageSrc={img.full}
               tinySrc={img.thumb}
               key={img.full}
-
+              style={imgStyle}
             />
           </div>
         ))}

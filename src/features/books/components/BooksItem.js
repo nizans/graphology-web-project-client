@@ -5,6 +5,7 @@ import parse from 'html-react-parser';
 import { useContext } from 'react';
 import { SectionHeightContext } from 'context/sectionHeightContext';
 import Section from 'components/common/Section';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 const strings = {
   orderBook: 'הזמנת ספר',
   from: 'מאת',
@@ -16,18 +17,18 @@ const BooksItem = ({ data: item }) => {
   const author = strings.from + ' ' + item.author;
   const description = parse(item.description);
   const { windowHeight, headerHeight, footerHeight, breadCrumbHeight } = useContext(SectionHeightContext);
+  const { width } = useWindowDimensions();
 
   return (
     <Section minHeight={windowHeight - headerHeight - footerHeight} className="my-8">
-      <div className="grid gap-x-7 grid-cols-2">
-        <div className="my-auto">
-          <ImageBox
-            withModal={false}
-            maxHeight={windowHeight - headerHeight - footerHeight - breadCrumbHeight}
-            images={images}
-            imgClassName={'p-8 object-cover'}
-          />
-        </div>
+      <div className="grid gap-x-7 grid-cols-1 sm:grid-cols-2">
+        <ImageBox
+          withModal={false}
+          height={width < 640 ? 300 : windowHeight - headerHeight - footerHeight - breadCrumbHeight}
+          images={images}
+          imgStyle={{ objectFit: 'cover' }}
+        />
+
         <div className="w-full flex flex-col justify-evenly p-0 mb-6">
           <div>
             <h1 className="_text-bold-dark-6xl">{title}</h1>

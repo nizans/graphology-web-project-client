@@ -24,23 +24,25 @@ const Footer = () => {
     if (footerDimension) sectionHeightCTX.setFooterHeight(footerDimension.height);
   }, [footerDimension, sectionHeightCTX]);
   return (
-    <footer ref={footerRef} className="w-full flex flex-col justify-between items-center _text-3xl mx-auto box-content">
+    <footer
+      ref={footerRef}
+      className="w-full flex flex-col justify-between items-center text-3xl sm:text-3xl _text-3xl mx-auto box-content">
       <img loading="lazy" src={Shelf} alt="" className="w-full" />
-      <div className="w-full flex justify-between items-center mx-auto py-10 relative">
-        <NavLink to="home/about" className="px-4">
+      <div className="w-full flex-col flex sm:flex-row justify-between items-center mx-auto py-10 relative">
+        <NavLink to="home/about" className="px-4 my-4 sm:my-0 ">
           {strings.about}
         </NavLink>
         <a
           href="https://he.wikipedia.org/wiki/%D7%9E%D7%99%D7%9B%D7%9C_%D7%93%D7%95%D7%A8%D7%95%D7%9F"
-          className="px-4">
+          className="px-4 my-4 sm:my-0">
           {strings.michalDoron}
           <span className="font-bold underline">{strings.wiki}</span>
         </a>
-        <NavLink to="/home/contact" className="px-4">
+        <NavLink to="/home/contact" className="px-4 my-4 sm:my-0 ">
           {strings.contact}
         </NavLink>
 
-        <NavLink to="/home">
+        <NavLink className="order-first sm:order-none my-4 sm:my-0 " to="/home">
           <img
             loading="lazy"
             src={Logo}
@@ -51,14 +53,14 @@ const Footer = () => {
           />
         </NavLink>
 
-        <a href="https://www.facebook.com/md1062" className="px-4 flex items-center">
+        <a href="https://www.facebook.com/md1062" className="px-4 flex items-center my-4 sm:my-0 ">
           <img loading="lazy" src={FBIcon} alt=""></img>
           {strings.fb}
         </a>
-        <NavLink to="/home/books" className="px-4">
+        <NavLink to="/home/books" className="px-4 my-4 sm:my-0 ">
           {strings.books}
         </NavLink>
-        <NavLink to="/home" className="px-4">
+        <NavLink to="/home" className="px-4 my-4 sm:my-0 ">
           {strings.lectures}
         </NavLink>
       </div>

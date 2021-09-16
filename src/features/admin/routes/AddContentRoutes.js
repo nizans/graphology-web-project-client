@@ -1,24 +1,24 @@
+import { articlesApiCRUDRequests } from 'features/articles';
+import { booksApiCRUDRequests } from 'features/books';
+import { contentsApiCRUDRequests } from 'features/couch';
+import { servicesApiCRUDRequests } from 'features/services';
+import { videosApiCRUDRequests } from 'features/videos/api';
 import React from 'react';
-import ArticleForm from '../components/forms/ArticleForm';
-import CouchForm from '../components/forms/CouchForm';
-import VideoForm from '../components/forms/VideoForm';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router';
-import ServiceForm from '../components/forms/ServiceForm';
-import withData from '../components/forms/withData';
-import { ARTICLES_API } from 'features/articles';
-import { CONTENTS_API } from 'features/couch';
-import { VIDEOS_API } from 'features/videos';
-import { SERVICES_API } from 'features/services';
+import ArticleForm from '../components/forms/ArticleForm';
 import BookForm from '../components/forms/BookForm';
-import { BOOKS_API } from 'features/books';
+import CouchForm from '../components/forms/CouchForm';
+import ServiceForm from '../components/forms/ServiceForm';
+import VideoForm from '../components/forms/VideoForm';
+import withData from '../components/forms/withData';
 
 const AddContentRoutes = () => {
   const { path } = useRouteMatch();
-  const WithDataArticleForm = withData(ArticleForm, ARTICLES_API);
-  const WithDataCouchForm = withData(CouchForm, CONTENTS_API);
-  const WithDataVideoForm = withData(VideoForm, VIDEOS_API);
-  const WithDataServiceForm = withData(ServiceForm, SERVICES_API);
-  const WithDataBookForm = withData(BookForm, BOOKS_API);
+  const WithDataArticleForm = withData(ArticleForm, articlesApiCRUDRequests);
+  const WithDataCouchForm = withData(CouchForm, contentsApiCRUDRequests);
+  const WithDataVideoForm = withData(VideoForm, videosApiCRUDRequests);
+  const WithDataServiceForm = withData(ServiceForm, servicesApiCRUDRequests);
+  const WithDataBookForm = withData(BookForm, booksApiCRUDRequests);
   return (
     <>
       <div className="mt-4 flex h-full w-full items-center pb-4 flex-wrap absolute top-0 bottom-0 right-0 left-0">

@@ -1,12 +1,12 @@
+import { LeftArrow, RightArrow } from 'components/UI/Arrows';
+import { servicesApiCRUDRequests } from 'features/services';
+import { useFetchData } from 'lib/reactQuery';
 import React from 'react';
-import ExpertiseContainer from './ExpertiseContainer';
+import Slider from 'react-slick';
 import BriefCase from '../../../../assets/icons/experise_breifcase.svg';
 import OpenBook from '../../../../assets/icons/experise_openbook.svg';
 import Speech from '../../../../assets/icons/expertise_speech.svg';
-import Slider from 'react-slick';
-import { SERVICES_API } from 'features/services';
-import { LeftArrow, RightArrow } from 'components/UI/Arrows';
-import { useFetchData } from 'utils/apiRequests';
+import ExpertiseContainer from './ExpertiseContainer';
 
 const strings = {
   title: 'תחומי התמחות',
@@ -48,7 +48,7 @@ const sliderSettings = {
 };
 
 const Expertise = () => {
-  const { data } = useFetchData(SERVICES_API.GET_ALL);
+  const { data } = useFetchData(servicesApiCRUDRequests.read());
 
   return (
     <>

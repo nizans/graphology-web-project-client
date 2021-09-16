@@ -1,4 +1,4 @@
-import { BOOKS_API } from 'features/books';
+import { booksApiCRUDRequests } from 'features/books';
 import { truncate } from 'lodash-es';
 import React from 'react';
 import { toDate } from 'utils/toDate';
@@ -43,7 +43,7 @@ const BooksTable = () => {
     );
   };
 
-  return <Table type="books" headers={headers} generateCell={generateCell} API_REQUEST={BOOKS_API} />;
+  return <Table type="books" headers={headers} generateCell={generateCell} apiRequests={booksApiCRUDRequests} />;
 };
 
 export default BooksTable;

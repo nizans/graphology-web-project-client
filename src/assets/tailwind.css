@@ -2,18 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    scroll-behavior: smooth;
-    height: 100%;
-  }
-  ,
-  root {
-    scroll-behavior: smooth;
-
-    height: 100%;
-  }
-}
 @layer components {
   .button {
     @apply bg-p-brown _text-3xl px-12 py-1 rounded-xl hover:bg-p-brown-dark;
@@ -36,6 +24,9 @@
   ._text-bold-dark-3xl {
     @apply text-lg lg:text-xl font-bold text-p-blue-dark 2xl:text-5xl;
   }
+  ._text-bold-dark-2xl {
+    @apply text-base lg:text-lg font-bold text-p-blue-dark xl:text-5xl;
+  }
   ._text-bold-8xl {
     @apply text-7xl lg:text-6xl font-bold text-p-blue 2xl:text-8xl;
   }
@@ -53,6 +44,9 @@
   }
   ._text-bold-xl {
     @apply text-xs lg:text-sm font-bold text-p-blue 2xl:text-xl;
+  }
+  ._text-dark-3xl {
+    @apply text-lg lg:text-xl text-p-blue-dark 2xl:text-3xl;
   }
   ._text-8xl {
     @apply text-5xl lg:text-6xl text-p-blue 2xl:text-8xl;

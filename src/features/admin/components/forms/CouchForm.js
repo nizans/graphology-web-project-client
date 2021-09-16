@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import FormField from 'components/UI/FormField';
-import TextEditor from 'components/common/TextEditor';
 import ImageUploadInput from 'components/common/ImageUploadInput';
+import TextEditor from 'components/common/TextEditor';
+import FormField from 'components/UI/FormField';
+import { contentsApiCRUDRequests } from 'features/couch';
+import { useFormik } from 'formik';
+import { useMutateData } from 'lib/reactQuery';
+import React, { useState } from 'react';
 import createFormData from 'utils/createFormData';
-import { useAddMutation } from 'utils/apiRequests';
-import { CONTENTS_API } from 'features/couch';
+import * as Yup from 'yup';
 
 const strings = {
   title: 'כותרת',
@@ -21,7 +21,7 @@ const strings = {
 };
 
 const CouchForm = ({ data: item }) => {
-  const mutation = useAddMutation(CONTENTS_API.ADD);
+  const { mutate, isLoading, error } = useMutateData(contentsApiCRUDRequests.create);
   const [images, setImages] = useState(item?.images.map(img => img.full) || []);
 
   const initialValues = {
@@ -41,7 +41,7 @@ const CouchForm = ({ data: item }) => {
     validationSchema: validation,
     onSubmit: values => {
       const formData = createFormData(values, images);
-      mutation.mutate(formData);
+      mutate(formData);
     },
     enableReinitialize: true,
   });

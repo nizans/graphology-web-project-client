@@ -1,14 +1,12 @@
-const storagePrefix = 'michal_doron_';
-
 const storage = {
-  getToken: () => {
-    return JSON.parse(window.localStorage.getItem(`${storagePrefix}token`));
+  get: key => {
+    return JSON.parse(window.localStorage.getItem(key));
   },
-  setToken: token => {
-    window.localStorage.setItem(`${storagePrefix}token`, JSON.stringify(token));
+  set: (key, value) => {
+    window.localStorage.setItem(key, JSON.stringify(value));
   },
-  clearToken: () => {
-    window.localStorage.removeItem(`${storagePrefix}token`);
+  clear: key => {
+    window.localStorage.removeItem(key);
   },
 };
 

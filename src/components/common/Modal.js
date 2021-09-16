@@ -1,9 +1,11 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import CloseIcon from 'assets/icons/Close_Icon.svg';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 
 const Modal = ({ isShowing, hide, children }) => {
-  if (isShowing)
+  const { width } = useWindowDimensions();
+  if (isShowing && width > 640)
     return createPortal(
       <>
         <div className="fixed top-0 left-0 w-screen h-screen bg-black opacity-80" style={{ zIndex: 100 }} />

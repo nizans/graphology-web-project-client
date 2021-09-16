@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import VideoThumbnail from './VideoThumbnail';
-import Slider from 'react-slick';
 import Arrow from 'assets/icons/down_arrow.png';
-import { VIDEOS_API } from 'features/videos';
-import { useFetchData } from 'utils/apiRequests';
+import { videosApiCRUDRequests } from 'features/videos/api';
+import { useFetchData } from 'lib/reactQuery';
+import React, { useEffect, useState } from 'react';
+import Slider from 'react-slick';
+import VideoThumbnail from './VideoThumbnail';
 
 function PrevArrow(props) {
   const { className, style, onClick } = props;
@@ -48,7 +48,7 @@ const sliderSettings = {
 };
 
 const SuggestionContainer = ({ setVideoUrl }) => {
-  const { data } = useFetchData(VIDEOS_API.GET_ALL, { page: 0, limit: 5 });
+  const { data } = useFetchData(videosApiCRUDRequests.read(null, { page: 0, limit: 5 }));
   const [currentVideo, setCurrentVideo] = useState();
 
   useEffect(() => {

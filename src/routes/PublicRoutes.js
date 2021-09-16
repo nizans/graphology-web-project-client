@@ -9,6 +9,7 @@ import { Home } from 'features/home/index';
 import BreadCrumbs from 'components/common/BreadCrumbs';
 import { BreadCrumbsTitleProvider } from 'context/breadCrumbsTitleContext';
 import ArticlesRoutes from 'features/articles/routes';
+import { VideoPage } from 'features/videos/components/VideoPage';
 
 const PublicRoutes = () => {
   const { path } = useRouteMatch();
@@ -23,6 +24,7 @@ const PublicRoutes = () => {
         <Route>
           <BreadCrumbsTitleProvider>
             <BreadCrumbs />
+
             <Route path={`${path}/about`}>
               <About />
             </Route>
@@ -45,6 +47,10 @@ const PublicRoutes = () => {
 
             <Route path={`${path}/articles`}>
               <ArticlesRoutes />
+            </Route>
+
+            <Route path={`${path}/videos/:id`}>
+              <VideoPage />
             </Route>
           </BreadCrumbsTitleProvider>
         </Route>

@@ -1,10 +1,10 @@
-import React, { useEffect, useState, createRef, useContext } from 'react';
 import Section from 'components/common/Section';
-import ServiceItem from '../components/ServiceItem';
-import { SERVICES_API } from '..';
-import { SectionHeightContext } from 'context/sectionHeightContext';
-import { useFetchData } from 'utils/apiRequests';
 import Underline from 'components/UI/Underline';
+import { SectionHeightContext } from 'context/sectionHeightContext';
+import { useFetchData } from 'lib/reactQuery';
+import React, { createRef, useContext, useEffect, useState } from 'react';
+import { servicesApiCRUDRequests } from '..';
+import ServiceItem from '../components/ServiceItem';
 
 const strings = {
   title: 'שירות גרפולוגי',
@@ -13,7 +13,7 @@ const strings = {
 };
 
 export const Services = () => {
-  const { data } = useFetchData(SERVICES_API.GET_ALL);
+  const { data } = useFetchData(servicesApiCRUDRequests.read());
   const [numOfItems, setNumOfItems] = useState(0);
   const [itemsRefs, setItemsRefs] = useState([]);
   const { headerHeight, windowHeight, breadCrumbHeight } = useContext(SectionHeightContext);

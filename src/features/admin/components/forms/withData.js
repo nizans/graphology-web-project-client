@@ -1,11 +1,11 @@
 import LoadingSection from 'components/UI/LoadingSection';
 import React from 'react';
 import { useParams } from 'react-router';
-import { useFetchData } from 'utils/apiRequests';
+import { useFetchData } from 'lib/reactQuery';
 
-const withData = (FormComponent, API_REQUEST) => () => {
+const withData = (FormComponent, apiRequest) => () => {
   const { id } = useParams();
-  const { isLoading, data } = useFetchData(API_REQUEST.GET_BY_ID(id));
+  const { isLoading, data } = useFetchData(apiRequest.read(id));
 
   return (
     <>

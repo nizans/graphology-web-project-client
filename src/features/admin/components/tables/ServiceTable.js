@@ -1,4 +1,4 @@
-import { SERVICES_API } from 'features/services';
+import { servicesApiCRUDRequests } from 'features/services';
 import { truncate } from 'lodash-es';
 import React from 'react';
 import TableItemImage from '../UI/TableItemImage';
@@ -29,7 +29,7 @@ const ServiceTable = () => {
     );
   };
 
-  return <Table type="contents" API_REQUEST={SERVICES_API} generateCell={generateCell} headers={headers} />;
+  return <Table type="contents" apiRequests={servicesApiCRUDRequests} generateCell={generateCell} headers={headers} />;
 };
 
 export default ServiceTable;

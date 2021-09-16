@@ -1,12 +1,12 @@
-import { useFormik } from 'formik';
-import React, { useState } from 'react';
-import * as Yup from 'yup';
-import FormField from 'components/UI/FormField';
-import TextEditor from 'components/common/TextEditor';
-import { SERVICES_API } from 'features/services';
 import ImageUploadInput from 'components/common/ImageUploadInput';
+import TextEditor from 'components/common/TextEditor';
+import FormField from 'components/UI/FormField';
+import { servicesApiCRUDRequests } from 'features/services';
+import { useFormik } from 'formik';
+import { useAddMutation, useMutateData } from 'lib/reactQuery';
+import React, { useState } from 'react';
 import createFormData from 'utils/createFormData';
-import { useAddMutation } from 'utils/apiRequests';
+import * as Yup from 'yup';
 
 const strings = {
   title: 'שם השירות',
@@ -19,7 +19,7 @@ const strings = {
 };
 
 const ServiceForm = ({ data: item }) => {
-  const mutation = useAddMutation(SERVICES_API.ADD);
+  const { mutate, isLoading, error } = useMutateData(servicesApiCRUDRequests.create);
   const [images, setImages] = useState([]);
 
   const initialValues = {
@@ -34,7 +34,7 @@ const ServiceForm = ({ data: item }) => {
     validationSchema: validation,
     onSubmit: values => {
       const formData = createFormData(values, images);
-      mutation.mutate(formData);
+      mutate(formData);
     },
   });
 

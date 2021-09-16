@@ -1,4 +1,4 @@
-import { ARTICLES_API } from 'features/articles';
+import { articlesApiCRUDRequests } from 'features/articles';
 import React from 'react';
 import { toDate } from 'utils/toDate';
 import TableItemImage from '../UI/TableItemImage';
@@ -41,7 +41,7 @@ const ArticlesTable = () => {
       </>
     );
   };
-  return <Table type="articles" headers={headers} generateCell={generateCell} API_REQUEST={ARTICLES_API} />;
+  return <Table type="articles" headers={headers} generateCell={generateCell} apiRequests={articlesApiCRUDRequests} />;
 };
 
 export default ArticlesTable;

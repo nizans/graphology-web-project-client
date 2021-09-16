@@ -1,14 +1,14 @@
-import React from 'react';
-import BooksItem from './BooksItem';
-import { BOOKS_API } from '..';
-import LoadingSection from 'components/UI/LoadingSection';
-import { useFetchData } from 'utils/apiRequests';
-import useQueryParams from 'hooks/useQueryParams';
 import Pagintation from 'components/common/Pagintation';
+import LoadingSection from 'components/UI/LoadingSection';
+import useQueryParams from 'hooks/useQueryParams';
+import { useFetchData } from 'lib/reactQuery';
+import React from 'react';
+import { booksApiCRUDRequests } from '..';
+import BooksItem from './BooksItem';
 
 const Books = () => {
   const page = useQueryParams().get('page');
-  const { isLoading, data } = useFetchData(BOOKS_API.GET_ALL, { page });
+  const { isLoading, data } = useFetchData(booksApiCRUDRequests.read(null, { page }));
   return isLoading ? (
     <LoadingSection />
   ) : (

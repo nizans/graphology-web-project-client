@@ -1,10 +1,10 @@
 import ResponsivePlayer from 'components/common/ResponsivePlayer';
 import TextEditor from 'components/common/TextEditor';
 import FormField from 'components/UI/FormField';
-import { VIDEOS_API } from 'features/videos';
+import { videosApiCRUDRequests } from 'features/videos/api';
 import { useFormik } from 'formik';
+import { useMutateData } from 'lib/reactQuery';
 import React from 'react';
-import { useAddMutation } from 'utils/apiRequests';
 import * as Yup from 'yup';
 
 const strings = {
@@ -18,7 +18,7 @@ const strings = {
 };
 
 const VideoForm = ({ data: item }) => {
-  const mutation = useAddMutation(VIDEOS_API.ADD);
+  const { mutate, isLoading, error } = useMutateData(videosApiCRUDRequests.create);
 
   const initialValues = {
     title: item?.title || '',
@@ -35,7 +35,7 @@ const VideoForm = ({ data: item }) => {
     initialValues: initialValues,
     validationSchema: validation,
     onSubmit: values => {
-      mutation.mutate(JSON.stringify(values));
+      mutate(JSON.stringify(values));
     },
   });
 

@@ -6,26 +6,11 @@ import Magnifier from 'react-magnifier';
 import ExpandIcon from 'components/UI/ExpandIcon';
 
 const BlurredUpImage = props => {
-  const { wrapperClassName, tinySrc, imageSrc, withModal = true, width = '100%', height = '300px' } = props;
+  const { wrapperClassName, tinySrc, imageSrc, withModal = true, width = '100%', height = '' } = props;
   const [src, { blur }] = useProgressiveImg(tinySrc, imageSrc);
   const { isShowing, toggle } = useModal();
   return (
-    <div
-      className={`relative ${wrapperClassName}`}
-      style={
-        {
-          // width: width,
-          // height: height,
-          // backgroundImage: `url('${src}')`,
-          // cursor: withModal ? 'zoom-in' : 'auto',
-          // transition: `1s -webkit-filter linear`,
-          // filter: blur ? 'blur(20px)' : 'none',
-          // backgroundRepeat: 'no-repeat',
-          // backgroundPosition: 'center',
-          // backgroundSize: 'contain',
-          // ...props.style,
-        }
-      }>
+    <div className={`relative ${wrapperClassName}`}>
       <img
         onClick={withModal ? toggle : null}
         alt=""
@@ -36,7 +21,8 @@ const BlurredUpImage = props => {
           height: height,
           transition: `1s -webkit-filter linear`,
           filter: blur ? 'blur(20px)' : 'none',
-          objectFit: 'contain',
+          objectFit: 'cover',
+          margin: 'auto',
           ...props.style,
         }}
       />

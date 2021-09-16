@@ -1,4 +1,4 @@
-import { CONTENTS_API } from 'features/couch';
+import { contentsApiCRUDRequests } from 'features/couch';
 import { truncate } from 'lodash-es';
 import React from 'react';
 import { toDate } from 'utils/toDate';
@@ -38,7 +38,7 @@ const ContentsTable = () => {
       </>
     );
   };
-  return <Table type="contents" headers={headers} generateCell={generateCell} API_REQUEST={CONTENTS_API} />;
+  return <Table type="contents" headers={headers} generateCell={generateCell} apiRequests={contentsApiCRUDRequests} />;
 };
 
 export default ContentsTable;

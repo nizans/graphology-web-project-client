@@ -1,20 +1,19 @@
-import React from 'react';
-import { BOOKS_API } from '..';
-import LoadingSection from 'components/UI/LoadingSection';
-import { useParams } from 'react-router';
 import ImageBox from 'components/common/ImageBox';
-import OrderBookForm from './OrderBookForm';
 import Section from 'components/common/Section';
-import { useContext } from 'react';
-import { SectionHeightContext } from 'context/sectionHeightContext';
-import { useFetchData } from 'utils/apiRequests';
+import LoadingSection from 'components/UI/LoadingSection';
 import { BreadCrumbsTitleContext } from 'context/breadCrumbsTitleContext';
-import { useEffect } from 'react';
+import { SectionHeightContext } from 'context/sectionHeightContext';
+import { useFetchData } from 'lib/reactQuery';
+import React, { useContext, useEffect } from 'react';
+import { useParams } from 'react-router';
+import { booksApiCRUDRequests } from '..';
+import OrderBookForm from './OrderBookForm';
+
 const OrderBook = () => {
   const { setTitle } = useContext(BreadCrumbsTitleContext);
   const { windowHeight, headerHeight, breadCrumbHeight, footerHeight } = useContext(SectionHeightContext);
   const { id } = useParams();
-  const { data: book, isLoading, error } = useFetchData(BOOKS_API.GET_BY_ID(id));
+  const { data: book, isLoading, error } = useFetchData(booksApiCRUDRequests.read(id));
 
   useEffect(() => {
     if (book) setTitle(book._id, book.title);
@@ -30,7 +29,7 @@ const OrderBook = () => {
         images={book.images}
         imgClassName=" object-cover"
       />
-      <OrderBookForm />
+      <OrderBookForm book={book} />
     </Section>
   );
 };

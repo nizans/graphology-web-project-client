@@ -1,20 +1,21 @@
-import React, { useContext, useEffect } from 'react';
-import Section from 'components/common/Section';
-import { CONTENTS_API } from '..';
-import { useParams } from 'react-router';
-import parse from 'html-react-parser';
-import { BreadCrumbsTitleContext } from 'context/breadCrumbsTitleContext';
 import ImageBox from 'components/common/ImageBox';
+import Section from 'components/common/Section';
+import ErrorSerction from 'components/UI/ErrorSerction';
+import LoadingSection from 'components/UI/LoadingSection';
 import Underline from 'components/UI/Underline';
-import { useFetchData } from 'utils/apiRequests';
-
-const strings = { loading: 'טוען' };
+import { BreadCrumbsTitleContext } from 'context/breadCrumbsTitleContext';
+import parse from 'html-react-parser';
+import { useFetchData } from 'lib/reactQuery';
+import React, { useContext, useEffect } from 'react';
+import { useParams } from 'react-router';
+import { toDate } from 'utils/toDate';
+import { contentsApiCRUDRequests } from '..';
 
 const CouchItemPage = () => {
   const breadCrumbsTitleCTX = useContext(BreadCrumbsTitleContext);
 
   const { id } = useParams();
-  const { isLoading, error, data: item } = useFetchData(CONTENTS_API.GET_BY_ID(id));
+  const { isLoading, error, data: item, isSuccess } = useFetchData(contentsApiCRUDRequests.read(id));
 
   useEffect(() => {
     if (item) {
@@ -22,23 +23,15 @@ const CouchItemPage = () => {
     }
   }, [item]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (isLoading || error) {
-    return (
-      <Section>
-        <div className="flex justify-between items-center pb-1">
-          <h1 className="_text-bold-dark-5xl">{isLoading && strings.loading}</h1>
-          {error && <h3 className="_text-xl">{error.message}</h3>}
-        </div>
-      </Section>
-    );
-  }
+  if (isLoading) return <LoadingSection />;
 
-  if (item) {
-    return (
+  return (
+    (error && <ErrorSerction error={error} />) ||
+    (isSuccess && (
       <Section className="pb-6 ">
         <div className="flex justify-between items-center pb-1 ">
           <h1 className="_text-bold-dark-5xl">{item.title}</h1>
-          <h3 className="_text-2xl">{item.date}</h3>
+          <h3 className="_text-2xl">{toDate(item.publishDate || item.uploadDate)}</h3>
         </div>
         <Underline />
         <h2 className="py-10 _text-bold-3xl  ">{item.subtitle}</h2>
@@ -52,12 +45,11 @@ const CouchItemPage = () => {
               maxHeight={500}
             />
           </div>
-
           <div className="_text-2xl break-words leading-normal w-full">{parse(item.text)}</div>
         </div>
       </Section>
-    );
-  }
+    ))
+  );
 };
 
 export default CouchItemPage;

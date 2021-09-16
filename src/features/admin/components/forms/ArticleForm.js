@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import FormField from 'components/UI/FormField';
-import { ARTICLES_API } from 'features/articles';
-import TextEditor from 'components/common/TextEditor';
 import ImageUploadInput from 'components/common/ImageUploadInput';
+import TextEditor from 'components/common/TextEditor';
+import FormField from 'components/UI/FormField';
+import { articlesApiCRUDRequests } from 'features/articles';
+import { useFormik } from 'formik';
+import { useMutateData } from 'lib/reactQuery';
+import React, { useState } from 'react';
 import createFormData from 'utils/createFormData';
-import { useAddMutation } from 'utils/apiRequests';
+import * as Yup from 'yup';
 
 const strings = {
   title: 'כותרת',
@@ -22,7 +22,7 @@ const strings = {
 };
 
 const ArticleForm = ({ data: item }) => {
-  const mutation = useAddMutation(ARTICLES_API.ADD);
+  const mutation = useMutateData(articlesApiCRUDRequests.create);
 
   const [images, setImages] = useState([]);
 
