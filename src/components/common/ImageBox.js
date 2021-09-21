@@ -12,6 +12,7 @@ const defualtSliderSettings = {
   nextArrow: <LeftArrow left={-25} />,
   prevArrow: <RightArrow right={-25} />,
   lazyLoad: true,
+  rtl: true,
 };
 
 const ImageBox = ({
@@ -20,7 +21,6 @@ const ImageBox = ({
   height,
   sliderWrapperClassName,
   withModal = true,
-
   sliderSettings = defualtSliderSettings,
 }) => {
   return images?.length > 0 ? (
@@ -30,7 +30,7 @@ const ImageBox = ({
           <div className="w-full" key={img.full}>
             <BlurredUpImage
               withModal={withModal}
-              height={height - 40}
+              height={height}
               imageSrc={img.full}
               tinySrc={img.thumb}
               key={img.full}

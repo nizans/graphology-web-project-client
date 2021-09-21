@@ -1,4 +1,5 @@
 import BlurredUpImage from 'components/UI/BlurredUpImage';
+import useForceUpdate from 'hooks/useForceUpdate';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -11,14 +12,15 @@ function checkValidImageSrc(src) {
   return valid;
 }
 
-const defultClassName = 'h-full m-2 rounded-md border-2 border-p-brown';
 const TableItemImage = ({
   image,
   height = '150px',
   width = '150px',
-  imgClassName = defultClassName,
+  imgClassName = 'h-full m-2 rounded-md border-2 border-p-brown',
   style = { objectFit: 'cover' },
 }) => {
+  const forceUpdate = useForceUpdate();
+
   const [imageSrc, setImageSrc] = useState('');
   const [thumbSrc, setThumbSrc] = useState('');
 
@@ -26,11 +28,16 @@ const TableItemImage = ({
     getImageSrc();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(() => {
+    forceUpdate();
+  }, [imageSrc, thumbSrc]);
   const getImageSrc = () => {
-    if (Array.isArray(image) && image.length > 1) {
+    if (Array.isArray(image) && image.length >= 1) {
       setImageSrc(image[0].full);
-      setThumbSrc(image[0].thumbSrc);
-    } else if (checkValidImageSrc(image)) setImageSrc(image);
+      setThumbSrc(image[0].thumb);
+    } else if (checkValidImageSrc(image)) {
+      setImageSrc(image);
+    }
   };
 
   return (

@@ -1,6 +1,6 @@
 import ResponsivePlayer from 'components/common/ResponsivePlayer';
 import Section from 'components/common/Section';
-import ErrorSerction from 'components/UI/ErrorSerction';
+import ErrorSection from 'components/UI/ErrorSection';
 import LoadingSection from 'components/UI/LoadingSection';
 import Underline from 'components/UI/Underline';
 import { BreadCrumbsTitleContext } from 'context/breadCrumbsTitleContext';
@@ -25,7 +25,7 @@ export const VideoPage = () => {
   return isLoading ? (
     <LoadingSection />
   ) : error ? (
-    <ErrorSerction error={error} />
+    <ErrorSection error={error} />
   ) : (
     <Section className="mb-4">
       <div className="flex justify-between items-center pb-1 ">

@@ -1,7 +1,7 @@
 import Modal from 'components/common/Modal';
 import useModal from 'hooks/useModal';
 import useProgressiveImg from 'hooks/useProgressiveImg';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Magnifier from 'react-magnifier';
 import ExpandIcon from 'components/UI/ExpandIcon';
 
@@ -9,6 +9,7 @@ const BlurredUpImage = props => {
   const { wrapperClassName, tinySrc, imageSrc, withModal = true, width = '100%', height = '' } = props;
   const [src, { blur }] = useProgressiveImg(tinySrc, imageSrc);
   const { isShowing, toggle } = useModal();
+
   return (
     <div className={`relative ${wrapperClassName}`}>
       <img
@@ -26,7 +27,6 @@ const BlurredUpImage = props => {
           ...props.style,
         }}
       />
-
       {withModal && <ExpandIcon style={{ top: '0', right: '0' }} />}
       {withModal && (
         <Modal isShowing={isShowing} hide={toggle}>

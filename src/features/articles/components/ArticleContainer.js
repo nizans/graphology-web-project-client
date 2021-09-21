@@ -2,7 +2,7 @@ import BlurredUpImage from 'components/UI/BlurredUpImage';
 import ExpandIcon from 'components/UI/ExpandIcon';
 import useDomParser from 'hooks/useDomParser';
 import useModal from 'hooks/useModal';
-import { truncate } from 'lodash';
+import  truncate from 'lodash.truncate';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 

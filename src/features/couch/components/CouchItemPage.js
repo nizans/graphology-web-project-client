@@ -1,35 +1,46 @@
 import ImageBox from 'components/common/ImageBox';
 import Section from 'components/common/Section';
-import ErrorSerction from 'components/UI/ErrorSerction';
+import ErrorSection from 'components/UI/ErrorSection';
 import LoadingSection from 'components/UI/LoadingSection';
 import Underline from 'components/UI/Underline';
+import { AuthContext } from 'context/authContext';
 import { BreadCrumbsTitleContext } from 'context/breadCrumbsTitleContext';
+import ButtonsCell from 'components/UI/ButtonsCell';
 import useWindowDimensions from 'hooks/useWindowDimensions';
 import parse from 'html-react-parser';
-import { useFetchData } from 'lib/reactQuery';
+import { useFetchData, useMutateData } from 'lib/reactQuery';
 import React, { useContext, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { Redirect, useParams } from 'react-router';
 import { toDate } from 'utils/toDate';
 import { contentsApiCRUDRequests } from '..';
 
 const CouchItemPage = () => {
-  const breadCrumbsTitleCTX = useContext(BreadCrumbsTitleContext);
+  const { setTitle } = useContext(BreadCrumbsTitleContext);
   const { height } = useWindowDimensions();
   const { id } = useParams();
   const { isLoading, error, data: item, isSuccess } = useFetchData(contentsApiCRUDRequests.read(id));
+  const { mutate, isLoading: isMutating, isSuccess: isDeleteSuccess } = useMutateData(contentsApiCRUDRequests.delete);
+  const { isAuth } = useContext(AuthContext);
 
   useEffect(() => {
     if (item) {
-      breadCrumbsTitleCTX.setTitle(item._id, item.title);
+      setTitle(item._id, item.title);
     }
-  }, [item]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [item]);
 
-  if (isLoading) return <LoadingSection />;
+  const handleDelete = () => {
+    mutate({ uri: id });
+  };
 
-  return (
-    (error && <ErrorSerction error={error} />) ||
-    (isSuccess && (
+  if (error) return <ErrorSection error={error} />;
+  return isLoading || isMutating ? (
+    <LoadingSection />
+  ) : isDeleteSuccess ? (
+    <Redirect to="/home/couch" />
+  ) : (
+    isSuccess && (
       <Section className="pb-6 ">
+        {isAuth && <ButtonsCell onDelete={handleDelete} withPreview={false} _id={id} type={'contents'} />}
         <div className="flex justify-between items-center pb-1">
           <h1 className="_text-bold-dark-5xl">{item.title}</h1>
           <h3 className="_text-2xl">{toDate(item.publishDate || item.uploadDate)}</h3>
@@ -47,7 +58,7 @@ const CouchItemPage = () => {
           <div className="_text-2xl break-words leading-normal w-full">{parse(item.text)}</div>
         </div>
       </Section>
-    ))
+    )
   );
 };
 

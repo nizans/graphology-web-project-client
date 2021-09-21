@@ -1,14 +1,18 @@
 import Pagintation from 'components/common/Pagintation';
-import ErrorSerction from 'components/UI/ErrorSerction';
+import ErrorSection from 'components/UI/ErrorSection';
 import LoadingSection from 'components/UI/LoadingSection';
 import SearchInput from 'components/UI/SearchInput';
 import useQueryParams from 'hooks/useQueryParams';
 import React, { useEffect, useState } from 'react';
 import { useFetchData, useMutateData } from 'lib/reactQuery';
-import ButtonsCell from '../UI/ButtonsCell';
+import ButtonsCell from '../../../../components/UI/ButtonsCell';
+import SortByMenu from 'features/couch/components/SortByMenu';
+import { NavLink } from 'react-router-dom';
+import typesDictionary from 'utils/typesDictionary';
 
 const strings = {
   actions: 'פעולות',
+  addNew: type => `הוספת ${typesDictionary[type]}`,
 };
 
 const Table = ({ type, generateCell, headers, apiRequests }) => {
@@ -20,20 +24,26 @@ const Table = ({ type, generateCell, headers, apiRequests }) => {
   const { isLoading, error, data, isSuccess } = useFetchData(apiRequests.read(null, { find, page, sortby }));
 
   const handleDeleteItem = id => {
-    
     mutate({ uri: id });
   };
-
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   return (
     <>
-      <div className="w-2/12 my-2">
+      <div className="w-full my-2 flex justify-between">
+        <SortByMenu />
         <SearchInput value={searchInput} handleSearch={setSearchInput} />
+        <NavLink to={'/admin/add/' + type} className="_text-lg">
+          {strings.addNew(type)}
+        </NavLink>
       </div>
+
       {isLoading || isMutating ? (
         <LoadingSection />
       ) : (
         <>
-          {error && <ErrorSerction error={error} />}
+          {error && <ErrorSection error={error} />}
           {isSuccess && (
             <>
               <table className="table-auto w-full ">

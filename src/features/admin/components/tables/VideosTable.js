@@ -1,5 +1,5 @@
 import { videosApiCRUDRequests } from 'features/videos/api';
-import { truncate } from 'lodash';
+import truncate from 'lodash.truncate';
 import React from 'react';
 import { toDate } from 'utils/toDate';
 import Table from './Table';
@@ -24,6 +24,7 @@ const VideosTable = () => {
       </>
     );
   };
+
   const generateCell = item => {
     return (
       <>

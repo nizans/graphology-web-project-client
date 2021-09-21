@@ -5,6 +5,7 @@ import { servicesApiCRUDRequests } from 'features/services';
 import { videosApiCRUDRequests } from 'features/videos/api';
 import React from 'react';
 import { Redirect, Route, Switch, useRouteMatch } from 'react-router';
+import AdminForm from '../components/forms/AdminForm';
 import ArticleForm from '../components/forms/ArticleForm';
 import BookForm from '../components/forms/BookForm';
 import CouchForm from '../components/forms/CouchForm';
@@ -37,6 +38,9 @@ const AddContentRoutes = () => {
           </Route>
           <Route exact path={`${path}/books`}>
             <BookForm />
+          </Route>
+          <Route exact path={`${path}/admins`}>
+            <AdminForm />
           </Route>
           <Route exact path={`${path}/articles/:id`}>
             <WithDataArticleForm />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, useRouteMatch, Route, Redirect } from 'react-router-dom';
+import AdminsTable from '../components/tables/AdminsTable';
 import ArticlesTable from '../components/tables/ArticlesTable';
 import BooksTable from '../components/tables/BooksTable';
 import ContentsTable from '../components/tables/ContentTable';
@@ -26,6 +27,9 @@ const ViewContentRoutes = () => {
         </Route>
         <Route exact path={`${path}/books`}>
           <BooksTable />
+        </Route>
+        <Route exact path={`${path}/admins`}>
+          <AdminsTable />
         </Route>
         <Route exact path={`${path}`}>
           <Redirect from={`${path}`} to={`${path}/articles`} />

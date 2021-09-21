@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Shelf from '../../../../assets/icons/Shelf.svg';
 import './bookshelf.css';
 import RightSide from './RightSide';
 import LeftSide from './LeftSide';
 import DownArrow from '../../../../assets/icons/down_arrow.png';
+import { SectionHeightContext } from 'context/sectionHeightContext';
 
 const strings = {
   title: 'גרפולוגיה',
@@ -11,9 +12,11 @@ const strings = {
   findMore: 'גלה עוד',
 };
 
-const BookShelf = ({ translateY }) => {
+const BookShelf = ({ onReadMoreClick }) => {
   const readMoreTextRef = useRef(null);
   const readMoreImgRef = useRef(null);
+  const { windowHeight } = useContext(SectionHeightContext);
+  const [bookShelfTranlateY, setBookShelfTranlateY] = useState(0);
 
   const readMoreAnimation = e => {
     if (e.type === 'mouseenter') {
@@ -26,6 +29,14 @@ const BookShelf = ({ translateY }) => {
     }
   };
 
+  useEffect(() => {
+    if (windowHeight < 740) {
+      setBookShelfTranlateY(-110);
+    } else {
+      setBookShelfTranlateY(0);
+    }
+  }, [windowHeight]);
+
   return (
     <div className="my-auto">
       <div className="flex flex-col items-center mb-28 sm:mb-0">
@@ -35,11 +46,12 @@ const BookShelf = ({ translateY }) => {
       <div
         className="h-full"
         style={{
-          transform: `translateY(${translateY}px)`,
+          transform: `translateY(${bookShelfTranlateY}px)`,
         }}>
         <div className="flex justify-between items-end relative">
           <RightSide />
           <div
+            onClick={onReadMoreClick}
             className=" left-0 right-0 absolute flex flex-col items-center pb-4 cursor-pointer"
             onMouseEnter={readMoreAnimation}
             onMouseLeave={readMoreAnimation}>

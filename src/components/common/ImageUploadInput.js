@@ -1,5 +1,5 @@
 import { SectionHeightContext } from 'context/sectionHeightContext';
-import { DeleteIcon } from 'features/admin/components/UI/ButtonsCell';
+import { DeleteIcon } from 'components/UI/ButtonsCell';
 import useModal from 'hooks/useModal';
 import React, { useEffect, useState } from 'react';
 import { useContext } from 'react';

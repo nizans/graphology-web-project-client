@@ -6,30 +6,8 @@ import { useFetchData } from 'lib/reactQuery';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Notebook from '../../../../assets/icons/notebook.svg';
-import Avidan from '../../../../assets/imgs/avidan.png';
-import Dbora from '../../../../assets/imgs/dbora.png';
-import HNBialick from '../../../../assets/imgs/hnBialick.png';
 import OnTheCouchItem from './OnTheCouchItem';
-const fallbackData = [
-  {
-    title: 'דוד אבידן: לזעזע את הסביבה',
-    publishDate: '20 פברואר 2019',
-    text: '.הפעם אארח על ספת הגרפולוג את המשורר דוד אבידן .ב11 לחודש מאי נפטר 1995המשורר המהפכני דוד אבידן .סיבה לארח אותו על ספת הגרפולוג .כתב-ידו של אבידן פרוע, מהיר, לא קריא וזווית הכתיבה ימנית סימנים גרפיים אלה מעידים על אימפולסיביות ואפילו על פזיזות כללי הכתיבה מסמלים את נורמות ההתנהגות. בכתב של אבידן ...ניכרת הפרת הכללים',
-    images: [{ full: Avidan }],
-  },
-  {
-    title: 'דבורה בארון: ציפור בכלוב',
-    publishDate: '‏26 דצמבר 2020',
-    text: 'ברביעי בדצמבר חל יום הולדתה של דבורה בארון. סופרת מצויינת, אשרתיאוריה את הסיטואציות האנושיות .המרכבות כה נבונות ועמוקות הזדמנות מצוינת לארח אותה על .ספת הגרפולוג במאה העשרים ואחת',
-    images: [{ full: Dbora }],
-  },
-  {
-    title: 'ח.נ. ביאליק נועזות מול שמרנות',
-    publishDate: '‏9 ינואר 2019',
-    text: '.ב9 לחודש ינואר, 1873 נולד המשורר .הלאומי חיים נחמן ביאליק .סיבה לחגוג עמו על ספת הגרפולוג באישיותו של חיים נחמן ביאליק בלטו ...שני קווים מנוגדים',
-    images: [{ full: HNBialick }],
-  },
-];
+
 const strings = {
   title: 'על ספת הגרפולוג',
   subTitle: 'זוהי פינה בה נחקור ונגלה על אישיותם של אשויות מוכורות',
@@ -52,15 +30,15 @@ const OnTheCouch = () => {
         <h4 className="_text-bold-4xl">{strings.recentlyAdded}</h4>
         <Underline className="w-2/3" />
       </div>
-      <OnTheCouchItem data={(!error && data.payload[0]) || fallbackData[0]} />
+      <OnTheCouchItem data={!error && data.payload[0]} />
       <Underline className="w-2/3 mr-auto" />
       <div className="flex items-center flex-col md:flex-row">
         <img loading="lazy" src={Notebook} width="240px" className="mt-8 md:ml-24" alt="" />
-        <OnTheCouchItem data={(!error && data.payload[1]) || fallbackData[1]} />
+        <OnTheCouchItem data={!error && data.payload[1]} />
       </div>
       <Underline className="w-2/3 ml-auto" />
       <div className="flex flex-col md:flex-row items-center">
-        <OnTheCouchItem data={(!error && data.payload[2]) || fallbackData[2]} />
+        <OnTheCouchItem data={!error && data.payload[2]} />
         <NavLink to="/home/couch" className="_text-6xl md:w-1/2 flex hover:font-bold">
           {strings.moreReadings} &gt;
         </NavLink>

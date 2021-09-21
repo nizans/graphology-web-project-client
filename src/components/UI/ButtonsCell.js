@@ -34,13 +34,15 @@ export const DeleteIcon = () => (
   </svg>
 );
 
-const ButtonsCell = ({ onEdit, onDelete, _id, type }) => {
+const ButtonsCell = ({ onDelete, _id, type, withPreview = true }) => {
   return (
     <div className="flex">
-      <NavLink to={`/home/${type}/${_id}`}>
-        <PreviewIcon />
-      </NavLink>
-      <NavLink to={`/admin/add/${type}/${_id}`} className="cursor-pointer mx-2" onClick={onEdit}>
+      {withPreview && (
+        <NavLink to={`/home/${type}/${_id}`}>
+          <PreviewIcon />
+        </NavLink>
+      )}
+      <NavLink to={`/admin/add/${type}/${_id}`} className="cursor-pointer mx-2">
         <EditIcon />
       </NavLink>
       <button>

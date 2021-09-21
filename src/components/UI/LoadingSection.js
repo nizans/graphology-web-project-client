@@ -5,7 +5,7 @@ import Spinner from './Spinner';
 const LoadingSection = () => {
   return (
     <Section className="relative">
-      <Spinner bgColor={'#FFFBF7'} style={{ justifyContent: 'center' }} />
+      <Spinner style={{ justifyContent: 'center' }} />
     </Section>
   );
 };

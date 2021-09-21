@@ -7,10 +7,10 @@ import { NavLink } from 'react-router-dom';
 
 const BreadCrumbs = () => {
   const [breadCrumbRef, breadCrumbDimension] = useDimensions();
-  const sectionHeightCTX = useContext(SectionHeightContext);
+  const { setBreadCrumbHeight } = useContext(SectionHeightContext);
   useEffect(() => {
-    if (breadCrumbDimension) sectionHeightCTX.setBreadCrumbHeight(breadCrumbDimension.height);
-  }, [breadCrumbDimension, sectionHeightCTX]);
+    if (breadCrumbDimension) setBreadCrumbHeight(breadCrumbDimension.height);
+  }, [breadCrumbDimension]);
 
   const breadCrumbsTitleCTX = useContext(BreadCrumbsTitleContext);
   const translate = {

@@ -4,13 +4,15 @@ import Underline from 'components/UI/Underline';
 import { BreadCrumbsTitleContext } from 'context/breadCrumbsTitleContext';
 import parse from 'html-react-parser';
 import React, { useContext, useEffect } from 'react';
-import { useParams } from 'react-router';
-import { useFetchData } from 'lib/reactQuery';
+import { Redirect, useHistory, useParams } from 'react-router';
+import { useFetchData, useMutateData } from 'lib/reactQuery';
 import { toDate } from 'utils/toDate';
 import { articlesApiCRUDRequests } from '..';
-import ErrorSerction from 'components/UI/ErrorSerction';
+import ErrorSection from 'components/UI/ErrorSection';
 import LoadingSection from 'components/UI/LoadingSection';
 import useWindowDimensions from 'hooks/useWindowDimensions';
+import ButtonsCell from 'components/UI/ButtonsCell';
+import { AuthContext } from 'context/authContext';
 
 const strings = { articleFrom: 'כתבה מתוך: ', publishedAt: 'פורסם בתאריך: ', originalLink: 'לכתבה המקורית' };
 
@@ -19,22 +21,30 @@ const ArticlePage = () => {
   const { data: item, isLoading, error } = useFetchData(articlesApiCRUDRequests.read(id));
   const { setTitle } = useContext(BreadCrumbsTitleContext);
   const { height } = useWindowDimensions();
+  const { isAuth } = useContext(AuthContext);
+  const { mutate, isLoading: isMutating, isSuccess: isDeleteSuccess } = useMutateData(articlesApiCRUDRequests.delete);
 
   useEffect(() => {
-    if (item) setTitle(item._id, item.title);
+    if (!isLoading && item) setTitle(item._id, item.title);
   }, [item]);
 
-  if (error) return <ErrorSerction error={error} />;
+  const handleDelete = () => {
+    mutate({ uri: id });
+  };
 
+  if (error) return <ErrorSection error={error} />;
   if (item) {
     const { title, text, publishDate, images, sourceFrom, sourceURL } = item;
     const date = strings.publishedAt + toDate(publishDate);
     const pNodes = parse(text);
 
-    return isLoading ? (
+    return isLoading || isMutating ? (
       <LoadingSection />
+    ) : isDeleteSuccess ? (
+      <Redirect to="/home/articles" />
     ) : (
       <Section className="flex flex-col items-center mb-9">
+        {isAuth && <ButtonsCell onDelete={handleDelete} withPreview={false} _id={id} type={'articles'} />}
         <div className="text-center">
           <h1 className="_text-bold-dark-7xl">{title}</h1>
           <h3 className="_text-3xl font-light">{strings.articleFrom + sourceFrom}</h3>

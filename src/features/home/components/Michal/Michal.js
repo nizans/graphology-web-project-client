@@ -14,10 +14,10 @@ const strings = {
   bubbleText: 'כשם שאין בעולם שתי טביעות אצבע זהות אין בעולם שני כתבי יד זהים',
 };
 
-const Michal = () => {
+const Michal = React.forwardRef((props, ref) => {
   const { windowHeight, headerHeight } = useContext(SectionHeightContext);
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center" ref={ref}>
       <div className=" sm:w-1/2 relative transform translate-y-16">
         <img loading="lazy" className="mx-auto" src={SpeechBubble} alt="" />
         <img
@@ -47,6 +47,6 @@ const Michal = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Michal;

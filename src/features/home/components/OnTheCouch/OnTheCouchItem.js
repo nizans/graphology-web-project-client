@@ -1,15 +1,14 @@
 import React from 'react';
 import ReadMoreBtn from 'components/UI/ReadMoreBtn';
 import { useRouteMatch } from 'react-router';
-import TableItemImage from 'features/admin/components/UI/TableItemImage';
+import TableItemImage from 'components/UI/TableItemImage';
 import { toDate } from 'utils/toDate';
 import useDomParser from 'hooks/useDomParser';
-import { truncate } from 'lodash-es';
+import truncate from 'lodash.truncate';
 
 const OnTheCouchItem = ({ data: item }) => {
   const { path } = useRouteMatch();
   const { publishDate, title, images, _id, text } = item;
-
 
   const date = toDate(publishDate);
   const [parsedText] = useDomParser(text);

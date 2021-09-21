@@ -1,8 +1,8 @@
 import { contentsApiCRUDRequests } from 'features/couch';
-import { truncate } from 'lodash-es';
+import truncate from 'lodash.truncate';
 import React from 'react';
 import { toDate } from 'utils/toDate';
-import TableItemImage from '../UI/TableItemImage';
+import TableItemImage from '../../../../components/UI/TableItemImage';
 import Table from './Table';
 
 const strings = {
@@ -32,7 +32,9 @@ const ContentsTable = () => {
           <TableItemImage image={item.images} />
         </td>
         <td>{item.title}</td>
-        <td>{truncate(item.subtitle, { length: 75, separator: ' ' })}</td>
+        <td>
+          <p>{truncate(item.subtitle, { length: 100, separator: ' ' })}</p>
+        </td>
         <td>{toDate(item.publishDate)}</td>
         <td>{toDate(item.uploadDate)}</td>
       </>

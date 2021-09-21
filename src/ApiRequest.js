@@ -19,6 +19,9 @@ export class ApiRequests {
   constructor(query) {
     this.query = query;
     this.baseUrl = new URL(BASE_URL + '/api/' + query);
+    this.baseOptions = {
+      credentials: 'include',
+    };
   }
 }
 
@@ -28,19 +31,19 @@ class ApiCRUDRequests extends ApiRequests {
     this.create = Object.freeze({
       query: [this.query],
       url: this.baseUrl,
-      options: { method: 'post', headers: new Headers({ 'content-type': 'application/json' }) },
+      options: { ...this.baseOptions, method: 'post', headers: new Headers() },
     });
 
     this.update = Object.freeze({
       query: [this.query],
       url: this.baseUrl,
-      options: { method: 'put', headers: new Headers() },
+      options: { ...this.baseOptions, method: 'put', headers: new Headers() },
     });
 
     this.delete = Object.freeze({
       query: [this.query],
       url: this.baseUrl,
-      options: { method: 'delete', headers: new Headers() },
+      options: { ...this.baseOptions, method: 'delete', headers: new Headers() },
     });
   }
 
@@ -58,7 +61,7 @@ class ApiCRUDRequests extends ApiRequests {
     return {
       query,
       url: _url,
-      options: { method: 'get', headers: new Headers() },
+      options: { ...this.baseOptions, method: 'get', headers: new Headers() },
     };
   };
 }

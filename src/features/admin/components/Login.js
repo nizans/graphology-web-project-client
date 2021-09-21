@@ -23,13 +23,10 @@ const strings = {
 };
 
 const Login = () => {
-  const { login, error, isSuccess, isLoading } = useContext(AuthContext);
-  const { push } = useHistory();
+  const { login, loginError, isLoginLoading, isLoginSuccess, resetLoginRequestState } = useContext(AuthContext);
+  useEffect(() => () => resetLoginRequestState(), []);
 
-  useEffect(() => {
-    if (isSuccess) push('/admin');
-  }, [isSuccess, push]);
-
+  
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -54,15 +51,15 @@ const Login = () => {
 
         <div className="h-12 w-full flex justify-center items-center">
           <div className="flex flex-col justify-center items-center">
-            <LoadingButton isLoading={isLoading} />
+            <LoadingButton isLoading={isLoginLoading} />
             <NavLink to="/admin/restore">{strings.forgotPassword}</NavLink>
           </div>
         </div>
       </form>
 
       <div className="h-10 mt-4">
-        {error && <ErrorMessage error={error} />}
-        {isSuccess && strings.successLogin}
+        {loginError && <ErrorMessage error={loginError} />}
+        {isLoginSuccess && strings.successLogin}
       </div>
     </div>
   );

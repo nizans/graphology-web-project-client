@@ -1,5 +1,5 @@
 import useDomParser from 'hooks/useDomParser';
-import { truncate } from 'lodash-es';
+import  truncate from 'lodash.truncate';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 

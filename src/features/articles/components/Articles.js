@@ -1,6 +1,6 @@
 import Pagintation from 'components/common/Pagintation';
 import Section from 'components/common/Section';
-import ErrorSerction from 'components/UI/ErrorSerction';
+import ErrorSection from 'components/UI/ErrorSection';
 import LoadingSection from 'components/UI/LoadingSection';
 import Underline from 'components/UI/Underline';
 import useQueryParams from 'hooks/useQueryParams';
@@ -23,7 +23,7 @@ export const Articles = () => {
         <h1 className="_text-bold-dark-8xl">{strings.title}</h1>
         <Underline style={{ width: '33%' }} />
         {error ? (
-          <ErrorSerction error={error} />
+          <ErrorSection error={error} />
         ) : isLoading ? (
           <LoadingSection />
         ) : (

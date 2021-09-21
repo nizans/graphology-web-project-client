@@ -9,7 +9,7 @@ export const SectionHeightContext = createContext({
   breadCrumbHeight: 0,
   setHeaderHeight: height => {},
   setFooterHeight: height => {},
-  setBreacCrumbHeight: height => {},
+  setBreadCrumbHeight: height => {},
 });
 
 export const SectionHeightProvider = ({ children }) => {

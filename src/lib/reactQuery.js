@@ -21,9 +21,7 @@ export function useFetchData(apiRequest) {
 }
 
 export function useMutateData(apiRequest) {
-  const { token } = useContext(AuthContext);
   const { query, url, options, settings } = apiRequest;
-  options.headers.set('authorization', 'Bearer ' + token.accessToken);
   return useMutation(
     query,
     args => _fetch(args.uri ? url + '/' + args.uri : url, args.body ? { ...options, body: args.body } : options),

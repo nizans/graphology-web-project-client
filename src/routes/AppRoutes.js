@@ -20,6 +20,7 @@ const AppRoutes = () => {
           <Header />
           <PublicRoutes />
           <Footer />
+
         </Route>
 
         <Route exact path="/admin/login">

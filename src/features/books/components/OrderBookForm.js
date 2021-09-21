@@ -3,7 +3,6 @@ import FormField from 'components/UI/FormField';
 import LoadingButton from 'components/UI/LoadingButton';
 import { contactApiRequests } from 'features/contact/api';
 import { useFormik } from 'formik';
-import useWindowDimensions from 'hooks/useWindowDimensions';
 import { useMutateData } from 'lib/reactQuery';
 import React from 'react';
 import * as Yup from 'yup';
@@ -19,10 +18,11 @@ const strings = {
   invalidEmail: 'כתובת אימייל לא תקינה',
   required: 'שדה דרוש',
   invalidPhone: 'מספר לא תקין',
+  success: 'תודה, הפרטים התקבלו בהצלחה!',
 };
 
 const OrderBookForm = ({ book }) => {
-  const { isLoading, error, mutate } = useMutateData(contactApiRequests.orderBook);
+  const { isLoading, error, mutate, isSuccess } = useMutateData(contactApiRequests.orderBook);
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -44,7 +44,11 @@ const OrderBookForm = ({ book }) => {
     },
   });
   if (error) return <ErrorMessage error={error} />;
-  return (
+  return isSuccess ? (
+    <div className="min-w-full min-h-full flex">
+      <h1 className="m-auto _text-bold-3xl">{strings.success}</h1>
+    </div>
+  ) : (
     <form onSubmit={formik.handleSubmit} className="flex flex-col justify-evenly h-full w-full">
       <h1 className="_text-bold-dark-6xl mr-4">{strings.title}</h1>
       <h3 className="_text-3xl mr-4">{strings.subtitle}</h3>

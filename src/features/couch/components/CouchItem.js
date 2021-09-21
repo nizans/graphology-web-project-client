@@ -1,18 +1,16 @@
-import React from 'react';
-import ReadMoreBtn from 'components/UI/ReadMoreBtn';
-import { useRouteMatch } from 'react-router-dom';
-import { truncate } from 'lodash';
-import useDomParser from 'hooks/useDomParser';
-import useWindowDimensions from 'hooks/useWindowDimensions';
 import BlurredUpImage from 'components/UI/BlurredUpImage';
+import ReadMoreBtn from 'components/UI/ReadMoreBtn';
+import { SectionHeightContext } from 'context/sectionHeightContext';
 import useDimensions from 'hooks/useDimensions';
-
+import useDomParser from 'hooks/useDomParser';
+import truncate from 'lodash.truncate';
+import React, { useContext, useEffect, useState } from 'react';
+import { useRouteMatch } from 'react-router-dom';
 const CouchItem = ({ data: item }) => {
   const { path } = useRouteMatch();
   const [parsedText] = useDomParser(item.text, 'text/html');
-  const { width: screenW } = useWindowDimensions();
+  const { windowWidth, windowHeight, headerHeight, footerHeight, breadCrumbHeight } = useContext(SectionHeightContext);
   const [ref, dim] = useDimensions();
-
   const imgSrc = (item.images[0] && item.images[0] && { full: item.images[0].full, thumb: item.images[0].thumb }) || {
     full: 'https://via.placeholder.com/150',
     thumb: 'https://via.placeholder.com/150',
@@ -23,7 +21,7 @@ const CouchItem = ({ data: item }) => {
       <div className="col-span-2 flex justify-center items-center ">
         <BlurredUpImage
           withModal={false}
-          height={dim?.height}
+          height={windowWidth > 768 ? dim?.height : 300}
           imageSrc={imgSrc.full}
           tinySrc={imgSrc.thumb}
           style={{ backgroundSize: 'cover' }}
@@ -35,7 +33,7 @@ const CouchItem = ({ data: item }) => {
         <div
           ref={ref}
           style={{
-            columnCount: screenW < 768 ? '1' : '2',
+            columnCount: windowWidth < 1024 ? '1' : '2',
           }}
           className="align-middle _text-2xl">
           {truncate(parsedText, { length: 500, separator: ' ' })}

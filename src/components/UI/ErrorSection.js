@@ -5,7 +5,7 @@ import { useHistory } from 'react-router';
 const strings = {
   back: 'חזור אחורה',
 };
-const ErrorSerction = props => {
+const ErrorSection = props => {
   const { error } = props;
 
   const { goBack } = useHistory();
@@ -22,4 +22,4 @@ const ErrorSerction = props => {
   );
 };
 
-export default ErrorSerction;
+export default ErrorSection;

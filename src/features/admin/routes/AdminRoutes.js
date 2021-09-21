@@ -11,7 +11,7 @@ const AdminRoutes = () => {
   const sectionHeightCTX = useContext(SectionHeightContext);
 
   return (
-    <div className="w-full">
+    <div className="min-h-screen w-full">
       <AdminNav />
       <Switch>
         <Route exact path={`${path}`}>
